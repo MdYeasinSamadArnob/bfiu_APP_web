@@ -1,0 +1,1904 @@
+General Banking
+
+Hard Logic Rules: 32
+
+AI Rules (RAG + General): 35
+
+AI-General: 32
+
+AI-RAG: 3
+
+Rule No
+
+Rule
+
+Classification
+
+Reason
+
+Risk Level
+
+1
+
+Splitting of cash deposits just below BDT 10,00,000 in multiple accounts in a month. Cash Deposits in an account accumulating 9,00,000/- to 9,99,999.99 in the same day greater than 2 times in a month.
+
+Hard Logic
+
+Based on mathematical conditions like deposit ranges, counts (>2 times), and time periods (month), which can be strictly programmed with comparisons and aggregations.
+
+High
+
+2
+
+Sudden high value transaction for the client. 1. Value of transaction is more than 2 times of the previous largest transaction for the client in last 6 months with min. transaction amount being BDT 2,000,000. 2. Number of transactions exceed 30 in a single day Applicable Customer Type: all individual accounts. 3. Number of transactions 30 in 7 calendar days AND total amount BDT 2,000,000 Applicable Customer Type: Student, Housewife, Landlord, Self-employed, Retired, Farmer. 4. Positive balance in Credit Card. 5. Number of transactions in a month is more than 200% of the average number for the client in the last 6 months with min. no. of transactions being 20 in a single day.
+
+Hard Logic
+
+Involves mathematical thresholds (e.g., >2x largest, >30 transactions, >= BDT 2M, >200% average), counts, and time-based aggregations (last 6 months, 7 days), all programmable with direct comparisons.
+
+Med
+
+3
+
+Unusual or Repetitive Donations. If donations to charitable organizations: Exceed amounts > BDT 20,00,000 in a month. Exceed frequency > 5. Rationale: High-value donations may disguise illegal funds.
+
+Hard Logic
+
+Uses numerical thresholds (> BDT 20M, >5 frequency) and monthly aggregation, which are straightforward logical checks.
+
+High
+
+4
+
+Clustered Small Transactions. In personal accounts, if 10 transactions below BDT 10,000 within a day from different counterparties. Rationale: Possible smurfing or avoidance of threshold-based detection.
+
+Hard Logic
+
+Based on count (>=10), amount (< BDT 10K), time (single day), and distinct counterparties, all quantifiable and rule-based.
+
+Med
+
+5
+
+Quick Withdrawals after Deposits. 1. If funds are withdrawn/transferred in the same day for five times in a week. Rationale: Indicative of no business justification. 2. 90% or more withdrawal of credited amount next day for 5 times in 10 days.
+
+Hard Logic
+
+Relies on counts (>=5), percentages (>=90%), and time windows (week, 10 days), which are precise mathematical conditions.
+
+High
+
+6
+
+Smurfing Patterns. Fragmented deposits of > BDT 100000 from multiple branches (online deposit) five times in a single day. (for individuals/proprietorship). Rationale: Designed to avoid detection through small, multiple inflows.
+
+Hard Logic
+
+Involves amount (> BDT 100K), count (>=5), multiple branches, and time (single day), all hard-coded comparisons.
+
+High
+
+7
+
+Suspicious Withdrawal Timing or Location. Transactions made between 10 PM and 6 AM five times in the same day. Rationale: Timing/location adds risk factor.
+
+Hard Logic
+
+Time range (22:00-06:00) and count (>=5 in a day) are exact, programmable filters.
+
+Med
+
+8
+
+Crypto-like Behavior. If transactions show: A transaction description where mentioned keyword related to Crypto transactions. Rationale: Possible crypto transactions bypassing controls.
+
+AI-General
+
+Requires AI to interpret transaction descriptions for keywords related to crypto, as keyword matching might need contextual understanding or NLP to avoid false positives on ambiguous terms.
+
+High
+
+9
+
+Early High Transactions. If a new account at any point of time (< 30 days old) sees:, Single transaction > BDT 10,00,000 OR, 10 transactions totaling > BDT 20,00,000 Applicable for individuals/proprietorship. Rationale: Suspicious for newly opened accounts without clear reason.
+
+Hard Logic
+
+Account age (<30 days), amounts (> BDT 10M or > BDT 20M total), and count (>=10) are numerical and temporal checks.
+
+Low-Med
+
+10
+
+Cheque Bounce. If bounces 5 times in a day in a same account.
+
+Hard Logic
+
+Simple count (>=5 bounces in a day), no interpretation needed.
+
+Med
+
+11
+
+Account freezing/suspension. If any kind of transaction observed in frozen account or withdrawal observed in suspended account.
+
+Hard Logic
+
+Binary checks for transactions in frozen accounts or withdrawals in suspended ones, based on account status flags.
+
+High
+
+12
+
+Proprietorship Account Transactions. If in a proprietorship account, in a single day, more than 30 transactions amounting 20.00.000 or more.
+
+Hard Logic
+
+Count (>30) and total amount (>= BDT 20M) in a day, straightforward aggregation.
+
+Med
+
+13
+
+Any TP violation -. 1. Violation of TP by 3 times of the declared amount 2 times a month. 2. Estimated Monthly Total Deposit/withdrawal Limit (TP) breach by 2 times of the declared amount for more than 02 times in 03 months.
+
+Hard Logic
+
+Multipliers (3x, 2x declared), counts (>=2), and time periods (month, 3 months), all mathematical.
+
+High
+
+14
+
+A/c to A/c transfers from unrelated parties followed by withdrawals. Account to account transfer from unrelated parties in amounts more than 20 times in 5 days followed by immediate withdrawals (withdrawal 80% of the amount deposited).
+
+Hard Logic
+
+Count (>20 in 5 days), percentage (>=80%), and sequence (followed by withdrawal), can be programmed as rules.
+
+Med
+
+15
+
+High value transactions with a country with high ML risk. 1. Transaction greater than BDT 500,000 for Individuals and BDT 1,000,000 for Non-Individuals, involving a country considered to be high risk from the money laundering or drug trafficking perspective.
+
+Hard Logic
+
+Amount thresholds (> BDT 500K/1M) and flag for high-risk country, using predefined lists.
+
+High
+
+16
+
+Frequent low cash deposits or withdrawals. Cash deposits or withdrawals of not more than BDT 100,000 greater than 20 times in 30 days (for individuals).
+
+Hard Logic
+
+Amount (<= BDT 100K), count (>20), time (30 days), quantifiable.
+
+Med
+
+17
+
+Many to one fund transfer. Funds sent by more than 5 senders to one recipient with aggregate amount more than BDT 500,000 for individuals and BDT 1,000,000 for proprietor in the same day.
+
+Hard Logic
+
+Sender count (>5), total amount (> BDT 500K/1M), time (same day), aggregation-based.
+
+High
+
+18
+
+One to many fund transfer. Funds sent by one sender to more than 5 recipients with min. aggregate amount BDT 500,000 for Individuals and BDT 1,000,000 for proprietor.
+
+Hard Logic
+
+Recipient count (>5), total amount (>= BDT 500K/1M), direct counts.
+
+Med
+
+19
+
+Repeated small cash deposits followed by immediate ATM withdrawals in different location. Cash deposits between 5,000 to 50000 greater than 5 times in 3 days followed by immediate withdrawals in different location.
+
+Hard Logic
+
+Amount range (5K-50K), count (>5 in 3 days), sequence (followed by withdrawal), and location difference, programmable with geo-flags.
+
+High
+
+20
+
+High value transactions by high risk customers. Transactions greater than BDT 50,000,000 by individuals/proprietor in a month.
+
+Hard Logic
+
+Customer risk flag, total amount (> BDT 50M in month), using predefined risk classification.
+
+High
+
+21
+
+High value cash transactions by dealer in precious metal or stone. Cash transactions greater than BDT 2,000,000 by dealer in precious metal, precious stone or high value goods.
+
+Hard Logic
+
+Amount (> BDT 2M) and customer type (dealer), based on flags and thresholds.
+
+High
+
+22
+
+High value transactions in product/services with high ML risk. Transactions greater than BDT 500,000 for Individuals and BDT 1,000,000 for Non-Individuals using products/services with high ML risk.
+
+Hard Logic
+
+Amount (> BDT 500K/1M) and high ML risk product flag, predefined lists.
+
+Med
+
+23
+
+High value activity in housewife, student, farmer, minor accounts. Transactions of more than BDT 5,00,000 in a month in accounts (non term deposit) of customer with housewife, student, farmer, minor as occupation.
+
+Hard Logic
+
+Total (> BDT 500K in month), occupation flags, account type, all categorical and numerical.
+
+High
+
+24
+
+High value cash withdrawals or deposit in a month. Cash withdrawals or deposits greater than BDT 10,000,000 in a month (for individual/proprietorship).
+
+Hard Logic
+
+Total (> BDT 10M in month), type (cash), programmable aggregation.
+
+Med
+
+25
+
+High Value cash deposits in staff accounts. Cash deposits aggregating to minimum BDT 5,00,000 within 30 days.
+
+Hard Logic
+
+Total (>= BDT 500K in 30 days), staff account flag, numerical.
+
+High
+
+26
+
+High Value Pay order purchased without proper purpose, reason and it's remain in the parking for long period (minimum 6 months).
+
+AI-General
+
+Requires AI judgment to determine if the purpose/reason is "proper," as it involves subjective evaluation of documentation or intent.
+
+Med
+
+27
+
+Customer who changes the static data (like address, mobile no etc.) frequently, at least 3 times in 2 month.
+
+Hard Logic
+
+Count (>=3 changes in 2 months), static data types, countable events.
+
+High
+
+28
+
+High Value transaction in a dormant account. Transaction greater than 5,00,000 for individual and 10,00,000 for proprietorship in dormant account at any point of time (within 30 days of reactivation).
+
+Hard Logic
+
+Amount (> BDT 500K/1M), dormant status, time (<30 days post-reactivation), flags and thresholds.
+
+Low
+
+29
+
+Round-tripping/ Circular transactions (money going out and coming back in similar amounts within a short time). At least 5 times with minimum value BDT 100,000 lac within 15 days (for Individuals/proprietor).
+
+Hard Logic
+
+Count (>=5), amount (>= BDT 100K per cycle), time (15 days), pattern matching for outflows/inflows, can be rule-based with similarity thresholds.
+
+Med
+
+
+
+Credit
+
+Hard Logic Rules: 32
+
+AI Rules (RAG + General): 35
+
+AI-General: 32
+
+AI-RAG: 3
+
+
+
+
+
+Rule No
+
+Rule
+
+Classification
+
+Reason
+
+Risk Level
+
+1
+
+Utilization of loan fund by the borrower for purposes other than those for which the loan was approved.
+
+AI-General
+
+Requires AI to analyze transaction patterns and determine if usage matches approved purpose, involving contextual judgment without external retrieval.
+
+High
+
+2
+
+Fake collateral documents identification.
+
+AI-RAG
+
+Needs AI for document verification and forgery detection, using retrieval from document databases or standards for comparison.
+
+High
+
+3
+
+Source of fund validation for onetime/ bulk.
+
+AI-General
+
+Involves validating source of funds, which may require investigative reasoning or pattern analysis not strictly mathematical.
+
+Med
+
+4
+
+Customers apply for credit facilities with little or no legitimate financial history.
+
+Hard Logic
+
+Assessing financial history can be based on simple checks like transaction count < threshold or total amount < threshold, programmable.
+
+Med
+
+5
+
+Credit Report is inconsistent with customer's loan portfolio.
+
+Hard Logic
+
+Detecting inconsistencies can be based on direct comparisons of key metrics in reports and portfolios.
+
+Low
+
+6
+
+Customer income or business activity doesn't match the loan size requested.
+
+Hard Logic
+
+Can be implemented with ratio checks (e.g., loan > X% of income), mathematical proportionality.
+
+High
+
+7
+
+Borrower takes new loans to repay older ones, creating circular transactions.
+
+AI-General
+
+Identifying circular patterns needs AI for graph-based analysis of transaction flows.
+
+High
+
+8
+
+Customer suddenly pays off a large problem loan with no plausible explanation regarding the source of funds.
+
+AI-General
+
+"Plausible explanation" requires AI judgment on source validity.
+
+Med
+
+9
+
+Customer's loan proceeds are unexpectedly transferred offshore.
+
+Hard Logic
+
+Offshore transfers can be flagged based on country lists, without needing deep judgment.
+
+High
+
+10
+
+Customer taking loan and adjusted immediately without showing due explanations.
+
+AI-General
+
+Lacks "due explanations," requiring evaluation of adequacy, which is subjective.
+
+Med
+
+11
+
+Borrower is willing to not repay loan having a sound payment Capacity.
+
+AI-General
+
+Assessing "willingness" to repay involves behavioral judgment, not just capacity metrics.
+
+Med
+
+12
+
+A customer's financial statement makes representations that do not conform to accounting principles.
+
+AI-General
+
+Detecting non-conformance to principles may need AI for deep financial analysis.
+
+High
+
+13
+
+Unwilling to submit required documents for credit facilities.
+
+Hard Logic
+
+Can be flagged if required documents are missing based on checklist, binary check.
+
+Med
+
+14
+
+Using front Companies.
+
+AI-General
+
+Identifying front companies involves investigative pattern recognition.
+
+High
+
+15
+
+Using Shell Companies.
+
+AI-General
+
+Requires AI to detect shell entity characteristics through pattern analysis.
+
+High
+
+16
+
+Loan Repayments by third parties.
+
+Hard Logic
+
+Third-party repayments can be flagged if payer != borrower, using party matching.
+
+Med
+
+17
+
+Loan proceeds used to purchase property in the name of third party.
+
+AI-General
+
+Third party naming requires checking relationships, involving entity linking.
+
+High
+
+18
+
+Creation of Force loan without valid reason (LC, B2B, BG).
+
+AI-General
+
+"Valid reason" is subjective, needing judgment.
+
+Med
+
+19
+
+Customer requests to disburse loan by issuing cheques/Instruments in favor of another bank/FI/Third party.
+
+Hard Logic
+
+Requests to third parties can be flagged based on payee not matching borrower.
+
+Med
+
+20
+
+Large cash transaction inconsistent with Customer's business/profession.
+
+Hard Logic
+
+Inconsistency can be checked against declared business type flags or thresholds.
+
+High
+
+21
+
+Huge Credit balance in the loan account.
+
+Hard Logic
+
+"Unusually high" credit balance, but can be threshold-based (e.g., >0 or specific amount), programmable if defined.
+
+Low
+
+22
+
+Over valuation of primary security.
+
+AI-RAG
+
+"Significantly above market rate" needs retrieval of market data for comparison.
+
+High
+
+23
+
+Offering third party property as collateral.
+
+Hard Logic
+
+Third party can be flagged if owner != borrower, based on ownership data.
+
+Med
+
+24
+
+Adjustment of long-term loan like home loan within short period of time.
+
+Hard Logic
+
+"Significantly short period" can be defined as threshold (e.g., <X months), mathematical time comparison.
+
+Med
+
+25
+
+Not determining the loan limit with exact required cushion against the collateral value.
+
+Hard Logic
+
+"Adequate cushion" can be enforced with margin thresholds (e.g., limit < 80% collateral).
+
+Low
+
+26
+
+Under valuation of primary/collateral security.
+
+Hard Logic
+
+Valued below market can be checked against predefined benchmarks.
+
+Med
+
+27
+
+Exaggerated report of Credit Rating Agency.
+
+AI-General
+
+"Inflated or exaggerated" requires subjective analysis of reports.
+
+High
+
+28
+
+Client has dual citizenship.
+
+Hard Logic
+
+Simple flag based on KYC data for dual citizenship.
+
+Med
+
+29
+
+Relationship with PEP/IP.
+
+AI-RAG
+
+Identifying relationships with PEP/IP needs retrieval from PEP databases or lists.
+
+High
+
+30
+
+Client has connection with any Tax Heaven Country.
+
+Hard Logic
+
+Connections can be flagged based on address, residency, or transaction with tax haven lists.
+
+Med
+
+31
+
+Loan or Stated Purpose is Ambiguous.
+
+AI-General
+
+"Vague or ambiguous" purpose needs NLP to classify text.
+
+Low
+
+32
+
+Tempered Financial Statement Presented to Mislead Analyst.
+
+AI-General
+
+Detecting tampering to mislead requires AI for document forensics.
+
+High
+
+33
+
+Tempered Financial Statement presented to mislead analyst.
+
+AI-General
+
+Same as above, tampering detection.
+
+Med
+
+34
+
+Frequent Formation of different entities under group of company.
+
+AI-General
+
+Frequent counts are hard, but group linkage and intent require AI.
+
+High
+
+35
+
+Formation of a new company in the name of an employee.
+
+AI-General
+
+"Potential nominee" implies judgment on intent.
+
+Med
+
+36
+
+Frequent Change of Business Address.
+
+Hard Logic
+
+Count-based (>=X changes), straightforward event counting.
+
+High
+
+37
+
+Loan disbursed against business and disbursed fund transferred to individual accounts.
+
+Hard Logic
+
+Transfer to individual accounts flagged by account type.
+
+High
+
+38
+
+Loan proceeds used to purchase property in the name of third party.
+
+AI-General
+
+Third party titling, relationship check.
+
+Med
+
+39
+
+Transfer of fund between irrelevant business.
+
+AI-General
+
+"Unrelated or irrelevant" businesses require similarity analysis.
+
+High
+
+40
+
+Same property mortgaged to different FI's Collateral.
+
+Hard Logic
+
+Multiple mortgages detectable via CIB or registry checks.
+
+High
+
+41
+
+Falsified Stock report presentation.
+
+AI-General
+
+"Falsified" reports need detection beyond rules.
+
+Med
+
+42
+
+Excessive cash withdraw and advances.
+
+Hard Logic
+
+"Excessive" can be defined as > threshold based on averages.
+
+Med
+
+43
+
+Excessive and recurring cash payments.
+
+Hard Logic
+
+Repeated payments above threshold, countable.
+
+Low
+
+44
+
+Recurring positive balances.
+
+Hard Logic
+
+Recurring can be count > X positive balances.
+
+High
+
+45
+
+Excessive overseas spending in high risk geographies.
+
+Hard Logic
+
+Spending > threshold in high-risk geography flags.
+
+Med
+
+46
+
+Loan proceeds transferred to third-party accounts with no business link, borrower acting as a pass-through. 1, Compare loan disbursement beneficiaries with declared related parties. - Threshold: >10% of loan proceeds transferred to non-declared third parties OR >3 transfers/month to unrelated accounts.
+
+Hard Logic
+
+Thresholds (>10%, >3) and comparison to declared parties list, programmable.
+
+Med
+
+47
+
+Loan sanctioned for business purposes diverted to personal luxury items, Car, Travel, Jewelry, speculative trading, or unrelated real estate. Match transactions against borrower's declared business activity. Threshold: >20% of loan proceeds used outside business scope OR one-off large transaction BDT 5.00 Million.
+
+AI-General
+
+Matching to declared activity and categorizing "luxury" needs classification.
+
+High
+
+48
+
+Sudden replacement of directors/shareholders before or after loan approval, new owners from high-risk jurisdictions. Monitor company registry/CIB data for changes. Threshold: >2 ownership/shareholding changes within 12 months OR ownership transfer to high-risk jurisdiction parties.
+
+Hard Logic
+
+Counts (>2 in 12 months) and flags (high-risk jurisdiction), strict logic.
+
+High
+
+49
+
+Collateral valuation much higher than market rate, property pledged multiple times. Compare declared value vs market benchmarks. Threshold: Declared value >30% above market OR property pledged to multiple banks (via CIB/land registry).
+
+Hard Logic
+
+Percentage (>30%) and multiple pledges, direct comparisons.
+
+High
+
+50
+
+Borrower applies for unusually large loans disproportionate to turnover/income. Compare loan request vs financial statements and historic borrowing. - Threshold: Loan amount >200% of annual turnover OR >5x historic borrowing without justification.
+
+Hard Logic
+
+Multipliers (>200%, >5x), mathematical.
+
+Med
+
+51
+
+Frequent Overdraft Usage or Check Bounces in Connected Accounts.
+
+Hard Logic
+
+Frequent defined as count > threshold, connected via flags.
+
+Med
+
+52
+
+Inconsistent revenue/income reporting compared to repayment capacity.
+
+AI-General
+
+"Inconsistent" requires analysis.
+
+High
+
+53
+
+Frequent overdraft usage or check bounces in connected accounts.
+
+Hard Logic
+
+Same as 51, count-based.
+
+Med
+
+54
+
+Cross-lending within a group of companies showing circular transactions.
+
+AI-General
+
+Circular patterns require graph detection.
+
+Med
+
+55
+
+Borrower heavily dependent on a single customer/supplier who is also highly leveraged.
+
+AI-General
+
+"Heavily dependent" and "highly leveraged" need judgment.
+
+High
+
+56
+
+Geo-tag mismatch (loan for rural project, but funds used in urban luxury spending).
+
+AI-General
+
+Mismatch detection, "luxury" categorization.
+
+Med
+
+57
+
+Social media/adverse news analytics triggering early alerts on borrower risk.
+
+AI-RAG
+
+Adverse information identified through retrieval from social media or news sources.
+
+Med
+
+58
+
+Borrower pays installments on time but rising exposure with other banks.
+
+Hard Logic
+
+Rising exposure as total > previous, mathematical.
+
+High
+
+59
+
+Guarantor or collateral provider with poor repayment history.
+
+Hard Logic
+
+"Poor" history based on CIB score < threshold.
+
+Med
+
+60
+
+Loan sanctioned beyond borrower's repayment capacity (debt-to-income anomalies).
+
+Hard Logic
+
+Exceeds capacity via debt-to-income ratio > threshold.
+
+Low
+
+61
+
+Loans disbursed but funds diverted to unrelated accounts within 48-72 hours.
+
+AI-General
+
+"Unrelated" accounts need relationship analysis.
+
+High
+
+62
+
+Sudden drop in borrower's account turnover or revenue flow.
+
+Hard Logic
+
+Decline > % threshold, mathematical.
+
+Med
+
+63
+
+Loan repayments are made from suspicious/unrelated sources.
+
+AI-General
+
+"Suspicious/unrelated" requires judgment.
+
+Med
+
+64
+
+Cash withdrawal >30% of loan amount within a short time (especially business/project loans).
+
+Hard Logic
+
+>30% and time window, numerical.
+
+High
+
+65
+
+Collateral Value Erosion > 25% in 6 months (real estate/stock).
+
+Hard Logic
+
+>25% decline in 6 months, calculation-based.
+
+High
+
+66
+
+Multiple loans sanctioned under different names/related parties without group exposure analysis.
+
+AI-General
+
+"Related parties" need group linking.
+
+High
+
+67
+
+Inflated collateral valuation (land, real estate) accepted without independent verification.
+
+AI-General
+
+"Inflated" and "without verification" subjective.
+
+Med
+
+Trade
+
+Hard Logic Rules: 52
+
+AI Rules (RAG + General): 25
+
+AI-General: 19
+
+AI-RAG: 6
+
+
+
+Rule No
+
+Rule
+
+Classification
+
+Reason
+
+Risk Level
+
+1
+
+Over/under invoicing. Variation of quoted price with standard price by 10%.
+
+Hard Logic
+
+Variance (>=10%) from standard price, assuming standard from internal database.
+
+High
+
+2
+
+Shifting or changing of import/export items/goods. Difference of imported/exported items with last one year historical items.
+
+Hard Logic
+
+HS code difference from historical, direct comparison.
+
+Med
+
+3
+
+Change of beneficiaries. Change of beneficiaries by amendment at any stage of transaction.
+
+Hard Logic
+
+Binary change via amendment, event flag.
+
+Med
+
+4
+
+Presenting/negotiating bank differs with payment receiving bank. Presenting/negotiating bank differs with payment bank.
+
+Hard Logic
+
+Bank difference, equality check.
+
+Low
+
+5
+
+Trade with high risk/tax heaven countries at any stage of transaction. Trade with high risk countries at any stage of transaction.
+
+Hard Logic
+
+High-risk country involvement, list flag.
+
+High
+
+6
+
+Frequent amendments in L/C. Amendments more than three times.
+
+Hard Logic
+
+Count >3, numerical.
+
+Med
+
+7
+
+Address of beneficiaries and document presenters differs. Difference of beneficiaries and document presenters' country/address.
+
+Hard Logic
+
+Address/country not equal, string check.
+
+High
+
+8
+
+Transaction Volume follow up (Significant growth (above a threshold) in a particular month compared to last one-year average for a customer).
+
+AI-General
+
+"Significant growth" requires anomaly detection if threshold not fixed.
+
+Med
+
+9
+
+Transaction Profile Violation (review based on frequency/recurrence and percentage on different parameters like country, item, value and volume of transactions.).
+
+AI-General
+
+Multi-faceted review of parameters needs integrated analysis.
+
+Med
+
+10
+
+Change in Line of Business: Sudden Change in business nature and approached new item for trade. Monitoring in the system with any H.S Code other than declared in TTP should raise alert.
+
+Hard Logic
+
+HS code not in TTP list, list comparison.
+
+High
+
+11
+
+Price Variance of the Products -. 1. A certain % high or low from last 6-month average unit price for a particular customer. 2. A certain % high or low from last 6-month average unit price from the own database of.
+
+Hard Logic
+
+Percentage variance from average, calculation.
+
+Med
+
+12
+
+Dual Use Goods and Restricted items.
+
+Hard Logic
+
+Goods in restricted list, flag.
+
+High
+
+13
+
+Payment to Third country other than the exporter/importer's country.
+
+Hard Logic
+
+Country not matching exporter/importer, equality.
+
+Med
+
+14
+
+When a customer opens an import LC, if he exceeds his maximum threshold for monthly average value mentioned in the TP, an alert will be generated.
+
+Hard Logic
+
+Value > TP threshold, comparison.
+
+High
+
+15
+
+When an export LC is advised, if it exceeds the customer's maximum threshold for monthly average value mentioned in the TP, an alert will be generated.
+
+Hard Logic
+
+Same as above.
+
+High
+
+16
+
+Probable list of imported goods- If the imported goods, identified by HS code, is inconsistent with the goods mentioned in TTP (Trade Transaction Profile), an alert will be generated.
+
+Hard Logic
+
+HS code not in TTP, list check.
+
+Med
+
+17
+
+Probable Goods Mentioned in TIP. Alert if inconsistent with TIP.
+
+Hard Logic
+
+Inconsistent with TIP, comparison.
+
+Med
+
+18
+
+Probable countries from which the goods will be imported- If the country of import is inconsistent with the countries mentioned in the TTP (Trade Transaction Profile), an alert will be generated.
+
+Hard Logic
+
+Country not in TTP list.
+
+High
+
+19
+
+Probable countries from which the goods will be exported- If the country of Export is inconsistent with the countries mentioned in the TTP (Trade Transaction Profile), an alert will be generated.
+
+Hard Logic
+
+Same as above.
+
+High
+
+20
+
+Alert for Restricted goods by the current Import policy.
+
+Hard Logic
+
+Goods in restricted policy list.
+
+High
+
+21
+
+If the commission (bank) of a trade transaction exceeds threshold (4%), an alert will be generated.
+
+Hard Logic
+
+Commission >4%.
+
+Med
+
+22
+
+If freight charges for an LC exceeds a certain threshold (5%), an alert will be generated.
+
+Hard Logic
+
+Freight >5% of value.
+
+Med
+
+23
+
+If the destination/origin country, is situated in a land locked country an alert should be generated for further assessment of full voyage of the vessel.
+
+Hard Logic
+
+Country is land-locked, flag.
+
+Low
+
+24
+
+If LC is overdrawn up to a certain threshold (10%), an alert will be generated.
+
+Hard Logic
+
+Overdrawn >=10%.
+
+Med
+
+25
+
+If LC is opened in round figures up to 5 digits, an alert will be generated.
+
+Hard Logic
+
+Value is round (e.g., 10000, pattern match).
+
+Low
+
+26
+
+If Bill of lading is future dated or within 10 days from present date, an alert will be generated.
+
+Hard Logic
+
+Date > current or <10 days old.
+
+Med
+
+27
+
+In case of Import LC, if port of loading doesn't match with the country from which goods are being imported, then it will give an alert.
+
+Hard Logic
+
+Port country != origin country, mapping.
+
+High
+
+28
+
+The volume of purchases and/or imports grossly exceeds the expected sales amount.
+
+Hard Logic
+
+Exceeds expected based on TP or thresholds, mathematical.
+
+Med
+
+29
+
+A single bank account is used by multiple businesses.
+
+AI-General
+
+"Unrelated" businesses, relationship analysis.
+
+Med
+
+30
+
+A single bank account has multiple deposit handlers (retail and wholesale).
+
+AI-General
+
+Multiple handlers require type classification.
+
+Low
+
+31
+
+The exporter doesn't receive money from the buyer, but from someone else who pays on behalf of the buyer.
+
+Hard Logic
+
+Payer != buyer, party match.
+
+High
+
+32
+
+Funds are received/transferred for import/export, and the ordering customer/beneficiary is an MSB.
+
+Hard Logic
+
+MSB as customer/beneficiary, flag.
+
+High
+
+33
+
+Media reports that the account holder is linked to a known terrorist organization or engaged in terrorist activities.
+
+AI-RAG
+
+Adverse media requires retrieval from news sources.
+
+High
+
+34
+
+Beneficial owner of the account is not properly identified.
+
+Hard Logic
+
+Verification status flag, binary.
+
+High
+
+35
+
+Identification Similarity with related documents (LC, BL, Invoice etc.) in case of Govt. LC.
+
+Hard Logic
+
+Similarity via string or field comparison.
+
+Med
+
+36
+
+Custom Procedure Codes (CPC) Mismatching with Bill of Entry.
+
+Hard Logic
+
+CPC != Bill of Entry CPC, equality.
+
+Med
+
+37
+
+Custom Procedure Codes (CPC) mis-matching with Bill of Entry.
+
+Hard Logic
+
+Same.
+
+High
+
+38
+
+Any involvement of Frustrated Cargo/Container Issues are raised and try to get custom clearance.
+
+AI-General
+
+"Involvement" and issues require event detection.
+
+Med
+
+39
+
+Any Advance ruling issues are raised and settled from ruling authority.
+
+AI-General
+
+Issues raised/settled require judgment.
+
+Low
+
+40
+
+Required Credit report of the seller with PI $30000 and with Indent $40000 are not collected.
+
+Hard Logic
+
+Report missing for PI >=30K USD or Indent >=40K, binary for threshold.
+
+Med
+
+41
+
+There are discrepancies between the description of goods or commodity in the invoice and the actual goods shipped.
+
+AI-General
+
+Discrepancies between description and actual require comparison analysis.
+
+High
+
+42
+
+There is no apparent business relationship between the parties and transactions.
+
+AI-General
+
+"No apparent relationship" needs entity relationship analysis.
+
+Med
+
+43
+
+There is a lack of appropriate documentation to support transactions.
+
+AI-General
+
+"Lack of appropriate" subjective on sufficiency.
+
+Low
+
+44
+
+Imported Goods or items originates from a country where there is limited production or no sources at all.
+
+AI-RAG
+
+"Limited production" needs retrieval from knowledge bases on country-item capacity.
+
+High
+
+45
+
+Required Three quotations from two different Countries for import above $15000.
+
+Hard Logic
+
+No 3 quotations from >=2 countries for >15K USD, count and distinct.
+
+Med
+
+46
+
+Using offshore account to settle import payment.
+
+Hard Logic
+
+Offshore account flag.
+
+High
+
+47
+
+Unusual HS Code of the imported Goods.
+
+Hard Logic
+
+Unusual flagged if not in business profile list.
+
+Med
+
+48
+
+Incoterms DDP, CIF and CIP used in case of Private party.
+
+Hard Logic
+
+Incoterms in {DDP, CIF, CIP} and private party, list flag.
+
+Low
+
+49
+
+In Vessel Tracking/Container Tracking any discrepancies/sign like spoofing, Loitering and stripping.
+
+AI-General
+
+Discrepancies in tracking require pattern recognition.
+
+High
+
+50
+
+Exports proceed Repatriation time frame expired.
+
+Hard Logic
+
+Date > timeframe, temporal.
+
+Med
+
+51
+
+Invoice splitting/ multiple invoicing.
+
+AI-General
+
+Evidence of splitting requires pattern detection.
+
+High
+
+52
+
+In case of import via land port multiple land port mentioned.
+
+Hard Logic
+
+Land ports count >1.
+
+Med
+
+53
+
+Goods import through Israeli flag bearing vessel.
+
+Hard Logic
+
+Vessel flag = Israeli.
+
+High
+
+54
+
+Import from which country that has attributed sanction by different stakeholder or organization.
+
+Hard Logic
+
+Country in sanction list.
+
+High
+
+55
+
+Import from a country that is involved with war.
+
+Hard Logic
+
+Country in war list.
+
+High
+
+56
+
+Owners lacking relevant experience.
+
+AI-General
+
+"Lacking relevant experience" requires assessment of background.
+
+Med
+
+57
+
+inconsistent staff count and trading volume.
+
+Hard Logic
+
+Inconsistent if staff/volume ratio outside threshold.
+
+Low
+
+58
+
+Relationship with PEP/IP.
+
+AI-RAG
+
+Relationship detection via retrieval from PEP databases.
+
+High
+
+59
+
+Frequently Changing ownership or signatories.
+
+Hard Logic
+
+Count of changes > threshold (frequent defined).
+
+Med
+
+60
+
+Financing from unrelated sources i.e commodity purchases are funded by sudden capital influxes from unrelated third parties.
+
+AI-General
+
+"Unrelated" and "sudden" require analysis.
+
+High
+
+61
+
+Invoice showing significant amount of misc charges e.g. handling charges.
+
+Hard Logic
+
+Significant if misc > % of total, mathematical.
+
+Med
+
+62
+
+Transshipment through a country for no apparent reason.
+
+AI-General
+
+"No apparent reason" subjective justification.
+
+Med
+
+63
+
+Parts Import Mentioned in KG Whereas Open Source Prices in Pieces/Sets/Dozens.
+
+AI-RAG
+
+Unit mismatch requires retrieval of open-source prices for comparison.
+
+Low
+
+64
+
+Price Determination in Case of Capital Machinery.
+
+AI-General
+
+Issues in price determination require subjective assessment.
+
+Med
+
+65
+
+Price mentioned in KG whereas in open source prices are mentioned in pieces or in sets or in dozens.
+
+AI-RAG
+
+Similar to 63, retrieval of open-source prices.
+
+Med
+
+66
+
+Price determination in case of capital machinery.
+
+AI-General
+
+Same as 64.
+
+Low
+
+67
+
+Refund manipulation.
+
+AI-General
+
+"Manipulation" requires pattern or intent detection.
+
+Med
+
+68
+
+LC or TT Value below the range for which Credit report is required.
+
+Hard Logic
+
+Value < report threshold.
+
+High
+
+69
+
+Same address of Beneficiary/ Applicant, Drawer/Drawee, Related parties/other address inconsistencies.
+
+Hard Logic
+
+Addresses equal or inconsistent, string.
+
+High
+
+70
+
+Misrepresentation of quantity or type of goods imported or exported quantity declared during opening of LC differs with quantity in commercial invoice more than (10%) and/or type of goods imported or exported differs differs (HS Code or (Harmonized System Code) different in shipping documents for LC).
+
+Hard Logic
+
+Quantity diff >10%, HS code !=, mathematical and equality.
+
+Med
+
+71
+
+The Bill of lading describes containerized cargo but without container numbers or with sequential container numbers.
+
+Hard Logic
+
+Missing or sequential numbers, pattern check.
+
+High
+
+72
+
+The port of loading or date of loading does not match the bill of lading.
+
+Hard Logic
+
+Port/date != BL.
+
+Med
+
+73
+
+Alternation of PI Information after remitting advance TT or issuing DA/DP Number.
+
+Hard Logic
+
+Change after TT/DA/DP, timestamp check.
+
+High
+
+74
+
+During Settlement, obtaining huge amount of discount on bill value from beneficiary.
+
+Hard Logic
+
+Huge if discount > %, mathematical.
+
+Med
+
+75
+
+Different HS code found in the Bill of Entry as compared to the respective commercial invoice.
+
+Hard Logic
+
+HS code !=.
+
+High
+
+76
+
+Single HS Code for various items.
+
+Hard Logic
+
+Single code if items count >1 with same HS.
+
+Low
+
+77
+
+No Mother LC is found against B2B LC.
+
+Hard Logic
+
+Mother LC exists = false.
+
+Med
+
+Remittance
+
+Hard Logic Rules: 5
+
+AI Rules (RAG + General): 3
+
+AI-General: 3
+
+AI-RAG: 0
+
+
+
+Rule No
+
+Rule
+
+Classification
+
+Reason
+
+Risk Level
+
+1
+
+Single Receiver but sender from multiple country.
+
+Hard Logic
+
+Receiver single, senders countries distinct count >1, aggregation.
+
+High
+
+2
+
+Single receiver but sender multiple from same country.
+
+Hard Logic
+
+Receiver single, multiple senders same country, count >1 same country.
+
+Med
+
+3
+
+Incoming remittance from High-Risk Jurisdiction countries.
+
+Hard Logic
+
+From high-risk country, list flag.
+
+High
+
+4
+
+Single Sender but multiple Receiver.
+
+Hard Logic
+
+Sender single, receivers count >1.
+
+High
+
+5
+
+Remittance coming from a country with no relevance with Beneficial Owner.
+
+AI-General
+
+"No relevance" to beneficial owner requires relationship or connection analysis.
+
+Med
+
+6
+
+Remittances timed with political or economic events to disguise intent.
+
+AI-General
+
+Timing with events to "disguise intent," needs correlation and intent inference.
+
+Med
+
+7
+
+Remittances via mobile wallets or fintech apps from high-risk jurisdictions.
+
+Hard Logic
+
+Channel (mobile/fintech) and high-risk origin, flags.
+
+High
+
+8
+
+Remittance sent via shell companies / third-party intermediaries.
+
+AI-General
+
+Via shell companies, identifying shell needs analysis.
+
+High
+
+
+
+
+
