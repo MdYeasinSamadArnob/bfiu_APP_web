@@ -3,7 +3,8 @@
 import { useState, useMemo } from 'react';
 import { useCases } from '../data/useCases';
 import UseCaseCard from '../components/UseCaseCard';
-import { Search, BarChart3, PieChart, Filter, LayoutGrid, Zap, Brain, Database, CheckSquare } from 'lucide-react';
+import Link from 'next/link';
+import { Search, BarChart3, PieChart, Filter, LayoutGrid, Zap, Brain, Database, CheckSquare, Calendar } from 'lucide-react';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -73,6 +74,14 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            
+            <Link 
+              href="/timeline" 
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 font-medium text-sm shadow-sm hover:shadow hover:text-indigo-600 dark:hover:text-indigo-400"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Project Timeline</span>
+            </Link>
             
             <div className="relative w-full md:w-96 group">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
