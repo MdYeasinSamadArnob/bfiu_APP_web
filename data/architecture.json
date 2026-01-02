@@ -1,0 +1,602 @@
+{
+  "nodes": [
+    {
+      "id": "cbs",
+      "type": "custom",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Core Banking Systems",
+        "subLabel": "CBS / Trade Systems (Oracle / Postgres)",
+        "icon": "Database",
+        "type": "database",
+        "details": [
+          "Source of Truth for financial data",
+          "Handles high-volume transactions",
+          "Legacy systems integration"
+        ]
+      },
+      "width": 303,
+      "height": 61
+    },
+    {
+      "id": "ums",
+      "type": "custom",
+      "position": {
+        "x": 800,
+        "y": 0
+      },
+      "data": {
+        "label": "UMS / Security",
+        "subLabel": "Keycloak (RBAC / SSO)",
+        "icon": "Shield",
+        "type": "security",
+        "details": [
+          "Centralized Identity Management",
+          "Role-Based Access Control",
+          "Single Sign-On (SSO)"
+        ]
+      },
+      "width": 213,
+      "height": 61
+    },
+    {
+      "id": "cdc",
+      "type": "custom",
+      "position": {
+        "x": 250,
+        "y": 150
+      },
+      "data": {
+        "label": "Change Data Capture",
+        "subLabel": "Debezium CDC + NiFi",
+        "icon": "RefreshCw",
+        "type": "integration",
+        "details": [
+          "Real-time database log mining",
+          "Zero-impact on source DB",
+          "Apache NiFi for transformation"
+        ]
+      },
+      "width": 226,
+      "height": 61
+    },
+    {
+      "id": "app-platform",
+      "type": "custom",
+      "position": {
+        "x": 800,
+        "y": 150
+      },
+      "data": {
+        "label": "Application Platform",
+        "subLabel": "Spring Boot Gateway (API / BFF)",
+        "icon": "Server",
+        "type": "service",
+        "details": [
+          "API Gateway Pattern",
+          "Backend for Frontend (BFF)",
+          "Request Routing & Rate Limiting"
+        ]
+      },
+      "width": 261,
+      "height": 61
+    },
+    {
+      "id": "kafka",
+      "type": "custom",
+      "position": {
+        "x": 250,
+        "y": 300
+      },
+      "data": {
+        "label": "Event Backbone",
+        "subLabel": "Apache Kafka",
+        "icon": "Activity",
+        "type": "integration",
+        "details": [
+          "High-throughput event streaming",
+          "Decoupled architecture",
+          "Message persistence"
+        ]
+      },
+      "width": 193,
+      "height": 61
+    },
+    {
+      "id": "ui",
+      "type": "customGroup",
+      "position": {
+        "x": 636.6013698630138,
+        "y": 282.22219178082213
+      },
+      "style": {
+        "width": 771,
+        "height": 120,
+        "border": "1px dashed #cbd5e1",
+        "borderRadius": "8px",
+        "padding": "10px"
+      },
+      "data": {
+        "label": "User Interfaces"
+      },
+      "width": 771,
+      "height": 120,
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "positionAbsolute": {
+        "x": 636.6013698630138,
+        "y": 282.22219178082213
+      }
+    },
+    {
+      "id": "ui-superset",
+      "type": "custom",
+      "position": {
+        "x": 30.457534246575392,
+        "y": 25.620890410958907
+      },
+      "parentNode": "ui",
+      "extent": "parent",
+      "data": {
+        "label": "Superset / Grafana",
+        "icon": "BarChart",
+        "type": "interface"
+      },
+      "width": 209,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 630.4575342465754,
+        "y": 325.6208904109589
+      }
+    },
+    {
+      "id": "ui-bpm",
+      "type": "custom",
+      "position": {
+        "x": 255.81712328767128,
+        "y": 26.928082191780845
+      },
+      "parentNode": "ui",
+      "extent": "parent",
+      "data": {
+        "label": "Business Process Mgmt",
+        "icon": "ClipboardList",
+        "type": "interface"
+      },
+      "width": 246,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 855.8171232876713,
+        "y": 326.92808219178085
+      }
+    },
+    {
+      "id": "ui-ai",
+      "type": "custom",
+      "position": {
+        "x": 533.4643835616439,
+        "y": 28.235273972602783
+      },
+      "parentNode": "ui",
+      "extent": "parent",
+      "data": {
+        "label": "AI Assistant/Agent",
+        "icon": "Bot",
+        "type": "interface"
+      },
+      "width": 208,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1133.464383561644,
+        "y": 328.2352739726028
+      },
+      "dragging": false
+    },
+    {
+      "id": "doris",
+      "type": "custom",
+      "position": {
+        "x": 503.92157534246576,
+        "y": 494.77123287671225
+      },
+      "data": {
+        "label": "Analytical Datamart",
+        "subLabel": "Apache Doris (HSAP Tables)",
+        "icon": "Database",
+        "type": "database",
+        "details": [
+          "Real-time Analytics",
+          "High-speed Ad-hoc Queries",
+          "Unified Data Storage"
+        ]
+      },
+      "width": 238,
+      "height": 61,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 503.92157534246576,
+        "y": 494.77123287671225
+      },
+      "dragging": false
+    },
+    {
+      "id": "search",
+      "type": "customGroup",
+      "position": {
+        "x": -117.64726027397262,
+        "y": 635.2941780821918
+      },
+      "style": {
+        "width": 250,
+        "height": 250,
+        "border": "1px dashed #cbd5e1",
+        "borderRadius": "8px"
+      },
+      "data": {
+        "label": "Optional Search & Logs"
+      },
+      "width": 250,
+      "height": 250,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -117.64726027397262,
+        "y": 635.2941780821918
+      }
+    },
+    {
+      "id": "elasticsearch",
+      "type": "custom",
+      "position": {
+        "x": 20,
+        "y": 40
+      },
+      "parentNode": "search",
+      "extent": "parent",
+      "data": {
+        "label": "Elasticsearch Cluster",
+        "icon": "Search",
+        "type": "database"
+      },
+      "width": 226,
+      "height": 60
+    },
+    {
+      "id": "kibana",
+      "type": "custom",
+      "position": {
+        "x": 20,
+        "y": 140
+      },
+      "parentNode": "search",
+      "extent": "parent",
+      "data": {
+        "label": "Kibana Access",
+        "icon": "Monitor",
+        "type": "interface"
+      },
+      "width": 183,
+      "height": 60
+    },
+    {
+      "id": "eaip",
+      "type": "customGroup",
+      "position": {
+        "x": 226.47054794520545,
+        "y": 629.0849315068493
+      },
+      "style": {
+        "width": 470,
+        "height": 250,
+        "border": "2px solid #6366f1",
+        "borderRadius": "12px",
+        "backgroundColor": "rgba(99, 102, 241, 0.05)"
+      },
+      "data": {
+        "label": "Era AI Intelligence Platform (EAIP)"
+      },
+      "width": 470,
+      "height": 250,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 226.47054794520545,
+        "y": 629.0849315068493
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "eaip-orch",
+      "type": "custom",
+      "position": {
+        "x": 20,
+        "y": 50
+      },
+      "parentNode": "eaip",
+      "extent": "parent",
+      "data": {
+        "label": "Agent Orchestrator",
+        "subLabel": "Multi-Hop Logic",
+        "icon": "Cpu",
+        "type": "service"
+      },
+      "width": 212,
+      "height": 61
+    },
+    {
+      "id": "eaip-langgraph",
+      "type": "custom",
+      "position": {
+        "x": 240,
+        "y": 50
+      },
+      "parentNode": "eaip",
+      "extent": "parent",
+      "data": {
+        "label": "LangGraph Agents",
+        "subLabel": "+ Tool Gateway",
+        "icon": "Network",
+        "type": "service"
+      },
+      "width": 210,
+      "height": 61
+    },
+    {
+      "id": "eaip-rag",
+      "type": "custom",
+      "position": {
+        "x": 20,
+        "y": 150
+      },
+      "parentNode": "eaip",
+      "extent": "parent",
+      "data": {
+        "label": "RAG Engine",
+        "subLabel": "Evidence & Narrative",
+        "icon": "BookOpen",
+        "type": "service"
+      },
+      "width": 197,
+      "height": 61
+    },
+    {
+      "id": "eaip-ml",
+      "type": "custom",
+      "position": {
+        "x": 240,
+        "y": 150
+      },
+      "parentNode": "eaip",
+      "extent": "parent",
+      "data": {
+        "label": "ML Models",
+        "subLabel": "XGBoost / PyTorch",
+        "icon": "Brain",
+        "type": "service"
+      },
+      "width": 185,
+      "height": 61
+    },
+    {
+      "id": "rms",
+      "type": "customGroup",
+      "position": {
+        "x": 750,
+        "y": 650
+      },
+      "style": {
+        "width": 530,
+        "height": 150,
+        "border": "1px dashed #cbd5e1",
+        "borderRadius": "8px"
+      },
+      "data": {
+        "label": "RMS - Real-Time Monitoring"
+      },
+      "width": 530,
+      "height": 150,
+      "selected": false,
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "rms-kogito",
+      "type": "custom",
+      "position": {
+        "x": 20,
+        "y": 50
+      },
+      "parentNode": "rms",
+      "extent": "parent",
+      "data": {
+        "label": "Kogito Rules Engine",
+        "icon": "Settings",
+        "type": "service"
+      },
+      "width": 221,
+      "height": 60
+    },
+    {
+      "id": "rms-ml",
+      "type": "custom",
+      "position": {
+        "x": 265.3595890410959,
+        "y": 50
+      },
+      "parentNode": "rms",
+      "extent": "parent",
+      "data": {
+        "label": "Real-Time ML Scoring",
+        "icon": "Zap",
+        "type": "service"
+      },
+      "width": 231,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1015.3595890410959,
+        "y": 700
+      }
+    },
+    {
+      "id": "case-mgmt",
+      "type": "custom",
+      "position": {
+        "x": 750,
+        "y": 850
+      },
+      "data": {
+        "label": "Case Management",
+        "subLabel": "Flowable BPM",
+        "icon": "Briefcase",
+        "type": "service"
+      },
+      "width": 207,
+      "height": 61
+    },
+    {
+      "id": "reg-reporting",
+      "type": "custom",
+      "position": {
+        "x": 750,
+        "y": 980
+      },
+      "data": {
+        "label": "Regulatory Reporting",
+        "subLabel": "goAML / STR",
+        "icon": "FileText",
+        "type": "service"
+      },
+      "width": 227,
+      "height": 61
+    },
+    {
+      "id": "ext-systems",
+      "type": "custom",
+      "position": {
+        "x": 250,
+        "y": 950
+      },
+      "data": {
+        "label": "External Systems",
+        "subLabel": "Watchlists / Sanctions",
+        "icon": "Globe",
+        "type": "interface"
+      },
+      "width": 201,
+      "height": 61
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "cbs",
+      "target": "cdc",
+      "animated": true
+    },
+    {
+      "id": "e2",
+      "source": "cdc",
+      "target": "kafka",
+      "animated": true
+    },
+    {
+      "id": "e3",
+      "source": "kafka",
+      "target": "doris",
+      "animated": true
+    },
+    {
+      "id": "e4",
+      "source": "kafka",
+      "target": "eaip",
+      "animated": true
+    },
+    {
+      "id": "e5",
+      "source": "kafka",
+      "target": "rms",
+      "animated": true
+    },
+    {
+      "id": "e6",
+      "source": "kafka",
+      "target": "search",
+      "animated": true,
+      "style": {
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e7",
+      "source": "eaip",
+      "target": "doris",
+      "animated": true
+    },
+    {
+      "id": "e8",
+      "source": "rms",
+      "target": "doris",
+      "animated": true
+    },
+    {
+      "id": "e9",
+      "source": "eaip",
+      "target": "case-mgmt",
+      "animated": true
+    },
+    {
+      "id": "e10",
+      "source": "rms",
+      "target": "case-mgmt",
+      "animated": true
+    },
+    {
+      "id": "e11",
+      "source": "case-mgmt",
+      "target": "reg-reporting",
+      "animated": true
+    },
+    {
+      "id": "e12",
+      "source": "ext-systems",
+      "target": "eaip",
+      "animated": true
+    },
+    {
+      "id": "e13",
+      "source": "app-platform",
+      "target": "ums",
+      "animated": true
+    },
+    {
+      "id": "e14",
+      "source": "ui",
+      "target": "app-platform",
+      "animated": true
+    },
+    {
+      "id": "e15",
+      "source": "app-platform",
+      "target": "doris",
+      "animated": true,
+      "selected": false
+    },
+    {
+      "id": "e16",
+      "source": "app-platform",
+      "target": "case-mgmt",
+      "animated": true
+    }
+  ]
+}

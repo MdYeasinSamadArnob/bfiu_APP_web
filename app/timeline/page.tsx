@@ -1,4 +1,5 @@
 import TimelineView from '@/components/TimelineView';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
@@ -14,10 +15,11 @@ export default function TimelinePage() {
              <div>
                <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Project Timeline</h1>
                <p className="text-xs text-slate-500 font-medium">ERA AML GUARDIAN</p>
-             </div>
-           </div>
-         </div>
-       </header>
+            </div>
+          </div>
+          <ThemeToggle />
+        </div>
+      </header>
        
        <main className="py-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
          <TimelineView />

@@ -14,6 +14,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
   const [speechSupported, setSpeechSupported] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [currentCharIndex, setCurrentCharIndex] = useState<number>(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   
   const isCancelledRef = useRef(false);
 
@@ -183,7 +184,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
         </div>
 
         <div className={`mb-6 p-1 -m-1 rounded ${getHighlightClass('description')}`}>
-            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-4 hover:line-clamp-none transition-all">
+            <p className={`text-slate-600 dark:text-slate-300 text-sm leading-relaxed transition-all ${isExpanded ? '' : 'line-clamp-4'}`}>
                 <HighlightableTextContent 
                     text={useCase.description}
                     isActive={activeSection === 'description'}
@@ -191,6 +192,17 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
                     prefixLength={13} // "Description: "
                 />
             </p>
+            {useCase.description.length > 150 && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsExpanded(!isExpanded);
+                    }}
+                    className="mt-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 focus:outline-none flex items-center"
+                >
+                    {isExpanded ? 'Show Less' : 'Read More'}
+                </button>
+            )}
         </div>
 
         {useCase.indicators.length > 0 && (
