@@ -5,13 +5,14 @@ import { useCases as initialUseCases, UseCase } from '../data/useCases';
 import UseCaseCard from '../components/UseCaseCard';
 import { ThemeToggle } from '../components/ThemeToggle';
 import Link from 'next/link';
-import { Search, BarChart3, Filter, LayoutGrid, Zap, Brain, Database, Calendar } from 'lucide-react';
+import { Search, BarChart3, Filter, LayoutGrid, Zap, Brain, Database, Calendar, Menu, X } from 'lucide-react';
 
 export default function Home() {
   const [useCases, setUseCases] = useState<UseCase[]>(initialUseCases);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSection, setSelectedSection] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Load data from API
   useEffect(() => {
@@ -90,37 +91,53 @@ export default function Home() {
       <header className="bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-20 border-b border-slate-200 dark:border-slate-800 backdrop-blur-md bg-opacity-90 dark:bg-opacity-90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/30">
-                <LayoutGrid className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  BFIU Rules Analytics
-                </h1>
-                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
-                  INTELLIGENT RULE MANAGEMENT SYSTEM
-                </p>
-              </div>
+            
+            <div className="flex items-center justify-between w-full md:w-auto">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/30">
+                    <LayoutGrid className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                      BFIU Rules Analytics
+                    </h1>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide">
+                      INTELLIGENT RULE MANAGEMENT SYSTEM
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mobile Controls */}
+                <div className="flex items-center gap-2 md:hidden">
+                    <ThemeToggle />
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                    >
+                        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                </div>
             </div>
             
-            <Link 
-              href="/timeline" 
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 font-medium text-sm shadow-sm hover:shadow hover:text-indigo-600 dark:hover:text-indigo-400"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Project Timeline</span>
-            </Link>
-            
-            <Link 
-              href="/architecture" 
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 font-medium text-sm shadow-sm hover:shadow hover:text-indigo-600 dark:hover:text-indigo-400"
-            >
-              <LayoutGrid className="w-4 h-4" />
-              <span>Architecture</span>
-            </Link>
+            <div className="hidden md:flex items-center gap-4">
+                <Link 
+                  href="/timeline" 
+                  className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 font-medium text-sm shadow-sm hover:shadow hover:text-indigo-600 dark:hover:text-indigo-400"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Project Timeline</span>
+                </Link>
+                
+                <Link 
+                  href="/architecture" 
+                  className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 font-medium text-sm shadow-sm hover:shadow hover:text-indigo-600 dark:hover:text-indigo-400"
+                >
+                  <LayoutGrid className="w-4 h-4" />
+                  <span>Architecture</span>
+                </Link>
 
-            <ThemeToggle />
+                <ThemeToggle />
+            </div>
             
             <div className="relative w-full md:w-96 group">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -135,6 +152,29 @@ export default function Home() {
               />
             </div>
           </div>
+          
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+              <div className="md:hidden mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+                <Link 
+                  href="/timeline" 
+                  className="flex items-center gap-2 px-4 py-3 bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all border border-slate-200 dark:border-slate-700 font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Calendar className="w-5 h-5" />
+                  <span>Project Timeline</span>
+                </Link>
+                
+                <Link 
+                  href="/architecture" 
+                  className="flex items-center gap-2 px-4 py-3 bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all border border-slate-200 dark:border-slate-700 font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <LayoutGrid className="w-5 h-5" />
+                  <span>Architecture</span>
+                </Link>
+              </div>
+          )}
         </div>
       </header>
 
