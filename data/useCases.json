@@ -1,0 +1,1991 @@
+[
+  {
+    "id": "GE-001",
+    "title": "Splitting of cash deposits just below BDT 10,00,000 in multi...",
+    "description": "Splitting of cash deposits just below BDT 10,00,000 in multiple accounts in a month. Cash Deposits in an account accumulating 9,00,000/- to 9,99,999.99 in the same day greater than 2 times in a month..",
+    "indicators": [
+      "Based on mathematical conditions like deposit ranges, counts (>2 times), and time periods (month), which can be strictly programmed with comparisons and aggregations."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-002",
+    "title": "Sudden high value transaction for the client. 1. Value of tr...",
+    "description": "Sudden high value transaction for the client. 1. Value of transaction is more than 2 times of the previous largest transaction for the client in last 6 months with min. transaction amount being BDT 2,000,000. 2. Number of transactions exceed 30 in a single day Applicable Customer Type: all individual accounts. 3. Number of transactions 30 in 7 calendar days AND total amount BDT 2,000,000 Applicable Customer Type: Student, Housewife, Landlord, Self-employed, Retired, Farmer. 4. Positive balance in Credit Card. 5. Number of transactions in a month is more than 200% of the average number for the client in the last 6 months with min. no. of transactions being 20 in a single day.",
+    "indicators": [
+      "Involves mathematical thresholds (e.g., >2x largest, >30 transactions, >= BDT 2M, >200% average), counts, and time-based aggregations (last 6 months, 7 days), all programmable with direct comparisons."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-003",
+    "title": "Unusual or Repetitive Donations. If donations to charitable ...",
+    "description": "Unusual or Repetitive Donations. If donations to charitable organizations: Exceed amounts > BDT 20,00,000 in a month. Exceed frequency > 5. Rationale: High-value donations may disguise illegal funds.",
+    "indicators": [
+      "Uses numerical thresholds (> BDT 20M, >5 frequency) and monthly aggregation, which are straightforward logical checks."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-004",
+    "title": "Clustered Small Transactions. In personal accounts, if 10 tr...",
+    "description": "Clustered Small Transactions. In personal accounts, if 10 transactions below BDT 10,000 within a day from different counterparties. Rationale: Possible smurfing or avoidance of threshold-based detection.",
+    "indicators": [
+      "Based on count (>=10), amount (< BDT 10K), time (single day), and distinct counterparties, all quantifiable and rule-based."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-005",
+    "title": "Quick Withdrawals after Deposits. 1. If funds are withdrawn/...",
+    "description": "Quick Withdrawals after Deposits. 1. If funds are withdrawn/transferred in the same day for five times in a week. Rationale: Indicative of no business justification. 2. 90% or more withdrawal of credited amount next day for 5 times in 10 days.",
+    "indicators": [
+      "Relies on counts (>=5), percentages (>=90%), and time windows (week, 10 days), which are precise mathematical conditions."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-006",
+    "title": "Smurfing Patterns. Fragmented deposits of > BDT 100000 from ...",
+    "description": "Smurfing Patterns. Fragmented deposits of > BDT 100000 from multiple branches (online deposit) five times in a single day. (for individuals/proprietorship). Rationale: Designed to avoid detection through small, multiple inflows.",
+    "indicators": [
+      "Involves amount (> BDT 100K), count (>=5), multiple branches, and time (single day), all hard-coded comparisons."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-007",
+    "title": "Suspicious Withdrawal Timing or Location. Transactions made ...",
+    "description": "Suspicious Withdrawal Timing or Location. Transactions made between 10 PM and 6 AM five times in the same day. Rationale: Timing/location adds risk factor.",
+    "indicators": [
+      "Time range (22:00-06:00) and count (>=5 in a day) are exact, programmable filters."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-008",
+    "title": "Crypto-like Behavior. If transactions show: A transaction de...",
+    "description": "Crypto-like Behavior. If transactions show: A transaction description where mentioned keyword related to Crypto transactions. Rationale: Possible crypto transactions bypassing controls.",
+    "indicators": [
+      "Requires AI to interpret transaction descriptions for keywords related to crypto, as keyword matching might need contextual understanding or NLP to avoid false positives on ambiguous terms."
+    ],
+    "section": "General Banking",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "GE-009",
+    "title": "Early High Transactions. If a new account at any point of ti...",
+    "description": "Early High Transactions. If a new account at any point of time (< 30 days old) sees:, Single transaction > BDT 10,00,000 OR, 10 transactions totaling > BDT 20,00,000 Applicable for individuals/proprietorship. Rationale: Suspicious for newly opened accounts without clear reason.",
+    "indicators": [
+      "Account age (<30 days), amounts (> BDT 10M or > BDT 20M total), and count (>=10) are numerical and temporal checks."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Low-Med"
+  },
+  {
+    "id": "GE-010",
+    "title": "Cheque Bounce. If bounces 5 times in a day in a same account...",
+    "description": "Cheque Bounce. If bounces 5 times in a day in a same account.",
+    "indicators": [
+      "Simple count (>=5 bounces in a day), no interpretation needed."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-011",
+    "title": "Account freezing/suspension. If any kind of transaction obse...",
+    "description": "Account freezing/suspension. If any kind of transaction observed in frozen account or withdrawal observed in suspended account.",
+    "indicators": [
+      "Binary checks for transactions in frozen accounts or withdrawals in suspended ones, based on account status flags."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-012",
+    "title": "Proprietorship Account Transactions. If in a proprietorship ...",
+    "description": "Proprietorship Account Transactions. If in a proprietorship account, in a single day, more than 30 transactions amounting 20.00.000 or more.",
+    "indicators": [
+      "Count (>30) and total amount (>= BDT 20M) in a day, straightforward aggregation."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-013",
+    "title": "Any TP violation -. 1. Violation of TP by 3 times of the dec...",
+    "description": "Any TP violation -. 1. Violation of TP by 3 times of the declared amount 2 times a month. 2. Estimated Monthly Total Deposit/withdrawal Limit (TP) breach by 2 times of the declared amount for more than 02 times in 03 months.",
+    "indicators": [
+      "Multipliers (3x, 2x declared), counts (>=2), and time periods (month, 3 months), all mathematical."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-014",
+    "title": "A/c to A/c transfers from unrelated parties followed by with...",
+    "description": "A/c to A/c transfers from unrelated parties followed by withdrawals. Account to account transfer from unrelated parties in amounts more than 20 times in 5 days followed by immediate withdrawals (withdrawal 80% of the amount deposited).",
+    "indicators": [
+      "Count (>20 in 5 days), percentage (>=80%), and sequence (followed by withdrawal), can be programmed as rules."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-015",
+    "title": "High value transactions with a country with high ML risk. 1....",
+    "description": "High value transactions with a country with high ML risk. 1. Transaction greater than BDT 500,000 for Individuals and BDT 1,000,000 for Non-Individuals, involving a country considered to be high risk from the money laundering or drug trafficking perspective.",
+    "indicators": [
+      "Amount thresholds (> BDT 500K/1M) and flag for high-risk country, using predefined lists."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-016",
+    "title": "Frequent low cash deposits or withdrawals. Cash deposits or ...",
+    "description": "Frequent low cash deposits or withdrawals. Cash deposits or withdrawals of not more than BDT 100,000 greater than 20 times in 30 days (for individuals).",
+    "indicators": [
+      "Amount (<= BDT 100K), count (>20), time (30 days), quantifiable."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-017",
+    "title": "Many to one fund transfer. Funds sent by more than 5 senders...",
+    "description": "Many to one fund transfer. Funds sent by more than 5 senders to one recipient with aggregate amount more than BDT 500,000 for individuals and BDT 1,000,000 for proprietor in the same day.",
+    "indicators": [
+      "Sender count (>5), total amount (> BDT 500K/1M), time (same day), aggregation-based."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-018",
+    "title": "One to many fund transfer. Funds sent by one sender to more ...",
+    "description": "One to many fund transfer. Funds sent by one sender to more than 5 recipients with min. aggregate amount BDT 500,000 for Individuals and BDT 1,000,000 for proprietor.",
+    "indicators": [
+      "Recipient count (>5), total amount (>= BDT 500K/1M), direct counts."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-019",
+    "title": "Repeated small cash deposits followed by immediate ATM withd...",
+    "description": "Repeated small cash deposits followed by immediate ATM withdrawals in different location. Cash deposits between 5,000 to 50000 greater than 5 times in 3 days followed by immediate withdrawals in different location.",
+    "indicators": [
+      "Amount range (5K-50K), count (>5 in 3 days), sequence (followed by withdrawal), and location difference, programmable with geo-flags."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-020",
+    "title": "High value transactions by high risk customers. Transactions...",
+    "description": "High value transactions by high risk customers. Transactions greater than BDT 50,000,000 by individuals/proprietor in a month.",
+    "indicators": [
+      "Customer risk flag, total amount (> BDT 50M in month), using predefined risk classification."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-021",
+    "title": "High value cash transactions by dealer in precious metal or ...",
+    "description": "High value cash transactions by dealer in precious metal or stone. Cash transactions greater than BDT 2,000,000 by dealer in precious metal, precious stone or high value goods.",
+    "indicators": [
+      "Amount (> BDT 2M) and customer type (dealer), based on flags and thresholds."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-022",
+    "title": "High value transactions in product/services with high ML ris...",
+    "description": "High value transactions in product/services with high ML risk. Transactions greater than BDT 500,000 for Individuals and BDT 1,000,000 for Non-Individuals using products/services with high ML risk.",
+    "indicators": [
+      "Amount (> BDT 500K/1M) and high ML risk product flag, predefined lists."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-023",
+    "title": "High value activity in housewife, student, farmer, minor acc...",
+    "description": "High value activity in housewife, student, farmer, minor accounts. Transactions of more than BDT 5,00,000 in a month in accounts (non term deposit) of customer with housewife, student, farmer, minor as occupation.",
+    "indicators": [
+      "Total (> BDT 500K in month), occupation flags, account type, all categorical and numerical."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-024",
+    "title": "High value cash withdrawals or deposit in a month. Cash with...",
+    "description": "High value cash withdrawals or deposit in a month. Cash withdrawals or deposits greater than BDT 10,000,000 in a month (for individual/proprietorship).",
+    "indicators": [
+      "Total (> BDT 10M in month), type (cash), programmable aggregation."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-025",
+    "title": "High Value cash deposits in staff accounts. Cash deposits ag...",
+    "description": "High Value cash deposits in staff accounts. Cash deposits aggregating to minimum BDT 5,00,000 within 30 days.",
+    "indicators": [
+      "Total (>= BDT 500K in 30 days), staff account flag, numerical."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-026",
+    "title": "High Value Pay order purchased without proper purpose, reaso...",
+    "description": "High Value Pay order purchased without proper purpose, reason and it's remain in the parking for long period (minimum 6 months).",
+    "indicators": [
+      "Requires AI judgment to determine if the purpose/reason is \"proper,\" as it involves subjective evaluation of documentation or intent."
+    ],
+    "section": "General Banking",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "GE-027",
+    "title": "Customer who changes the static data (like address, mobile n...",
+    "description": "Customer who changes the static data (like address, mobile no etc.) frequently, at least 3 times in 2 month.",
+    "indicators": [
+      "Count (>=3 changes in 2 months), static data types, countable events."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "GE-028",
+    "title": "High Value transaction in a dormant account. Transaction gre...",
+    "description": "High Value transaction in a dormant account. Transaction greater than 5,00,000 for individual and 10,00,000 for proprietorship in dormant account at any point of time (within 30 days of reactivation).",
+    "indicators": [
+      "Amount (> BDT 500K/1M), dormant status, time (<30 days post-reactivation), flags and thresholds."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "GE-029",
+    "title": "Round-tripping/ Circular transactions (money going out and c...",
+    "description": "Round-tripping/ Circular transactions (money going out and coming back in similar amounts within a short time). At least 5 times with minimum value BDT 100,000 lac within 15 days (for Individuals/proprietor).",
+    "indicators": [
+      "Count (>=5), amount (>= BDT 100K per cycle), time (15 days), pattern matching for outflows/inflows, can be rule-based with similarity thresholds."
+    ],
+    "section": "General Banking",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-001",
+    "title": "Utilization of loan fund by the borrower for purposes other ...",
+    "description": "Utilization of loan fund by the borrower for purposes other than those for which the loan was approved.",
+    "indicators": [
+      "Requires AI to analyze transaction patterns and determine if usage matches approved purpose, involving contextual judgment without external retrieval."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-002",
+    "title": "Fake collateral documents identification.",
+    "description": "Fake collateral documents identification.",
+    "indicators": [
+      "Needs AI for document verification and forgery detection, using retrieval from document databases or standards for comparison."
+    ],
+    "section": "Credit",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "CR-003",
+    "title": "Source of fund validation for onetime/ bulk.",
+    "description": "Source of fund validation for onetime/ bulk.",
+    "indicators": [
+      "Involves validating source of funds, which may require investigative reasoning or pattern analysis not strictly mathematical."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-004",
+    "title": "Customers apply for credit facilities with little or no legi...",
+    "description": "Customers apply for credit facilities with little or no legitimate financial history.",
+    "indicators": [
+      "Assessing financial history can be based on simple checks like transaction count < threshold or total amount < threshold, programmable."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-005",
+    "title": "Credit Report is inconsistent with customer's loan portfolio...",
+    "description": "Credit Report is inconsistent with customer's loan portfolio.",
+    "indicators": [
+      "Detecting inconsistencies can be based on direct comparisons of key metrics in reports and portfolios."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-006",
+    "title": "Customer income or business activity doesn't match the loan ...",
+    "description": "Customer income or business activity doesn't match the loan size requested.",
+    "indicators": [
+      "Can be implemented with ratio checks (e.g., loan > X% of income), mathematical proportionality."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-007",
+    "title": "Borrower takes new loans to repay older ones, creating circu...",
+    "description": "Borrower takes new loans to repay older ones, creating circular transactions.",
+    "indicators": [
+      "Identifying circular patterns needs AI for graph-based analysis of transaction flows."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-008",
+    "title": "Customer suddenly pays off a large problem loan with no plau...",
+    "description": "Customer suddenly pays off a large problem loan with no plausible explanation regarding the source of funds.",
+    "indicators": [
+      "\"Plausible explanation\" requires AI judgment on source validity."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-009",
+    "title": "Customer's loan proceeds are unexpectedly transferred offsho...",
+    "description": "Customer's loan proceeds are unexpectedly transferred offshore.",
+    "indicators": [
+      "Offshore transfers can be flagged based on country lists, without needing deep judgment."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-010",
+    "title": "Customer taking loan and adjusted immediately without showin...",
+    "description": "Customer taking loan and adjusted immediately without showing due explanations.",
+    "indicators": [
+      "Lacks \"due explanations,\" requiring evaluation of adequacy, which is subjective."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-011",
+    "title": "Borrower is willing to not repay loan having a sound payment...",
+    "description": "Borrower is willing to not repay loan having a sound payment Capacity.",
+    "indicators": [
+      "Assessing \"willingness\" to repay involves behavioral judgment, not just capacity metrics."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-012",
+    "title": "A customer's financial statement makes representations that ...",
+    "description": "A customer's financial statement makes representations that do not conform to accounting principles.",
+    "indicators": [
+      "Detecting non-conformance to principles may need AI for deep financial analysis."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-013",
+    "title": "Unwilling to submit required documents for credit facilities...",
+    "description": "Unwilling to submit required documents for credit facilities.",
+    "indicators": [
+      "Can be flagged if required documents are missing based on checklist, binary check."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-014",
+    "title": "Using front Companies.",
+    "description": "Using front Companies.",
+    "indicators": [
+      "Identifying front companies involves investigative pattern recognition."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-015",
+    "title": "Using Shell Companies.",
+    "description": "Using Shell Companies.",
+    "indicators": [
+      "Requires AI to detect shell entity characteristics through pattern analysis."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-016",
+    "title": "Loan Repayments by third parties.",
+    "description": "Loan Repayments by third parties.",
+    "indicators": [
+      "Third-party repayments can be flagged if payer != borrower, using party matching."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-017",
+    "title": "Loan proceeds used to purchase property in the name of third...",
+    "description": "Loan proceeds used to purchase property in the name of third party.",
+    "indicators": [
+      "Third party naming requires checking relationships, involving entity linking."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-018",
+    "title": "Creation of Force loan without valid reason (LC, B2B, BG).",
+    "description": "Creation of Force loan without valid reason (LC, B2B, BG).",
+    "indicators": [
+      "\"Valid reason\" is subjective, needing judgment."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-019",
+    "title": "Customer requests to disburse loan by issuing cheques/Instru...",
+    "description": "Customer requests to disburse loan by issuing cheques/Instruments in favor of another bank/FI/Third party.",
+    "indicators": [
+      "Requests to third parties can be flagged based on payee not matching borrower."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-020",
+    "title": "Large cash transaction inconsistent with Customer's business...",
+    "description": "Large cash transaction inconsistent with Customer's business/profession.",
+    "indicators": [
+      "Inconsistency can be checked against declared business type flags or thresholds."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-021",
+    "title": "Huge Credit balance in the loan account.",
+    "description": "Huge Credit balance in the loan account.",
+    "indicators": [
+      "\"Unusually high\" credit balance, but can be threshold-based (e.g., >0 or specific amount), programmable if defined."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-022",
+    "title": "Over valuation of primary security.",
+    "description": "Over valuation of primary security.",
+    "indicators": [
+      "\"Significantly above market rate\" needs retrieval of market data for comparison."
+    ],
+    "section": "Credit",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "CR-023",
+    "title": "Offering third party property as collateral.",
+    "description": "Offering third party property as collateral.",
+    "indicators": [
+      "Third party can be flagged if owner != borrower, based on ownership data."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-024",
+    "title": "Adjustment of long-term loan like home loan within short per...",
+    "description": "Adjustment of long-term loan like home loan within short period of time.",
+    "indicators": [
+      "\"Significantly short period\" can be defined as threshold (e.g., <X months), mathematical time comparison."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-025",
+    "title": "Not determining the loan limit with exact required cushion a...",
+    "description": "Not determining the loan limit with exact required cushion against the collateral value.",
+    "indicators": [
+      "\"Adequate cushion\" can be enforced with margin thresholds (e.g., limit < 80% collateral)."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-026",
+    "title": "Under valuation of primary/collateral security.",
+    "description": "Under valuation of primary/collateral security.",
+    "indicators": [
+      "Valued below market can be checked against predefined benchmarks."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-027",
+    "title": "Exaggerated report of Credit Rating Agency.",
+    "description": "Exaggerated report of Credit Rating Agency.",
+    "indicators": [
+      "\"Inflated or exaggerated\" requires subjective analysis of reports."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-028",
+    "title": "Client has dual citizenship.",
+    "description": "Client has dual citizenship.",
+    "indicators": [
+      "Simple flag based on KYC data for dual citizenship."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-029",
+    "title": "Relationship with PEP/IP.",
+    "description": "Relationship with PEP/IP.",
+    "indicators": [
+      "Identifying relationships with PEP/IP needs retrieval from PEP databases or lists."
+    ],
+    "section": "Credit",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "CR-030",
+    "title": "Client has connection with any Tax Heaven Country.",
+    "description": "Client has connection with any Tax Heaven Country.",
+    "indicators": [
+      "Connections can be flagged based on address, residency, or transaction with tax haven lists."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-031",
+    "title": "Loan or Stated Purpose is Ambiguous.",
+    "description": "Loan or Stated Purpose is Ambiguous.",
+    "indicators": [
+      "\"Vague or ambiguous\" purpose needs NLP to classify text."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-032",
+    "title": "Tempered Financial Statement Presented to Mislead Analyst.",
+    "description": "Tempered Financial Statement Presented to Mislead Analyst.",
+    "indicators": [
+      "Detecting tampering to mislead requires AI for document forensics."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-033",
+    "title": "Tempered Financial Statement presented to mislead analyst.",
+    "description": "Tempered Financial Statement presented to mislead analyst.",
+    "indicators": [
+      "Same as above, tampering detection."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-034",
+    "title": "Frequent Formation of different entities under group of comp...",
+    "description": "Frequent Formation of different entities under group of company.",
+    "indicators": [
+      "Frequent counts are hard, but group linkage and intent require AI."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-035",
+    "title": "Formation of a new company in the name of an employee.",
+    "description": "Formation of a new company in the name of an employee.",
+    "indicators": [
+      "\"Potential nominee\" implies judgment on intent."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-036",
+    "title": "Frequent Change of Business Address.",
+    "description": "Frequent Change of Business Address.",
+    "indicators": [
+      "Count-based (>=X changes), straightforward event counting."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-037",
+    "title": "Loan disbursed against business and disbursed fund transferr...",
+    "description": "Loan disbursed against business and disbursed fund transferred to individual accounts.",
+    "indicators": [
+      "Transfer to individual accounts flagged by account type."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-038",
+    "title": "Loan proceeds used to purchase property in the name of third...",
+    "description": "Loan proceeds used to purchase property in the name of third party.",
+    "indicators": [
+      "Third party titling, relationship check."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-039",
+    "title": "Transfer of fund between irrelevant business.",
+    "description": "Transfer of fund between irrelevant business.",
+    "indicators": [
+      "\"Unrelated or irrelevant\" businesses require similarity analysis."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-040",
+    "title": "Same property mortgaged to different FI's Collateral.",
+    "description": "Same property mortgaged to different FI's Collateral.",
+    "indicators": [
+      "Multiple mortgages detectable via CIB or registry checks."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-041",
+    "title": "Falsified Stock report presentation.",
+    "description": "Falsified Stock report presentation.",
+    "indicators": [
+      "\"Falsified\" reports need detection beyond rules."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-042",
+    "title": "Excessive cash withdraw and advances.",
+    "description": "Excessive cash withdraw and advances.",
+    "indicators": [
+      "\"Excessive\" can be defined as > threshold based on averages."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-043",
+    "title": "Excessive and recurring cash payments.",
+    "description": "Excessive and recurring cash payments.",
+    "indicators": [
+      "Repeated payments above threshold, countable."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-044",
+    "title": "Recurring positive balances.",
+    "description": "Recurring positive balances.",
+    "indicators": [
+      "Recurring can be count > X positive balances."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-045",
+    "title": "Excessive overseas spending in high risk geographies.",
+    "description": "Excessive overseas spending in high risk geographies.",
+    "indicators": [
+      "Spending > threshold in high-risk geography flags."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-046",
+    "title": "Loan proceeds transferred to third-party accounts with no bu...",
+    "description": "Loan proceeds transferred to third-party accounts with no business link, borrower acting as a pass-through. 1, Compare loan disbursement beneficiaries with declared related parties. - Threshold: >10% of loan proceeds transferred to non-declared third parties OR >3 transfers/month to unrelated accounts.",
+    "indicators": [
+      "Thresholds (>10%, >3) and comparison to declared parties list, programmable."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-047",
+    "title": "Loan sanctioned for business purposes diverted to personal l...",
+    "description": "Loan sanctioned for business purposes diverted to personal luxury items, Car, Travel, Jewelry, speculative trading, or unrelated real estate. Match transactions against borrower's declared business activity. Threshold: >20% of loan proceeds used outside business scope OR one-off large transaction BDT 5.00 Million.",
+    "indicators": [
+      "Matching to declared activity and categorizing \"luxury\" needs classification."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-048",
+    "title": "Sudden replacement of directors/shareholders before or after...",
+    "description": "Sudden replacement of directors/shareholders before or after loan approval, new owners from high-risk jurisdictions. Monitor company registry/CIB data for changes. Threshold: >2 ownership/shareholding changes within 12 months OR ownership transfer to high-risk jurisdiction parties.",
+    "indicators": [
+      "Counts (>2 in 12 months) and flags (high-risk jurisdiction), strict logic."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-049",
+    "title": "Collateral valuation much higher than market rate, property ...",
+    "description": "Collateral valuation much higher than market rate, property pledged multiple times. Compare declared value vs market benchmarks. Threshold: Declared value >30% above market OR property pledged to multiple banks (via CIB/land registry).",
+    "indicators": [
+      "Percentage (>30%) and multiple pledges, direct comparisons."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-050",
+    "title": "Borrower applies for unusually large loans disproportionate ...",
+    "description": "Borrower applies for unusually large loans disproportionate to turnover/income. Compare loan request vs financial statements and historic borrowing. - Threshold: Loan amount >200% of annual turnover OR >5x historic borrowing without justification.",
+    "indicators": [
+      "Multipliers (>200%, >5x), mathematical."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-051",
+    "title": "Frequent Overdraft Usage or Check Bounces in Connected Accou...",
+    "description": "Frequent Overdraft Usage or Check Bounces in Connected Accounts.",
+    "indicators": [
+      "Frequent defined as count > threshold, connected via flags."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-052",
+    "title": "Inconsistent revenue/income reporting compared to repayment ...",
+    "description": "Inconsistent revenue/income reporting compared to repayment capacity.",
+    "indicators": [
+      "\"Inconsistent\" requires analysis."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-053",
+    "title": "Frequent overdraft usage or check bounces in connected accou...",
+    "description": "Frequent overdraft usage or check bounces in connected accounts.",
+    "indicators": [
+      "Same as 51, count-based."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-054",
+    "title": "Cross-lending within a group of companies showing circular t...",
+    "description": "Cross-lending within a group of companies showing circular transactions.",
+    "indicators": [
+      "Circular patterns require graph detection."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-055",
+    "title": "Borrower heavily dependent on a single customer/supplier who...",
+    "description": "Borrower heavily dependent on a single customer/supplier who is also highly leveraged.",
+    "indicators": [
+      "\"Heavily dependent\" and \"highly leveraged\" need judgment."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-056",
+    "title": "Geo-tag mismatch (loan for rural project, but funds used in ...",
+    "description": "Geo-tag mismatch (loan for rural project, but funds used in urban luxury spending).",
+    "indicators": [
+      "Mismatch detection, \"luxury\" categorization."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-057",
+    "title": "Social media/adverse news analytics triggering early alerts ...",
+    "description": "Social media/adverse news analytics triggering early alerts on borrower risk.",
+    "indicators": [
+      "Adverse information identified through retrieval from social media or news sources."
+    ],
+    "section": "Credit",
+    "type": "AI-RAG",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-058",
+    "title": "Borrower pays installments on time but rising exposure with ...",
+    "description": "Borrower pays installments on time but rising exposure with other banks.",
+    "indicators": [
+      "Rising exposure as total > previous, mathematical."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-059",
+    "title": "Guarantor or collateral provider with poor repayment history...",
+    "description": "Guarantor or collateral provider with poor repayment history.",
+    "indicators": [
+      "\"Poor\" history based on CIB score < threshold."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-060",
+    "title": "Loan sanctioned beyond borrower's repayment capacity (debt-t...",
+    "description": "Loan sanctioned beyond borrower's repayment capacity (debt-to-income anomalies).",
+    "indicators": [
+      "Exceeds capacity via debt-to-income ratio > threshold."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "CR-061",
+    "title": "Loans disbursed but funds diverted to unrelated accounts wit...",
+    "description": "Loans disbursed but funds diverted to unrelated accounts within 48-72 hours.",
+    "indicators": [
+      "\"Unrelated\" accounts need relationship analysis."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-062",
+    "title": "Sudden drop in borrower's account turnover or revenue flow.",
+    "description": "Sudden drop in borrower's account turnover or revenue flow.",
+    "indicators": [
+      "Decline > % threshold, mathematical."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-063",
+    "title": "Loan repayments are made from suspicious/unrelated sources.",
+    "description": "Loan repayments are made from suspicious/unrelated sources.",
+    "indicators": [
+      "\"Suspicious/unrelated\" requires judgment."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "CR-064",
+    "title": "Cash withdrawal >30% of loan amount within a short time (esp...",
+    "description": "Cash withdrawal >30% of loan amount within a short time (especially business/project loans).",
+    "indicators": [
+      ">30% and time window, numerical."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-065",
+    "title": "Collateral Value Erosion > 25% in 6 months (real estate/stoc...",
+    "description": "Collateral Value Erosion > 25% in 6 months (real estate/stock).",
+    "indicators": [
+      ">25% decline in 6 months, calculation-based."
+    ],
+    "section": "Credit",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "CR-066",
+    "title": "Multiple loans sanctioned under different names/related part...",
+    "description": "Multiple loans sanctioned under different names/related parties without group exposure analysis.",
+    "indicators": [
+      "\"Related parties\" need group linking."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "CR-067",
+    "title": "Inflated collateral valuation (land, real estate) accepted w...",
+    "description": "Inflated collateral valuation (land, real estate) accepted without independent verification.",
+    "indicators": [
+      "\"Inflated\" and \"without verification\" subjective."
+    ],
+    "section": "Credit",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-001",
+    "title": "Over/under invoicing. Variation of quoted price with standar...",
+    "description": "Over/under invoicing. Variation of quoted price with standard price by 10%.",
+    "indicators": [
+      "Variance (>=10%) from standard price, assuming standard from internal database."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-002",
+    "title": "Shifting or changing of import/export items/goods. Differenc...",
+    "description": "Shifting or changing of import/export items/goods. Difference of imported/exported items with last one year historical items.",
+    "indicators": [
+      "HS code difference from historical, direct comparison."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-003",
+    "title": "Change of beneficiaries. Change of beneficiaries by amendmen...",
+    "description": "Change of beneficiaries. Change of beneficiaries by amendment at any stage of transaction.",
+    "indicators": [
+      "Binary change via amendment, event flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-004",
+    "title": "Presenting/negotiating bank differs with payment receiving b...",
+    "description": "Presenting/negotiating bank differs with payment receiving bank. Presenting/negotiating bank differs with payment bank.",
+    "indicators": [
+      "Bank difference, equality check."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-005",
+    "title": "Trade with high risk/tax heaven countries at any stage of tr...",
+    "description": "Trade with high risk/tax heaven countries at any stage of transaction. Trade with high risk countries at any stage of transaction.",
+    "indicators": [],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High-risk country involvement, list flag."
+  },
+  {
+    "id": "TR-006",
+    "title": "Frequent amendments in L/C. Amendments more than three times...",
+    "description": "Frequent amendments in L/C. Amendments more than three times.",
+    "indicators": [
+      "Count >3, numerical."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-007",
+    "title": "Address of beneficiaries and document presenters differs. Di...",
+    "description": "Address of beneficiaries and document presenters differs. Difference of beneficiaries and document presenters' country/address.",
+    "indicators": [
+      "Address/country not equal, string check."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-008",
+    "title": "Transaction Volume follow up (Significant growth (above a th...",
+    "description": "Transaction Volume follow up (Significant growth (above a threshold) in a particular month compared to last one-year average for a customer).",
+    "indicators": [
+      "\"Significant growth\" requires anomaly detection if threshold not fixed."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-009",
+    "title": "Transaction Profile Violation (review based on frequency/rec...",
+    "description": "Transaction Profile Violation (review based on frequency/recurrence and percentage on different parameters like country, item, value and volume of transactions.).",
+    "indicators": [
+      "Multi-faceted review of parameters needs integrated analysis."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-010",
+    "title": "Change in Line of Business: Sudden Change in business nature...",
+    "description": "Change in Line of Business: Sudden Change in business nature and approached new item for trade. Monitoring in the system with any H.S Code other than declared in TTP should raise alert.",
+    "indicators": [
+      "HS code not in TTP list, list comparison."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-011",
+    "title": "Price Variance of the Products -. 1. A certain % high or low...",
+    "description": "Price Variance of the Products -. 1. A certain % high or low from last 6-month average unit price for a particular customer. 2. A certain % high or low from last 6-month average unit price from the own database of.",
+    "indicators": [
+      "Percentage variance from average, calculation."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-012",
+    "title": "Dual Use Goods and Restricted items.",
+    "description": "Dual Use Goods and Restricted items.",
+    "indicators": [
+      "Goods in restricted list, flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-013",
+    "title": "Payment to Third country other than the exporter/importer's ...",
+    "description": "Payment to Third country other than the exporter/importer's country.",
+    "indicators": [
+      "Country not matching exporter/importer, equality."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-014",
+    "title": "When a customer opens an import LC, if he exceeds his maximu...",
+    "description": "When a customer opens an import LC, if he exceeds his maximum threshold for monthly average value mentioned in the TP, an alert will be generated.",
+    "indicators": [
+      "Value > TP threshold, comparison."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-015",
+    "title": "When an export LC is advised, if it exceeds the customer's m...",
+    "description": "When an export LC is advised, if it exceeds the customer's maximum threshold for monthly average value mentioned in the TP, an alert will be generated.",
+    "indicators": [
+      "Same as above."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-016",
+    "title": "Probable list of imported goods- If the imported goods, iden...",
+    "description": "Probable list of imported goods- If the imported goods, identified by HS code, is inconsistent with the goods mentioned in TTP (Trade Transaction Profile), an alert will be generated.",
+    "indicators": [
+      "HS code not in TTP, list check."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-017",
+    "title": "Probable Goods Mentioned in TIP. Alert if inconsistent with ...",
+    "description": "Probable Goods Mentioned in TIP. Alert if inconsistent with TIP.",
+    "indicators": [
+      "Inconsistent with TIP, comparison."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-018",
+    "title": "Probable countries from which the goods will be imported- If...",
+    "description": "Probable countries from which the goods will be imported- If the country of import is inconsistent with the countries mentioned in the TTP (Trade Transaction Profile), an alert will be generated.",
+    "indicators": [
+      "Country not in TTP list."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-019",
+    "title": "Probable countries from which the goods will be exported- If...",
+    "description": "Probable countries from which the goods will be exported- If the country of Export is inconsistent with the countries mentioned in the TTP (Trade Transaction Profile), an alert will be generated.",
+    "indicators": [
+      "Same as above."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-020",
+    "title": "Alert for Restricted goods by the current Import policy.",
+    "description": "Alert for Restricted goods by the current Import policy.",
+    "indicators": [
+      "Goods in restricted policy list."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-021",
+    "title": "If the commission (bank) of a trade transaction exceeds thre...",
+    "description": "If the commission (bank) of a trade transaction exceeds threshold (4%), an alert will be generated.",
+    "indicators": [
+      "Commission >4%."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-022",
+    "title": "If freight charges for an LC exceeds a certain threshold (5%...",
+    "description": "If freight charges for an LC exceeds a certain threshold (5%), an alert will be generated.",
+    "indicators": [
+      "Freight >5% of value."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-023",
+    "title": "If the destination/origin country, is situated in a land loc...",
+    "description": "If the destination/origin country, is situated in a land locked country an alert should be generated for further assessment of full voyage of the vessel.",
+    "indicators": [
+      "Country is land-locked, flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-024",
+    "title": "If LC is overdrawn up to a certain threshold (10%), an alert...",
+    "description": "If LC is overdrawn up to a certain threshold (10%), an alert will be generated.",
+    "indicators": [
+      "Overdrawn >=10%."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-025",
+    "title": "If LC is opened in round figures up to 5 digits, an alert wi...",
+    "description": "If LC is opened in round figures up to 5 digits, an alert will be generated.",
+    "indicators": [
+      "Value is round (e.g., 10000, pattern match)."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-026",
+    "title": "If Bill of lading is future dated or within 10 days from pre...",
+    "description": "If Bill of lading is future dated or within 10 days from present date, an alert will be generated.",
+    "indicators": [
+      "Date > current or <10 days old."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-027",
+    "title": "In case of Import LC, if port of loading doesn't match with ...",
+    "description": "In case of Import LC, if port of loading doesn't match with the country from which goods are being imported, then it will give an alert.",
+    "indicators": [
+      "Port country != origin country, mapping."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-028",
+    "title": "The volume of purchases and/or imports grossly exceeds the e...",
+    "description": "The volume of purchases and/or imports grossly exceeds the expected sales amount.",
+    "indicators": [
+      "Exceeds expected based on TP or thresholds, mathematical."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-029",
+    "title": "A single bank account is used by multiple businesses.",
+    "description": "A single bank account is used by multiple businesses.",
+    "indicators": [
+      "\"Unrelated\" businesses, relationship analysis."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-030",
+    "title": "A single bank account has multiple deposit handlers (retail ...",
+    "description": "A single bank account has multiple deposit handlers (retail and wholesale).",
+    "indicators": [
+      "Multiple handlers require type classification."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-031",
+    "title": "The exporter doesn't receive money from the buyer, but from ...",
+    "description": "The exporter doesn't receive money from the buyer, but from someone else who pays on behalf of the buyer.",
+    "indicators": [
+      "Payer != buyer, party match."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-032",
+    "title": "Funds are received/transferred for import/export, and the or...",
+    "description": "Funds are received/transferred for import/export, and the ordering customer/beneficiary is an MSB.",
+    "indicators": [
+      "MSB as customer/beneficiary, flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-033",
+    "title": "Media reports that the account holder is linked to a known t...",
+    "description": "Media reports that the account holder is linked to a known terrorist organization or engaged in terrorist activities.",
+    "indicators": [
+      "Adverse media requires retrieval from news sources."
+    ],
+    "section": "Trade",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "TR-034",
+    "title": "Beneficial owner of the account is not properly identified.",
+    "description": "Beneficial owner of the account is not properly identified.",
+    "indicators": [
+      "Verification status flag, binary."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-035",
+    "title": "Identification Similarity with related documents (LC, BL, In...",
+    "description": "Identification Similarity with related documents (LC, BL, Invoice etc.) in case of Govt. LC.",
+    "indicators": [
+      "Similarity via string or field comparison."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-036",
+    "title": "Custom Procedure Codes (CPC) Mismatching with Bill of Entry.",
+    "description": "Custom Procedure Codes (CPC) Mismatching with Bill of Entry.",
+    "indicators": [
+      "CPC != Bill of Entry CPC, equality."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-037",
+    "title": "Custom Procedure Codes (CPC) mis-matching with Bill of Entry...",
+    "description": "Custom Procedure Codes (CPC) mis-matching with Bill of Entry.",
+    "indicators": [
+      "Same."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-038",
+    "title": "Any involvement of Frustrated Cargo/Container Issues are rai...",
+    "description": "Any involvement of Frustrated Cargo/Container Issues are raised and try to get custom clearance.",
+    "indicators": [
+      "\"Involvement\" and issues require event detection."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-039",
+    "title": "Any Advance ruling issues are raised and settled from ruling...",
+    "description": "Any Advance ruling issues are raised and settled from ruling authority.",
+    "indicators": [
+      "Issues raised/settled require judgment."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-040",
+    "title": "Required Credit report of the seller with PI $30000 and with...",
+    "description": "Required Credit report of the seller with PI $30000 and with Indent $40000 are not collected.",
+    "indicators": [
+      "Report missing for PI >=30K USD or Indent >=40K, binary for threshold."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-041",
+    "title": "There are discrepancies between the description of goods or ...",
+    "description": "There are discrepancies between the description of goods or commodity in the invoice and the actual goods shipped.",
+    "indicators": [
+      "Discrepancies between description and actual require comparison analysis."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "TR-042",
+    "title": "There is no apparent business relationship between the parti...",
+    "description": "There is no apparent business relationship between the parties and transactions.",
+    "indicators": [
+      "\"No apparent relationship\" needs entity relationship analysis."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-043",
+    "title": "There is a lack of appropriate documentation to support tran...",
+    "description": "There is a lack of appropriate documentation to support transactions.",
+    "indicators": [
+      "\"Lack of appropriate\" subjective on sufficiency."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-044",
+    "title": "Imported Goods or items originates from a country where ther...",
+    "description": "Imported Goods or items originates from a country where there is limited production or no sources at all.",
+    "indicators": [
+      "\"Limited production\" needs retrieval from knowledge bases on country-item capacity."
+    ],
+    "section": "Trade",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "TR-045",
+    "title": "Required Three quotations from two different Countries for i...",
+    "description": "Required Three quotations from two different Countries for import above $15000.",
+    "indicators": [
+      "No 3 quotations from >=2 countries for >15K USD, count and distinct."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-046",
+    "title": "Using offshore account to settle import payment.",
+    "description": "Using offshore account to settle import payment.",
+    "indicators": [
+      "Offshore account flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-047",
+    "title": "Unusual HS Code of the imported Goods.",
+    "description": "Unusual HS Code of the imported Goods.",
+    "indicators": [
+      "Unusual flagged if not in business profile list."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-048",
+    "title": "Incoterms DDP, CIF and CIP used in case of Private party.",
+    "description": "Incoterms DDP, CIF and CIP used in case of Private party.",
+    "indicators": [
+      "Incoterms in {DDP, CIF, CIP} and private party, list flag."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-049",
+    "title": "In Vessel Tracking/Container Tracking any discrepancies/sign...",
+    "description": "In Vessel Tracking/Container Tracking any discrepancies/sign like spoofing, Loitering and stripping.",
+    "indicators": [
+      "Discrepancies in tracking require pattern recognition."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "TR-050",
+    "title": "Exports proceed Repatriation time frame expired.",
+    "description": "Exports proceed Repatriation time frame expired.",
+    "indicators": [
+      "Date > timeframe, temporal."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-051",
+    "title": "Invoice splitting/ multiple invoicing.",
+    "description": "Invoice splitting/ multiple invoicing.",
+    "indicators": [
+      "Evidence of splitting requires pattern detection."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "TR-052",
+    "title": "In case of import via land port multiple land port mentioned...",
+    "description": "In case of import via land port multiple land port mentioned.",
+    "indicators": [
+      "Land ports count >1."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-053",
+    "title": "Goods import through Israeli flag bearing vessel.",
+    "description": "Goods import through Israeli flag bearing vessel.",
+    "indicators": [
+      "Vessel flag = Israeli."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-054",
+    "title": "Import from which country that has attributed sanction by di...",
+    "description": "Import from which country that has attributed sanction by different stakeholder or organization.",
+    "indicators": [
+      "Country in sanction list."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-055",
+    "title": "Import from a country that is involved with war.",
+    "description": "Import from a country that is involved with war.",
+    "indicators": [
+      "Country in war list."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-056",
+    "title": "Owners lacking relevant experience.",
+    "description": "Owners lacking relevant experience.",
+    "indicators": [
+      "\"Lacking relevant experience\" requires assessment of background."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-057",
+    "title": "inconsistent staff count and trading volume.",
+    "description": "inconsistent staff count and trading volume.",
+    "indicators": [
+      "Inconsistent if staff/volume ratio outside threshold."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-058",
+    "title": "Relationship with PEP/IP.",
+    "description": "Relationship with PEP/IP.",
+    "indicators": [
+      "Relationship detection via retrieval from PEP databases."
+    ],
+    "section": "Trade",
+    "type": "AI-RAG",
+    "risk": "High"
+  },
+  {
+    "id": "TR-059",
+    "title": "Frequently Changing ownership or signatories.",
+    "description": "Frequently Changing ownership or signatories.",
+    "indicators": [
+      "Count of changes > threshold (frequent defined)."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-060",
+    "title": "Financing from unrelated sources i.e commodity purchases are...",
+    "description": "Financing from unrelated sources i.e commodity purchases are funded by sudden capital influxes from unrelated third parties.",
+    "indicators": [
+      "\"Unrelated\" and \"sudden\" require analysis."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "High"
+  },
+  {
+    "id": "TR-061",
+    "title": "Invoice showing significant amount of misc charges e.g. hand...",
+    "description": "Invoice showing significant amount of misc charges e.g. handling charges.",
+    "indicators": [
+      "Significant if misc > % of total, mathematical."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-062",
+    "title": "Transshipment through a country for no apparent reason.",
+    "description": "Transshipment through a country for no apparent reason.",
+    "indicators": [
+      "\"No apparent reason\" subjective justification."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-063",
+    "title": "Parts Import Mentioned in KG Whereas Open Source Prices in P...",
+    "description": "Parts Import Mentioned in KG Whereas Open Source Prices in Pieces/Sets/Dozens.",
+    "indicators": [
+      "Unit mismatch requires retrieval of open-source prices for comparison."
+    ],
+    "section": "Trade",
+    "type": "AI-RAG",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-064",
+    "title": "Price Determination in Case of Capital Machinery.",
+    "description": "Price Determination in Case of Capital Machinery.",
+    "indicators": [
+      "Issues in price determination require subjective assessment."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-065",
+    "title": "Price mentioned in KG whereas in open source prices are ment...",
+    "description": "Price mentioned in KG whereas in open source prices are mentioned in pieces or in sets or in dozens.",
+    "indicators": [
+      "Similar to 63, retrieval of open-source prices."
+    ],
+    "section": "Trade",
+    "type": "AI-RAG",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-066",
+    "title": "Price determination in case of capital machinery.",
+    "description": "Price determination in case of capital machinery.",
+    "indicators": [
+      "Same as 64."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-067",
+    "title": "Refund manipulation.",
+    "description": "Refund manipulation.",
+    "indicators": [
+      "\"Manipulation\" requires pattern or intent detection."
+    ],
+    "section": "Trade",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-068",
+    "title": "LC or TT Value below the range for which Credit report is re...",
+    "description": "LC or TT Value below the range for which Credit report is required.",
+    "indicators": [
+      "Value < report threshold."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-069",
+    "title": "Same address of Beneficiary/ Applicant, Drawer/Drawee, Relat...",
+    "description": "Same address of Beneficiary/ Applicant, Drawer/Drawee, Related parties/other address inconsistencies.",
+    "indicators": [
+      "Addresses equal or inconsistent, string."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-070",
+    "title": "Misrepresentation of quantity or type of goods imported or e...",
+    "description": "Misrepresentation of quantity or type of goods imported or exported quantity declared during opening of LC differs with quantity in commercial invoice more than (10%) and/or type of goods imported or exported differs differs (HS Code or (Harmonized System Code) different in shipping documents for LC).",
+    "indicators": [
+      "Quantity diff >10%, HS code !=, mathematical and equality."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-071",
+    "title": "The Bill of lading describes containerized cargo but without...",
+    "description": "The Bill of lading describes containerized cargo but without container numbers or with sequential container numbers.",
+    "indicators": [
+      "Missing or sequential numbers, pattern check."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-072",
+    "title": "The port of loading or date of loading does not match the bi...",
+    "description": "The port of loading or date of loading does not match the bill of lading.",
+    "indicators": [
+      "Port/date != BL."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-073",
+    "title": "Alternation of PI Information after remitting advance TT or ...",
+    "description": "Alternation of PI Information after remitting advance TT or issuing DA/DP Number.",
+    "indicators": [
+      "Change after TT/DA/DP, timestamp check."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-074",
+    "title": "During Settlement, obtaining huge amount of discount on bill...",
+    "description": "During Settlement, obtaining huge amount of discount on bill value from beneficiary.",
+    "indicators": [
+      "Huge if discount > %, mathematical."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "TR-075",
+    "title": "Different HS code found in the Bill of Entry as compared to ...",
+    "description": "Different HS code found in the Bill of Entry as compared to the respective commercial invoice.",
+    "indicators": [
+      "HS code !=."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "TR-076",
+    "title": "Single HS Code for various items.",
+    "description": "Single HS Code for various items.",
+    "indicators": [
+      "Single code if items count >1 with same HS."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Low"
+  },
+  {
+    "id": "TR-077",
+    "title": "No Mother LC is found against B2B LC.",
+    "description": "No Mother LC is found against B2B LC.",
+    "indicators": [
+      "Mother LC exists = false."
+    ],
+    "section": "Trade",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "RE-001",
+    "title": "Single Receiver but sender from multiple country.",
+    "description": "Single Receiver but sender from multiple country.",
+    "indicators": [
+      "Receiver single, senders countries distinct count >1, aggregation."
+    ],
+    "section": "Remittance",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "RE-002",
+    "title": "Single receiver but sender multiple from same country.",
+    "description": "Single receiver but sender multiple from same country.",
+    "indicators": [
+      "Receiver single, multiple senders same country, count >1 same country."
+    ],
+    "section": "Remittance",
+    "type": "Hard Logic",
+    "risk": "Med"
+  },
+  {
+    "id": "RE-003",
+    "title": "Incoming remittance from High-Risk Jurisdiction countries.",
+    "description": "Incoming remittance from High-Risk Jurisdiction countries.",
+    "indicators": [
+      "From high-risk country, list flag."
+    ],
+    "section": "Remittance",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "RE-004",
+    "title": "Single Sender but multiple Receiver.",
+    "description": "Single Sender but multiple Receiver.",
+    "indicators": [
+      "Sender single, receivers count >1."
+    ],
+    "section": "Remittance",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "RE-005",
+    "title": "Remittance coming from a country with no relevance with Bene...",
+    "description": "Remittance coming from a country with no relevance with Beneficial Owner.",
+    "indicators": [
+      "\"No relevance\" to beneficial owner requires relationship or connection analysis."
+    ],
+    "section": "Remittance",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "RE-006",
+    "title": "Remittances timed with political or economic events to disgu...",
+    "description": "Remittances timed with political or economic events to disguise intent.",
+    "indicators": [
+      "Timing with events to \"disguise intent,\" needs correlation and intent inference."
+    ],
+    "section": "Remittance",
+    "type": "AI-General",
+    "risk": "Med"
+  },
+  {
+    "id": "RE-007",
+    "title": "Remittances via mobile wallets or fintech apps from high-ris...",
+    "description": "Remittances via mobile wallets or fintech apps from high-risk jurisdictions.",
+    "indicators": [
+      "Channel (mobile/fintech) and high-risk origin, flags."
+    ],
+    "section": "Remittance",
+    "type": "Hard Logic",
+    "risk": "High"
+  },
+  {
+    "id": "RE-008",
+    "title": "Remittance sent via shell companies / third-party intermedia...",
+    "description": "Remittance sent via shell companies / third-party intermediaries.",
+    "indicators": [
+      "Via shell companies, identifying shell needs analysis."
+    ],
+    "section": "Remittance",
+    "type": "AI-General",
+    "risk": "High"
+  }
+]

@@ -4,7 +4,7 @@ import {
   Database, Shield, RefreshCw, Server, Activity, 
   BarChart, ClipboardList, Bot, Search, Monitor, 
   Cpu, Network, BookOpen, Brain, Settings, Zap, 
-  Briefcase, FileText, Globe, Layers 
+  Briefcase, FileText, Globe, Layers, ArrowRightCircle 
 } from 'lucide-react';
 
 const iconMap: Record<string, React.FC<any>> = {
@@ -14,9 +14,16 @@ const iconMap: Record<string, React.FC<any>> = {
   Briefcase, FileText, Globe
 };
 
-const ArchitectureNode = ({ data, selected }: { data: any; selected?: boolean }) => {
+const ArchitectureNode = ({ id, data, selected }: { id: string; data: any; selected?: boolean }) => {
   const Icon = iconMap[data.icon] || Layers;
   
+  const handleEnterGroup = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (data.onEnterGroup) {
+      data.onEnterGroup(id, data.label);
+    }
+  };
+
   const getNodeColor = (type: string) => {
     switch (type) {
       case 'database': return 'border-blue-500 bg-blue-50 dark:bg-blue-900/20';
@@ -37,8 +44,18 @@ const ArchitectureNode = ({ data, selected }: { data: any; selected?: boolean })
         handleStyle={{ width: 12, height: 12, borderRadius: '50%' }}
       />
       <div 
-        className={`px-4 py-3 shadow-md rounded-lg border-l-4 h-full w-full transition-all overflow-hidden flex flex-col ${data.isEditMode ? '' : 'hover:shadow-xl hover:scale-105'} ${getNodeColor(data.type)}`}
+        className={`px-4 py-3 shadow-md rounded-lg border-l-4 h-full w-full transition-all overflow-hidden flex flex-col group relative ${data.isEditMode ? '' : 'hover:shadow-xl hover:scale-105'} ${getNodeColor(data.type)}`}
       >
+        {!data.isEditMode && (
+             <button 
+                onClick={handleEnterGroup}
+                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 z-10 bg-white/80 dark:bg-black/20 rounded-full p-0.5 backdrop-blur-sm"
+                title="Drill Down / Enter Internal Architecture"
+             >
+                <ArrowRightCircle className="w-4 h-4" />
+             </button>
+        )}
+
         <Handle type="target" position={Position.Top} className={`w-3 h-3 bg-slate-400 ${data.isEditMode ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
         
         <div className="flex items-start gap-3 h-full overflow-hidden">
@@ -46,7 +63,7 @@ const ArchitectureNode = ({ data, selected }: { data: any; selected?: boolean })
             <Icon className="w-5 h-5 text-slate-700 dark:text-slate-200" />
           </div>
           <div className="flex-grow min-w-0 flex flex-col justify-center h-full">
-            <div className="font-bold text-slate-900 dark:text-slate-100 leading-tight break-words text-sm">{data.label}</div>
+            <div className="font-bold text-slate-900 dark:text-slate-100 leading-tight break-words text-sm pr-4">{data.label}</div>
             {data.subLabel && (
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 break-words leading-tight">{data.subLabel}</div>
             )}

@@ -1,16 +1,45 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { useCases } from '../data/useCases';
+import { useState, useMemo, useEffect } from 'react';
+import { useCases as initialUseCases, UseCase } from '../data/useCases';
 import UseCaseCard from '../components/UseCaseCard';
 import { ThemeToggle } from '../components/ThemeToggle';
 import Link from 'next/link';
 import { Search, BarChart3, PieChart, Filter, LayoutGrid, Zap, Brain, Database, CheckSquare, Calendar } from 'lucide-react';
 
 export default function Home() {
+  const [useCases, setUseCases] = useState<UseCase[]>(initialUseCases);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSection, setSelectedSection] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
+
+  // Load data from API
+  useEffect(() => {
+    fetch('/api/rules')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+            setUseCases(data);
+        }
+      })
+      .catch(err => console.error('Failed to load rules:', err));
+  }, []);
+
+  const handleSaveUseCase = async (updatedUseCase: UseCase) => {
+    const newUseCases = useCases.map(uc => uc.id === updatedUseCase.id ? updatedUseCase : uc);
+    setUseCases(newUseCases);
+    
+    try {
+        await fetch('/api/rules', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newUseCases)
+        });
+    } catch (err) {
+        console.error('Failed to save rule:', err);
+        alert('Failed to save changes.');
+    }
+  };
 
   // Calculate stats
   const stats = useMemo(() => {
@@ -35,7 +64,7 @@ export default function Home() {
     const totalAiRag = useCases.filter(uc => uc.type === 'AI-RAG').length;
 
     return { sectionCounts, total, totalHard, totalAiGen, totalAiRag };
-  }, []);
+  }, [useCases]);
 
   const filteredUseCases = useMemo(() => {
     const lowerTerm = searchTerm.toLowerCase();
@@ -51,7 +80,7 @@ export default function Home() {
 
       return matchesSearch && matchesSection && matchesType;
     });
-  }, [searchTerm, selectedSection, selectedType]);
+  }, [useCases, searchTerm, selectedSection, selectedType]);
 
   const sections = ['General Banking', 'Credit', 'Trade', 'Remittance'];
   const types = ['Hard Logic', 'AI-General', 'AI-RAG'];
@@ -232,7 +261,11 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredUseCases.map((useCase) => (
-                <UseCaseCard key={useCase.id} useCase={useCase} />
+                <UseCaseCard 
+                    key={useCase.id} 
+                    useCase={useCase} 
+                    onSave={handleSaveUseCase}
+                />
               ))}
             </div>
           )}

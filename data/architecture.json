@@ -109,11 +109,11 @@
       "id": "ui",
       "type": "customGroup",
       "position": {
-        "x": 636.6013698630138,
-        "y": 282.22219178082213
+        "x": 600,
+        "y": 300
       },
       "style": {
-        "width": 771,
+        "width": 720,
         "height": 120,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px",
@@ -122,22 +122,18 @@
       "data": {
         "label": "User Interfaces"
       },
-      "width": 771,
+      "width": 720,
       "height": 120,
       "selected": false,
       "dragging": false,
-      "resizing": false,
-      "positionAbsolute": {
-        "x": 636.6013698630138,
-        "y": 282.22219178082213
-      }
+      "resizing": false
     },
     {
       "id": "ui-superset",
       "type": "custom",
       "position": {
-        "x": 30.457534246575392,
-        "y": 25.620890410958907
+        "x": 23.921575342465644,
+        "y": 29.542465753424608
       },
       "parentNode": "ui",
       "extent": "parent",
@@ -151,16 +147,16 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 630.4575342465754,
-        "y": 325.6208904109589
+        "x": 623.9215753424656,
+        "y": 329.5424657534246
       }
     },
     {
       "id": "ui-bpm",
       "type": "custom",
       "position": {
-        "x": 255.81712328767128,
-        "y": 26.928082191780845
+        "x": 238.82363013698614,
+        "y": 30.849657534246603
       },
       "parentNode": "ui",
       "extent": "parent",
@@ -174,16 +170,16 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 855.8171232876713,
-        "y": 326.92808219178085
+        "x": 838.8236301369861,
+        "y": 330.8496575342466
       }
     },
     {
       "id": "ui-ai",
       "type": "custom",
       "position": {
-        "x": 533.4643835616439,
-        "y": 28.235273972602783
+        "x": 490.32705479452034,
+        "y": 32.15684931506854
       },
       "parentNode": "ui",
       "extent": "parent",
@@ -195,18 +191,18 @@
       "width": 208,
       "height": 60,
       "selected": false,
+      "dragging": false,
       "positionAbsolute": {
-        "x": 1133.464383561644,
-        "y": 328.2352739726028
-      },
-      "dragging": false
+        "x": 1090.3270547945203,
+        "y": 332.15684931506854
+      }
     },
     {
       "id": "doris",
       "type": "custom",
       "position": {
-        "x": 503.92157534246576,
-        "y": 494.77123287671225
+        "x": 500,
+        "y": 500
       },
       "data": {
         "label": "Analytical Datamart",
@@ -220,38 +216,26 @@
         ]
       },
       "width": 238,
-      "height": 61,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 503.92157534246576,
-        "y": 494.77123287671225
-      },
-      "dragging": false
+      "height": 61
     },
     {
       "id": "search",
       "type": "customGroup",
       "position": {
-        "x": -117.64726027397262,
-        "y": 635.2941780821918
+        "x": 0,
+        "y": 600
       },
       "style": {
-        "width": 250,
-        "height": 250,
+        "width": 200,
+        "height": 200,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px"
       },
       "data": {
         "label": "Optional Search & Logs"
       },
-      "width": 250,
-      "height": 250,
-      "selected": false,
-      "dragging": false,
-      "positionAbsolute": {
-        "x": -117.64726027397262,
-        "y": 635.2941780821918
-      }
+      "width": 200,
+      "height": 200
     },
     {
       "id": "elasticsearch",
@@ -275,7 +259,7 @@
       "type": "custom",
       "position": {
         "x": 20,
-        "y": 140
+        "y": 120
       },
       "parentNode": "search",
       "extent": "parent",
@@ -291,11 +275,11 @@
       "id": "eaip",
       "type": "customGroup",
       "position": {
-        "x": 226.47054794520545,
-        "y": 629.0849315068493
+        "x": 250,
+        "y": 650
       },
       "style": {
-        "width": 470,
+        "width": 450,
         "height": 250,
         "border": "2px solid #6366f1",
         "borderRadius": "12px",
@@ -304,15 +288,8 @@
       "data": {
         "label": "Era AI Intelligence Platform (EAIP)"
       },
-      "width": 470,
-      "height": 250,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 226.47054794520545,
-        "y": 629.0849315068493
-      },
-      "dragging": false,
-      "resizing": false
+      "width": 450,
+      "height": 250
     },
     {
       "id": "eaip-orch",
@@ -394,7 +371,7 @@
         "y": 650
       },
       "style": {
-        "width": 530,
+        "width": 400,
         "height": 150,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px"
@@ -402,11 +379,8 @@
       "data": {
         "label": "RMS - Real-Time Monitoring"
       },
-      "width": 530,
-      "height": 150,
-      "selected": false,
-      "dragging": false,
-      "resizing": false
+      "width": 400,
+      "height": 150
     },
     {
       "id": "rms-kogito",
@@ -429,7 +403,7 @@
       "id": "rms-ml",
       "type": "custom",
       "position": {
-        "x": 265.3595890410959,
+        "x": 200,
         "y": 50
       },
       "parentNode": "rms",
@@ -440,13 +414,7 @@
         "type": "service"
       },
       "width": 231,
-      "height": 60,
-      "selected": false,
-      "dragging": false,
-      "positionAbsolute": {
-        "x": 1015.3595890410959,
-        "y": 700
-      }
+      "height": 60
     },
     {
       "id": "case-mgmt",
@@ -473,7 +441,7 @@
       },
       "data": {
         "label": "Regulatory Reporting",
-        "subLabel": "goAML / STR",
+        "subLabel": "STR Export Service",
         "icon": "FileText",
         "type": "service"
       },
@@ -481,19 +449,24 @@
       "height": 61
     },
     {
-      "id": "ext-systems",
+      "id": "central-engine",
       "type": "custom",
       "position": {
-        "x": 250,
-        "y": 950
+        "x": 1200,
+        "y": 650
       },
       "data": {
-        "label": "External Systems",
-        "subLabel": "Watchlists / Sanctions",
+        "label": "Central Analytical Engine",
+        "subLabel": "Hybrid Search (HSAP)",
         "icon": "Globe",
-        "type": "interface"
+        "type": "service",
+        "details": [
+          "Real-time + Historical analytics",
+          "Handles 95% of workloads",
+          "Kibana log exploration"
+        ]
       },
-      "width": 201,
+      "width": 252,
       "height": 61
     }
   ],
@@ -519,84 +492,62 @@
     {
       "id": "e4",
       "source": "kafka",
-      "target": "eaip",
-      "animated": true
-    },
-    {
-      "id": "e5",
-      "source": "kafka",
-      "target": "rms",
-      "animated": true
-    },
-    {
-      "id": "e6",
-      "source": "kafka",
       "target": "search",
-      "animated": true,
+      "type": "smoothstep",
       "style": {
         "strokeDasharray": "5,5"
       }
     },
     {
+      "id": "e5",
+      "source": "ums",
+      "target": "app-platform"
+    },
+    {
+      "id": "e6",
+      "source": "app-platform",
+      "target": "ui"
+    },
+    {
       "id": "e7",
-      "source": "eaip",
+      "source": "ui",
       "target": "doris",
       "animated": true
     },
     {
       "id": "e8",
-      "source": "rms",
-      "target": "doris",
+      "source": "doris",
+      "target": "eaip",
       "animated": true
     },
     {
       "id": "e9",
-      "source": "eaip",
-      "target": "case-mgmt",
+      "source": "doris",
+      "target": "rms",
       "animated": true
     },
     {
       "id": "e10",
       "source": "rms",
-      "target": "case-mgmt",
-      "animated": true
+      "target": "case-mgmt"
     },
     {
       "id": "e11",
       "source": "case-mgmt",
-      "target": "reg-reporting",
-      "animated": true
+      "target": "reg-reporting"
     },
     {
       "id": "e12",
-      "source": "ext-systems",
-      "target": "eaip",
-      "animated": true
+      "source": "eaip",
+      "target": "case-mgmt"
     },
     {
       "id": "e13",
-      "source": "app-platform",
-      "target": "ums",
-      "animated": true
-    },
-    {
-      "id": "e14",
-      "source": "ui",
-      "target": "app-platform",
-      "animated": true
-    },
-    {
-      "id": "e15",
-      "source": "app-platform",
-      "target": "doris",
-      "animated": true,
-      "selected": false
-    },
-    {
-      "id": "e16",
-      "source": "app-platform",
-      "target": "case-mgmt",
-      "animated": true
+      "source": "doris",
+      "target": "central-engine",
+      "style": {
+        "strokeDasharray": "5,5"
+      }
     }
   ]
 }

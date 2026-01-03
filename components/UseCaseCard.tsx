@@ -1,21 +1,26 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, Square, Info, Shield, Zap, Brain, Database } from 'lucide-react';
+import { Volume2, Square, Info, Shield, Zap, Brain, Database, Edit, Save, X, Check } from 'lucide-react';
 import { UseCase } from '../data/useCases';
 import HighlightableTextContent from './HighlightableText';
 
 interface UseCaseCardProps {
   useCase: UseCase;
+  onSave?: (updatedUseCase: UseCase) => void;
 }
 
-const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [currentCharIndex, setCurrentCharIndex] = useState<number>(0);
   const [isExpanded, setIsExpanded] = useState(false);
   
+  // Edit Mode State
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState<UseCase>(useCase);
+
   const isCancelledRef = useRef(false);
 
   useEffect(() => {
@@ -28,6 +33,11 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
       }
     };
   }, []);
+
+  // Update edit form when useCase prop changes
+  useEffect(() => {
+    setEditForm(useCase);
+  }, [useCase]);
 
   const speakSegment = (text: string, sectionName: string): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -88,37 +98,23 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
 
     try {
       // 1. Title
-      // Spoken: "Title: [Title]"
-      // Prefix length: 7 ("Title: ".length)
       await speakSegment(`Title: ${useCase.title}`, 'title');
       
-      // 2. Metadata (Section, Type, Risk)
-      // We don't do word highlighting here as it's multiple fields, just block highlight
+      // 2. Metadata
       if (!isCancelledRef.current) {
           await speakSegment(`Section: ${useCase.section}. Type: ${useCase.type}. Risk: ${useCase.risk}.`, 'metadata');
       }
 
       // 3. Description
-      // Spoken: "Description: [Description]"
-      // Prefix length: 13 ("Description: ".length)
       if (!isCancelledRef.current) {
           await speakSegment(`Description: ${useCase.description}`, 'description');
       }
 
       // 4. Indicators
-      // Spoken: "Indicators: [ind1]. [ind2]..."
-      // Prefix length: 12 ("Indicators: ".length)
-      // Note: If we speak all indicators as one block, highlighting becomes tricky across list items.
-      // Better strategy: Speak "Indicators" label, then speak each indicator individually.
-      
       if (!isCancelledRef.current && useCase.indicators.length > 0) {
-          // Speak label first
           await speakSegment("Indicators", 'indicators-label');
-          
-          // Speak each indicator
           for (let i = 0; i < useCase.indicators.length; i++) {
               if (isCancelledRef.current) break;
-              // Speak without prefix for cleaner mapping
               await speakSegment(useCase.indicators[i], `indicator-${i}`);
           }
       }
@@ -131,6 +127,18 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
           setCurrentCharIndex(0);
       }
     }
+  };
+
+  const handleSave = () => {
+    if (onSave) {
+      onSave(editForm);
+    }
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditForm(useCase);
+    setIsEditing(false);
   };
 
   const getRiskColor = (risk: string) => {
@@ -148,11 +156,108 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
   };
 
   const getHighlightClass = (sectionName: string) => {
-    // Keep section highlight but make it subtler since we have word highlight
     return activeSection === sectionName || (activeSection?.startsWith('indicator-') && sectionName === 'indicators')
       ? 'ring-2 ring-indigo-500/50 ring-offset-2 ring-offset-white dark:ring-offset-slate-800 rounded-lg transition-all duration-300 bg-indigo-50/50 dark:bg-indigo-900/10' 
       : 'transition-all duration-300';
   };
+
+  if (isEditing) {
+    return (
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border-2 border-indigo-500 p-6 flex flex-col gap-4 h-full">
+        <div className="flex justify-between items-center mb-2">
+           <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100">Edit Rule</h3>
+           <span className="text-xs font-mono text-slate-400">{editForm.id}</span>
+        </div>
+        
+        <div className="space-y-4 flex-grow">
+          <div>
+            <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Title</label>
+            <input 
+              type="text" 
+              value={editForm.title}
+              onChange={(e) => setEditForm({...editForm, title: e.target.value})}
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+             <div>
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Section</label>
+                <select 
+                  value={editForm.section}
+                  onChange={(e) => setEditForm({...editForm, section: e.target.value})}
+                  className="w-full px-2 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option>General Banking</option>
+                  <option>Credit</option>
+                  <option>Trade</option>
+                  <option>Remittance</option>
+                </select>
+             </div>
+             <div>
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Type</label>
+                <select 
+                  value={editForm.type}
+                  onChange={(e) => setEditForm({...editForm, type: e.target.value})}
+                  className="w-full px-2 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option>Hard Logic</option>
+                  <option>AI-General</option>
+                  <option>AI-RAG</option>
+                </select>
+             </div>
+             <div>
+                <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Risk</label>
+                <select 
+                  value={editForm.risk}
+                  onChange={(e) => setEditForm({...editForm, risk: e.target.value})}
+                  className="w-full px-2 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option>High</option>
+                  <option>Med</option>
+                  <option>Low</option>
+                </select>
+             </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Description</label>
+            <textarea 
+              value={editForm.description}
+              onChange={(e) => setEditForm({...editForm, description: e.target.value})}
+              rows={4}
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-indigo-500 resize-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Indicators (one per line)</label>
+            <textarea 
+              value={editForm.indicators.join('\n')}
+              onChange={(e) => setEditForm({...editForm, indicators: e.target.value.split('\n')})}
+              rows={3}
+              className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-indigo-500 resize-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-2 pt-2 border-t border-slate-200 dark:border-slate-700">
+           <button
+             onClick={handleCancel}
+             className="px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-sm font-medium flex items-center gap-1"
+           >
+             <X className="w-4 h-4" /> Cancel
+           </button>
+           <button
+             onClick={handleSave}
+             className="px-3 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-sm font-medium flex items-center gap-1 shadow-sm"
+           >
+             <Save className="w-4 h-4" /> Save
+           </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col h-full group ${isSpeaking ? 'ring-2 ring-indigo-400' : ''}`}>
@@ -178,9 +283,18 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase }) => {
               />
             </h3>
           </div>
-          <span className="text-xs font-mono text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded border border-slate-100 dark:border-slate-700 whitespace-nowrap">
-            {useCase.id}
-          </span>
+          <div className="flex flex-col items-end gap-1">
+            <span className="text-xs font-mono text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-1 rounded border border-slate-100 dark:border-slate-700 whitespace-nowrap">
+              {useCase.id}
+            </span>
+            <button
+                onClick={(e) => { e.stopPropagation(); setIsEditing(true); }}
+                className="p-1.5 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                title="Edit Rule"
+            >
+                <Edit className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         <div className={`mb-6 p-1 -m-1 rounded ${getHighlightClass('description')}`}>

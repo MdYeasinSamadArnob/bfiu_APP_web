@@ -19,8 +19,9 @@ import 'reactflow/dist/style.css';
 import ArchitectureNode from '../../components/architecture/ArchitectureNode';
 import ArchitectureGroupNode from '../../components/architecture/ArchitectureGroupNode';
 import { initialNodes, initialEdges } from '../../data/architectureData';
-import { Info, X, ChevronLeft, Save, Plus, Trash2, Layout, RotateCcw } from 'lucide-react';
+import { Info, X, ChevronLeft, Save, Plus, Trash2, Layout, RotateCcw, CornerUpLeft, ArrowRightCircle } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const nodeTypes = {
   custom: ArchitectureNode,
@@ -33,41 +34,72 @@ export default function ArchitecturePage() {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-
+  const [viewStack, setViewStack] = useState<{id: string, name: string}[]>([{id: 'root', name: 'System Architecture'}]);
+  
+  const currentView = viewStack[viewStack.length - 1];
   const selectedNode = nodes.find(n => n.id === selectedNodeId);
 
   // Load initial data
-  React.useEffect(() => {
-    fetch('/api/architecture')
+  const loadArchitecture = useCallback((viewId: string) => {
+    fetch(`/api/architecture?viewId=${viewId}`)
       .then(res => res.json())
       .then(data => {
         if (data.nodes && data.edges) {
-          setNodes(data.nodes);
-          setEdges(data.edges);
+          // If root view is empty (e.g. from accidental clear), restore factory defaults
+          if (viewId === 'root' && data.nodes.length === 0) {
+              setNodes(initialNodes.map(n => ({
+                  ...n,
+                  data: {
+                      ...n.data,
+                      isEditMode: isEditMode
+                  }
+              })));
+              setEdges(initialEdges);
+          } else {
+              setNodes(data.nodes.map((n: any) => ({
+                 ...n,
+                 data: {
+                     ...n.data,
+                     isEditMode: isEditMode // Apply current edit mode
+                 }
+              })));
+              setEdges(data.edges);
+          }
         } else {
-            // Fallback to static data if file is empty/missing
-             setNodes(initialNodes);
-             setEdges(initialEdges);
+             // For sub-views, we might want to start empty or with a default structure
+             if (viewId === 'root') {
+                 setNodes(initialNodes.map(n => ({...n, data: {...n.data, isEditMode: isEditMode}})));
+                 setEdges(initialEdges);
+             } else {
+                 setNodes([]);
+                 setEdges([]);
+             }
         }
       })
       .catch(err => {
         console.error('Failed to load architecture data:', err);
-        setNodes(initialNodes);
-        setEdges(initialEdges);
+        if (viewId === 'root') {
+            setNodes(initialNodes);
+            setEdges(initialEdges);
+        } else {
+            setNodes([]);
+            setEdges([]);
+        }
       });
-  }, [setNodes, setEdges]);
+  }, [setNodes, setEdges, isEditMode]);
+
+  React.useEffect(() => {
+    loadArchitecture(currentView.id);
+  }, [currentView.id, loadArchitecture]);
 
   const saveArchitecture = useCallback(async () => {
     try {
-        // Clean up data before saving (remove React Flow specific runtime props if needed)
-        // For now, we just save nodes and edges as is. 
-        // Note: isEditMode flag in data might be saved, which is fine or we can strip it.
         const cleanNodes = nodes.map(n => ({
             ...n,
-            data: { ...n.data, isEditMode: undefined } // Don't persist edit mode state
+            data: { ...n.data, isEditMode: undefined, onEnterGroup: undefined } 
         }));
         
-        await fetch('/api/architecture', {
+        await fetch(`/api/architecture?viewId=${currentView.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nodes: cleanNodes, edges }),
@@ -78,11 +110,21 @@ export default function ArchitecturePage() {
         console.error('Failed to save:', error);
         alert('Failed to save changes.');
     }
-  }, [nodes, edges]);
+  }, [nodes, edges, currentView.id]);
 
   const resetArchitecture = useCallback(async () => {
-      if (confirm('Are you sure you want to reset the architecture to the default state? This cannot be undone.')) {
-          // Reset nodes but preserve current edit mode state
+      if (confirm('Are you sure you want to reset? This will revert to your last saved state.')) {
+          loadArchitecture(currentView.id);
+          setHasUnsavedChanges(false);
+      }
+  }, [loadArchitecture, currentView.id]);
+
+  const factoryReset = useCallback(async () => {
+      if (currentView.id !== 'root') {
+          alert('Factory reset is only available for the root architecture.');
+          return;
+      }
+      if (confirm('Are you sure you want to perform a FACTORY RESET? This will delete your saved layout and revert to the original system state. You must click "Set as Default" to make this permanent.')) {
           const resetNodes = initialNodes.map(n => ({
               ...n,
               data: {
@@ -94,7 +136,36 @@ export default function ArchitecturePage() {
           setEdges(initialEdges);
           setHasUnsavedChanges(true);
       }
-  }, [setNodes, setEdges, isEditMode]);
+  }, [setNodes, setEdges, isEditMode, currentView.id]);
+
+  const handleEnterGroup = useCallback((groupId: string, groupLabel: string) => {
+     setViewStack(prev => [...prev, { id: groupId, name: groupLabel }]);
+     setSelectedNodeId(null);
+  }, []);
+
+  const handleNavigateBack = useCallback(() => {
+      if (viewStack.length > 1) {
+          setViewStack(prev => prev.slice(0, -1));
+          setSelectedNodeId(null);
+      }
+  }, [viewStack]);
+
+  // Inject handlers into node data
+  React.useEffect(() => {
+    setNodes((nds) => nds.map((n) => {
+        // Inject handler for all supported node types
+        if (n.type === 'customGroup' || n.type === 'group' || n.type === 'custom') {
+             return {
+                 ...n,
+                 data: {
+                     ...n.data,
+                     onEnterGroup: handleEnterGroup
+                 }
+             };
+        }
+        return n;
+    }));
+  }, [handleEnterGroup, setNodes]);
 
   const onConnect = useCallback(
     (params: Connection) => {
@@ -222,11 +293,28 @@ export default function ArchitecturePage() {
             <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
           </Link>
           <div>
-            <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">System Architecture</h1>
+            <div className="flex items-center gap-2">
+                 <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">System Architecture</h1>
+                 {viewStack.length > 1 && (
+                     <>
+                        <span className="text-slate-400">/</span>
+                        <span className="text-indigo-600 dark:text-indigo-400 font-medium">{currentView.name}</span>
+                     </>
+                 )}
+            </div>
             <p className="text-xs text-slate-500 dark:text-slate-400">Interactive Component Diagram</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
+            {viewStack.length > 1 && (
+                <button
+                   onClick={handleNavigateBack}
+                   className="flex items-center gap-2 px-3 py-1.5 mr-2 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 transition-colors text-xs font-medium"
+                >
+                   <CornerUpLeft className="w-3 h-3" />
+                   Back to Parent
+                </button>
+            )}
             {isEditMode && (
                 <div className="flex items-center gap-2 mr-4 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
                     <button
@@ -244,25 +332,29 @@ export default function ArchitecturePage() {
                         <Layout className="w-4 h-4" />
                     </button>
                     <div className="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1"></div>
-                     <button
+                    <button
                         onClick={saveArchitecture}
-                        disabled={!hasUnsavedChanges}
-                        className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium transition-colors ${
-                            hasUnsavedChanges 
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
-                                : 'bg-slate-200 text-slate-400 cursor-not-allowed dark:bg-slate-800 dark:text-slate-600'
-                        }`}
-                        title="Save Changes"
+                        className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm flex items-center gap-2"
+                        title="Save current layout as your default (persists after reset)"
                     >
-                        <Save className="w-3 h-3" />
-                        Save
+                        <Save className="w-4 h-4" />
+                        <span className="hidden sm:inline">Set as Default</span>
                     </button>
                     <button
                         onClick={resetArchitecture}
-                        className="p-1.5 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 dark:hover:text-red-400 rounded text-slate-500 dark:text-slate-400 transition-colors"
-                        title="Reset to Default"
+                        className="p-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors shadow-sm flex items-center gap-2"
+                        title="Reset to your last saved default"
                     >
                         <RotateCcw className="w-4 h-4" />
+                        <span className="hidden sm:inline">Reset</span>
+                    </button>
+                    <button
+                        onClick={factoryReset}
+                        className="p-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors shadow-sm flex items-center gap-2 border border-red-200 dark:border-red-800"
+                        title="Restore original factory settings (clears your saved default)"
+                    >
+                        <Trash2 className="w-4 h-4" />
+                        <span className="hidden lg:inline">Factory Reset</span>
                     </button>
                 </div>
             )}
@@ -309,6 +401,8 @@ export default function ArchitecturePage() {
             nodesConnectable={isEditMode}
             elementsSelectable={true}
             deleteKeyCode={isEditMode ? ['Backspace', 'Delete'] : null}
+            edgesUpdatable={isEditMode}
+            edgesFocusable={isEditMode}
             fitView
             className="bg-slate-50 dark:bg-slate-950"
             minZoom={0.1}
@@ -395,7 +489,40 @@ export default function ArchitecturePage() {
                           </select>
                       </div>
 
+                      <div>
+                          <label className="block text-xs font-semibold text-slate-500 mb-1">Key Capabilities</label>
+                          <textarea
+                              value={selectedNode.data.details ? selectedNode.data.details.join('\n') : ''}
+                              onChange={(e) => updateNodeData('details', e.target.value.split('\n'))}
+                              className="w-full h-24 px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all resize-none text-sm font-mono"
+                              placeholder="Enter one capability per line..."
+                          />
+                      </div>
+
+                      <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700">
+                           <label className="block text-xs font-semibold text-slate-500 mb-2">Internal Architecture</label>
+                           <button
+                               onClick={() => handleEnterGroup(selectedNode.id, selectedNode.data.label)}
+                               className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:hover:bg-indigo-900/30 rounded-lg transition-colors text-sm font-medium border border-indigo-200 dark:border-indigo-800"
+                           >
+                               <ArrowRightCircle className="w-4 h-4" />
+                               Manage Sub-Architecture
+                           </button>
+                           <p className="text-[10px] text-slate-400 mt-2">
+                               Create or edit the internal components and flow for this node.
+                           </p>
+                      </div>
+
                       <div className="pt-6 mt-4 border-t border-slate-200 dark:border-slate-700">
+                           <div className="mb-4">
+                              <label className="block text-xs font-semibold text-slate-500 mb-1">Management Notes</label>
+                              <textarea
+                                  value={selectedNode.data.notes || ''}
+                                  onChange={(e) => updateNodeData('notes', e.target.value)}
+                                  className="w-full h-24 px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all resize-none text-sm"
+                                  placeholder="Add details, notes, or management comments here..."
+                              />
+                           </div>
                            <button
                                onClick={deleteSelected}
                                className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-lg transition-colors text-sm font-medium"
@@ -415,6 +542,25 @@ export default function ArchitecturePage() {
                       {selectedNode.data.subLabel}
                     </p>
                   )}
+                  
+                  {selectedNode.data.notes && (
+                      <div className="mb-6 p-3 bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-100 dark:border-yellow-900/30 rounded-lg">
+                          <h3 className="text-xs font-semibold text-yellow-800 dark:text-yellow-500 mb-1 uppercase tracking-wide">Management Notes</h3>
+                          <p className="text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
+                              {selectedNode.data.notes}
+                          </p>
+                      </div>
+                  )}
+
+                  <div className="mb-6">
+                       <button
+                           onClick={() => handleEnterGroup(selectedNode.id, selectedNode.data.label)}
+                           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors text-sm font-medium shadow-sm"
+                       >
+                           <ArrowRightCircle className="w-4 h-4" />
+                           View Internal Architecture
+                       </button>
+                  </div>
     
                   <div className="space-y-6 overflow-y-auto flex-grow">
                     {selectedNode.data.details && selectedNode.data.details.length > 0 ? (

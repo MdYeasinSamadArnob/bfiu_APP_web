@@ -1,11 +1,39 @@
 'use client';
 
-import { useState } from 'react';
-import { timelineData } from '../data/timelineData';
-import { Calendar, Clock, Target, CheckCircle2, Flag, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { TimelinePhase, timelineData as initialTimelineData } from '../data/timelineData';
+import { Calendar, Clock, Target, CheckCircle2, Flag, ChevronDown, ChevronUp, AlertCircle, Edit, Save, X, Trash2, Plus } from 'lucide-react';
 
 export default function TimelineView() {
+  const [timelineData, setTimelineData] = useState<TimelinePhase[]>(initialTimelineData);
   const [expandedPhase, setExpandedPhase] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/timeline')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+            setTimelineData(data);
+        }
+      })
+      .catch(err => console.error('Failed to load timeline:', err));
+  }, []);
+
+  const handleSavePhase = async (updatedPhase: TimelinePhase) => {
+    const newData = timelineData.map(p => p.id === updatedPhase.id ? updatedPhase : p);
+    setTimelineData(newData);
+    
+    try {
+        await fetch('/api/timeline', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newData)
+        });
+    } catch (err) {
+        console.error('Failed to save timeline:', err);
+        alert('Failed to save changes.');
+    }
+  };
 
   const togglePhase = (id: string) => {
     if (expandedPhase === id) {
@@ -42,7 +70,7 @@ export default function TimelineView() {
                  {/* Left Side (Card if Even, Date if Odd) */}
                  <div className={`md:w-[45%] mb-4 md:mb-0 ${isEven ? 'order-2 md:order-1' : 'order-2 md:order-3'}`}>
                    {isEven ? (
-                     <TimelineCard phase={phase} isExpanded={isExpanded} onClick={() => togglePhase(phase.id)} />
+                     <TimelineCard phase={phase} isExpanded={isExpanded} onClick={() => togglePhase(phase.id)} onSave={handleSavePhase} />
                    ) : (
                      <TimelineDate phase={phase} align="right" />
                    )}
@@ -59,26 +87,13 @@ export default function TimelineView() {
                  <div className={`pl-16 md:pl-0 md:w-[45%] ${isEven ? 'order-3 md:order-3' : 'order-3 md:order-1'}`}>
                    {isEven ? (
                       <div className="md:hidden">
-                          {/* Mobile: Date is already shown inside card or we can hide this duplicative date logic if card handles it. 
-                              Actually, let's keep the structure clean. 
-                              On mobile, we want: Node (left) - Content (right). 
-                              The "Date" component is mostly for Desktop visual balance.
-                              I'll hide the separate Date component on mobile and put date inside Card.
-                          */}
                           <TimelineDate phase={phase} align="left" className="hidden md:block" />
                       </div>
                    ) : (
-                      <TimelineCard phase={phase} isExpanded={isExpanded} onClick={() => togglePhase(phase.id)} />
+                      <TimelineCard phase={phase} isExpanded={isExpanded} onClick={() => togglePhase(phase.id)} onSave={handleSavePhase} />
                    )}
                    {isEven && <TimelineDate phase={phase} align="left" className="hidden md:block" />}
                  </div>
-
-                 {/* Mobile Date Adjustment: Since we used absolute positioning for node, the flow is tricky.
-                     Let's adjust for mobile:
-                     The "Node" is absolute at left-6.
-                     The Content is pushed with pl-16.
-                     The "Date" logic above was for desktop columns.
-                 */}
                </div>
              );
           })}
@@ -88,7 +103,124 @@ export default function TimelineView() {
   );
 }
 
-function TimelineCard({ phase, isExpanded, onClick }: { phase: any, isExpanded: boolean, onClick: () => void }) {
+function TimelineCard({ phase, isExpanded, onClick, onSave }: { phase: TimelinePhase, isExpanded: boolean, onClick: () => void, onSave: (p: TimelinePhase) => void }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState<TimelinePhase>(phase);
+
+  useEffect(() => {
+    setEditForm(phase);
+  }, [phase]);
+
+  const handleSave = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSave(editForm);
+    setIsEditing(false);
+  };
+
+  const handleCancel = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditForm(phase);
+    setIsEditing(false);
+  };
+
+  if (isEditing) {
+      return (
+        <div className="ml-16 md:ml-0 bg-white dark:bg-slate-900 rounded-2xl shadow-lg border-2 border-indigo-500 overflow-hidden p-4 cursor-default">
+            <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
+                <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Title</label>
+                    <input 
+                        value={editForm.title}
+                        onChange={(e) => setEditForm({...editForm, title: e.target.value})}
+                        className="w-full px-2 py-1.5 text-sm border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    />
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                    <div>
+                        <label className="block text-xs font-medium text-slate-500 mb-1">Duration</label>
+                        <input 
+                            value={editForm.duration}
+                            onChange={(e) => setEditForm({...editForm, duration: e.target.value})}
+                            className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-xs font-medium text-slate-500 mb-1">Dates</label>
+                        <input 
+                            value={editForm.dates}
+                            onChange={(e) => setEditForm({...editForm, dates: e.target.value})}
+                            className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        />
+                    </div>
+                </div>
+                <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Status</label>
+                    <select 
+                        value={editForm.status}
+                        onChange={(e) => setEditForm({...editForm, status: e.target.value as any})}
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    >
+                        <option value="planned">Planned</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Focus</label>
+                    <textarea 
+                        value={editForm.focus}
+                        onChange={(e) => setEditForm({...editForm, focus: e.target.value})}
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        rows={2}
+                    />
+                </div>
+                <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Deliverables (one per line)</label>
+                    <textarea 
+                        value={editForm.deliverables.join('\n')}
+                        onChange={(e) => setEditForm({...editForm, deliverables: e.target.value.split('\n')})}
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        rows={3}
+                    />
+                </div>
+                 <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Testing & QA</label>
+                    <textarea 
+                        value={editForm.testing}
+                        onChange={(e) => setEditForm({...editForm, testing: e.target.value})}
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        rows={2}
+                    />
+                </div>
+                 <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Notes</label>
+                    <textarea 
+                        value={editForm.notes}
+                        onChange={(e) => setEditForm({...editForm, notes: e.target.value})}
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                        rows={2}
+                    />
+                </div>
+                
+                <div className="flex justify-end gap-2 pt-2 border-t border-slate-200 dark:border-slate-700">
+                    <button
+                        onClick={handleCancel}
+                        className="px-3 py-1.5 rounded text-xs font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onClick={handleSave}
+                        className="px-3 py-1.5 rounded text-xs font-medium bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+      );
+  }
+
   return (
     <div 
       className={`ml-16 md:ml-0 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer group ${isExpanded ? 'ring-2 ring-indigo-500/50 shadow-lg' : ''}`}
@@ -108,9 +240,18 @@ function TimelineCard({ phase, isExpanded, onClick }: { phase: any, isExpanded: 
               {phase.focus}
             </p>
           </div>
-          <button className={`p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${isExpanded ? 'text-indigo-600' : 'text-slate-400'}`}>
-            {isExpanded ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
-          </button>
+          <div className="flex flex-col gap-2">
+            <button className={`p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${isExpanded ? 'text-indigo-600' : 'text-slate-400'}`}>
+                {isExpanded ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+            </button>
+            <button
+                onClick={(e) => { e.stopPropagation(); setIsEditing(true); }}
+                className="p-1 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                title="Edit Phase"
+            >
+                <Edit className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Status Bar */}
@@ -177,7 +318,7 @@ function TimelineCard({ phase, isExpanded, onClick }: { phase: any, isExpanded: 
   );
 }
 
-function TimelineDate({ phase, align = 'left', className = '' }: { phase: any, align?: 'left' | 'right', className?: string }) {
+function TimelineDate({ phase, align = 'left', className = '' }: { phase: TimelinePhase, align?: 'left' | 'right', className?: string }) {
   return (
     <div className={`hidden md:flex flex-col justify-center h-full ${align === 'right' ? 'items-end text-right pr-8' : 'items-start text-left pl-8'} ${className}`}>
       <div className="flex items-center gap-2 text-indigo-600 font-bold text-lg">
