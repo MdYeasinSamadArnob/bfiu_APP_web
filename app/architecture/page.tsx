@@ -641,7 +641,6 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
                           <div className="flex flex-wrap gap-2">
                             {['default', 'blue', 'red', 'orange', 'purple', 'green', 'yellow', 'indigo', 'pink', 'teal', 'cyan', 'slate'].map((color) => {
                                 const typeColor = getTypeColor(selectedNode.data.type);
-                                const isDefault = (selectedNode.data.color || 'default') === 'default';
                                 
                                 return (
                                 <button
@@ -855,7 +854,7 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
                        <label className="block text-xs font-semibold text-slate-500 mb-1">Label</label>
                        <input 
                            type="text" 
-                           value={selectedEdge.label || ''} 
+                           value={(selectedEdge.label as string) || ''} 
                            onChange={(e) => updateEdgeData('label', e.target.value)}
                            disabled={!isEditMode}
                            className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
