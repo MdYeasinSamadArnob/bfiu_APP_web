@@ -94,7 +94,7 @@ export const useCases: UseCase[] = [
       "Requires AI to interpret transaction descriptions for keywords related to crypto, as keyword matching might need contextual understanding or NLP to avoid false positives on ambiguous terms."
     ],
     "section": "General Banking",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -292,7 +292,7 @@ export const useCases: UseCase[] = [
       "Requires AI judgment to determine if the purpose/reason is \"proper,\" as it involves subjective evaluation of documentation or intent."
     ],
     "section": "General Banking",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -336,7 +336,7 @@ export const useCases: UseCase[] = [
       "Requires AI to analyze transaction patterns and determine if usage matches approved purpose, involving contextual judgment without external retrieval."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -358,7 +358,7 @@ export const useCases: UseCase[] = [
       "Involves validating source of funds, which may require investigative reasoning or pattern analysis not strictly mathematical."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -402,7 +402,7 @@ export const useCases: UseCase[] = [
       "Identifying circular patterns needs AI for graph-based analysis of transaction flows."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -413,7 +413,7 @@ export const useCases: UseCase[] = [
       "\"Plausible explanation\" requires AI judgment on source validity."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -435,7 +435,7 @@ export const useCases: UseCase[] = [
       "Lacks \"due explanations,\" requiring evaluation of adequacy, which is subjective."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -446,7 +446,7 @@ export const useCases: UseCase[] = [
       "Assessing \"willingness\" to repay involves behavioral judgment, not just capacity metrics."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -457,7 +457,7 @@ export const useCases: UseCase[] = [
       "Detecting non-conformance to principles may need AI for deep financial analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -479,7 +479,7 @@ export const useCases: UseCase[] = [
       "Identifying front companies involves investigative pattern recognition."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -490,7 +490,7 @@ export const useCases: UseCase[] = [
       "Requires AI to detect shell entity characteristics through pattern analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -512,7 +512,7 @@ export const useCases: UseCase[] = [
       "Third party naming requires checking relationships, involving entity linking."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -523,7 +523,7 @@ export const useCases: UseCase[] = [
       "\"Valid reason\" is subjective, needing judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -622,7 +622,7 @@ export const useCases: UseCase[] = [
       "\"Inflated or exaggerated\" requires subjective analysis of reports."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -666,7 +666,7 @@ export const useCases: UseCase[] = [
       "\"Vague or ambiguous\" purpose needs NLP to classify text."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -677,7 +677,7 @@ export const useCases: UseCase[] = [
       "Detecting tampering to mislead requires AI for document forensics."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -688,7 +688,7 @@ export const useCases: UseCase[] = [
       "Same as above, tampering detection."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -699,7 +699,7 @@ export const useCases: UseCase[] = [
       "Frequent counts are hard, but group linkage and intent require AI."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -710,7 +710,7 @@ export const useCases: UseCase[] = [
       "\"Potential nominee\" implies judgment on intent."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -743,7 +743,7 @@ export const useCases: UseCase[] = [
       "Third party titling, relationship check."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -754,7 +754,7 @@ export const useCases: UseCase[] = [
       "\"Unrelated or irrelevant\" businesses require similarity analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -776,7 +776,7 @@ export const useCases: UseCase[] = [
       "\"Falsified\" reports need detection beyond rules."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -842,7 +842,7 @@ export const useCases: UseCase[] = [
       "Matching to declared activity and categorizing \"luxury\" needs classification."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -897,7 +897,7 @@ export const useCases: UseCase[] = [
       "\"Inconsistent\" requires analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -919,7 +919,7 @@ export const useCases: UseCase[] = [
       "Circular patterns require graph detection."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -930,7 +930,7 @@ export const useCases: UseCase[] = [
       "\"Heavily dependent\" and \"highly leveraged\" need judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -941,7 +941,7 @@ export const useCases: UseCase[] = [
       "Mismatch detection, \"luxury\" categorization."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -996,7 +996,7 @@ export const useCases: UseCase[] = [
       "\"Unrelated\" accounts need relationship analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1018,7 +1018,7 @@ export const useCases: UseCase[] = [
       "\"Suspicious/unrelated\" requires judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1051,7 +1051,7 @@ export const useCases: UseCase[] = [
       "\"Related parties\" need group linking."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1062,7 +1062,7 @@ export const useCases: UseCase[] = [
       "\"Inflated\" and \"without verification\" subjective."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1148,7 +1148,7 @@ export const useCases: UseCase[] = [
       "\"Significant growth\" requires anomaly detection if threshold not fixed."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1159,7 +1159,7 @@ export const useCases: UseCase[] = [
       "Multi-faceted review of parameters needs integrated analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1379,7 +1379,7 @@ export const useCases: UseCase[] = [
       "\"Unrelated\" businesses, relationship analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1390,7 +1390,7 @@ export const useCases: UseCase[] = [
       "Multiple handlers require type classification."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1478,7 +1478,7 @@ export const useCases: UseCase[] = [
       "\"Involvement\" and issues require event detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1489,7 +1489,7 @@ export const useCases: UseCase[] = [
       "Issues raised/settled require judgment."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1511,7 +1511,7 @@ export const useCases: UseCase[] = [
       "Discrepancies between description and actual require comparison analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1522,7 +1522,7 @@ export const useCases: UseCase[] = [
       "\"No apparent relationship\" needs entity relationship analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1533,7 +1533,7 @@ export const useCases: UseCase[] = [
       "\"Lack of appropriate\" subjective on sufficiency."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1599,7 +1599,7 @@ export const useCases: UseCase[] = [
       "Discrepancies in tracking require pattern recognition."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1621,7 +1621,7 @@ export const useCases: UseCase[] = [
       "Evidence of splitting requires pattern detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1676,7 +1676,7 @@ export const useCases: UseCase[] = [
       "\"Lacking relevant experience\" requires assessment of background."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1720,7 +1720,7 @@ export const useCases: UseCase[] = [
       "\"Unrelated\" and \"sudden\" require analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1742,7 +1742,7 @@ export const useCases: UseCase[] = [
       "\"No apparent reason\" subjective justification."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1764,7 +1764,7 @@ export const useCases: UseCase[] = [
       "Issues in price determination require subjective assessment."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1786,7 +1786,7 @@ export const useCases: UseCase[] = [
       "Same as 64."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1797,7 +1797,7 @@ export const useCases: UseCase[] = [
       "\"Manipulation\" requires pattern or intent detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1962,7 +1962,7 @@ export const useCases: UseCase[] = [
       "\"No relevance\" to beneficial owner requires relationship or connection analysis."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1973,7 +1973,7 @@ export const useCases: UseCase[] = [
       "Timing with events to \"disguise intent,\" needs correlation and intent inference."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1995,7 +1995,7 @@ export const useCases: UseCase[] = [
       "Via shell companies, identifying shell needs analysis."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   }
 ];

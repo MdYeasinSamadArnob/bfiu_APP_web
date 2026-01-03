@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { TimelinePhase, timelineData as initialTimelineData } from '../data/timelineData';
-import { Calendar, Clock, Target, CheckCircle2, Flag, ChevronDown, ChevronUp, AlertCircle, Edit, Save, X, Trash2, Plus } from 'lucide-react';
+import { Calendar, Clock, Target, CheckCircle2, Flag, ChevronDown, ChevronUp, AlertCircle, Edit, Moon } from 'lucide-react';
 
 export default function TimelineView() {
   const [timelineData, setTimelineData] = useState<TimelinePhase[]>(initialTimelineData);
@@ -154,10 +154,19 @@ function TimelineCard({ phase, isExpanded, onClick, onSave }: { phase: TimelineP
                     </div>
                 </div>
                 <div>
+                    <label className="block text-xs font-medium text-slate-500 mb-1">Holiday / Break</label>
+                    <input 
+                        value={editForm.holiday || ''}
+                        onChange={(e) => setEditForm({...editForm, holiday: e.target.value})}
+                        placeholder="e.g. Eid al-Fitr Break (~Mar 19-23)"
+                        className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    />
+                </div>
+                <div>
                     <label className="block text-xs font-medium text-slate-500 mb-1">Status</label>
                     <select 
                         value={editForm.status}
-                        onChange={(e) => setEditForm({...editForm, status: e.target.value as any})}
+                        onChange={(e) => setEditForm({...editForm, status: e.target.value as TimelinePhase['status']})}
                         className="w-full px-2 py-1.5 text-xs border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
                     >
                         <option value="planned">Planned</option>
@@ -230,7 +239,11 @@ function TimelineCard({ phase, isExpanded, onClick, onSave }: { phase: TimelineP
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2">
-              <span className="md:hidden flex items-center gap-1"><Calendar className="w-3 h-3"/> {phase.dates}</span>
+              <span className="md:hidden flex items-center gap-1">
+                <Calendar className="w-3 h-3"/> 
+                {phase.dates}
+                {phase.holiday && <Moon className="w-3 h-3 text-amber-500 ml-1" />}
+              </span>
               <span className="hidden md:inline-block px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/20">{phase.duration}</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors">
@@ -325,6 +338,15 @@ function TimelineDate({ phase, align = 'left', className = '' }: { phase: Timeli
         {align === 'right' && <span>{phase.dates}</span>}
         <Calendar className="w-5 h-5" />
         {align === 'left' && <span>{phase.dates}</span>}
+        {phase.holiday && (
+          <div className="relative group cursor-help ml-1">
+            <Moon className="w-4 h-4 text-amber-500 fill-amber-500/20" />
+            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-48 bg-slate-800 text-white text-xs rounded-lg py-1.5 px-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-center shadow-lg z-20">
+              {phase.holiday}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-800"></div>
+            </div>
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-2 text-slate-500 mt-1 text-sm font-medium">
         <Clock className="w-4 h-4" />

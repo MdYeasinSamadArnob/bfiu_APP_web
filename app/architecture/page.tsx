@@ -12,16 +12,17 @@ import ReactFlow, {
   Connection,
   Edge,
   Node,
-  Panel
+  Panel,
+  NodeChange,
+  EdgeChange
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
-import ArchitectureNode from '../../components/architecture/ArchitectureNode';
+import ArchitectureNode, { iconMap, getTypeColor } from '../../components/architecture/ArchitectureNode';
 import ArchitectureGroupNode from '../../components/architecture/ArchitectureGroupNode';
 import { initialNodes, initialEdges } from '../../data/architectureData';
-import { Info, X, ChevronLeft, Save, Plus, Trash2, Layout, RotateCcw, CornerUpLeft, ArrowRightCircle } from 'lucide-react';
+import { ChevronLeft, Save, Plus, Layout, CornerUpLeft, ClipboardCopy, RotateCcw, Trash2, Info, X, ArrowRightCircle, Activity } from 'lucide-react';
 import Link from 'next/link';
-import { useSearchParams, useRouter } from 'next/navigation';
 
 const nodeTypes = {
   custom: ArchitectureNode,
@@ -32,12 +33,15 @@ export default function ArchitecturePage() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [selectedEdgeId, setSelectedEdgeId] = useState<string | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [, setHasUnsavedChanges] = useState(false);
   const [viewStack, setViewStack] = useState<{id: string, name: string}[]>([{id: 'root', name: 'System Architecture'}]);
+  const [showIconPicker, setShowIconPicker] = useState(false);
   
   const currentView = viewStack[viewStack.length - 1];
   const selectedNode = nodes.find(n => n.id === selectedNodeId);
+  const selectedEdge = edges.find(e => e.id === selectedEdgeId);
 
   // Load initial data
   const loadArchitecture = useCallback((viewId: string) => {
@@ -56,7 +60,7 @@ export default function ArchitecturePage() {
               })));
               setEdges(initialEdges);
           } else {
-              setNodes(data.nodes.map((n: any) => ({
+              setNodes(data.nodes.map((n: Node) => ({
                  ...n,
                  data: {
                      ...n.data,
@@ -184,16 +188,16 @@ export default function ArchitecturePage() {
   );
   
   // Track changes
-  const onNodesChangeWithTrack = useCallback((changes: any) => {
+  const onNodesChangeWithTrack = useCallback((changes: NodeChange[]) => {
       onNodesChange(changes);
-      if (changes.some((c: any) => c.type !== 'select')) {
+      if (changes.some((c) => c.type !== 'select')) {
           setHasUnsavedChanges(true);
       }
   }, [onNodesChange]);
   
-  const onEdgesChangeWithTrack = useCallback((changes: any) => {
+  const onEdgesChangeWithTrack = useCallback((changes: EdgeChange[]) => {
       onEdgesChange(changes);
-      if (changes.some((c: any) => c.type !== 'select')) {
+      if (changes.some((c) => c.type !== 'select')) {
           setHasUnsavedChanges(true);
       }
   }, [onEdgesChange]);
@@ -239,18 +243,48 @@ export default function ArchitecturePage() {
           setEdges((eds) => eds.filter((e) => e.source !== selectedNodeId && e.target !== selectedNodeId));
           setSelectedNodeId(null);
           setHasUnsavedChanges(true);
+      } else if (selectedEdgeId) {
+          setEdges((eds) => eds.filter((e) => e.id !== selectedEdgeId));
+          setSelectedEdgeId(null);
+          setHasUnsavedChanges(true);
       }
-  }, [selectedNodeId, setNodes, setEdges]);
+  }, [selectedNodeId, selectedEdgeId, setNodes, setEdges]);
 
   const onNodeClick = (_: React.MouseEvent, node: Node) => {
     setSelectedNodeId(node.id);
+    setSelectedEdgeId(null);
+  };
+
+  const onEdgeClick = (_: React.MouseEvent, edge: Edge) => {
+    setSelectedEdgeId(edge.id);
+    setSelectedNodeId(null);
+  };
+
+  const onPaneClick = () => {
+    setSelectedNodeId(null);
+    setSelectedEdgeId(null);
   };
 
   const closeSidebar = () => {
     setSelectedNodeId(null);
+    setSelectedEdgeId(null);
   };
 
-  const updateNodeData = (key: string, value: any) => {
+  const updateEdgeData = (key: string, value: unknown) => {
+      if (!selectedEdgeId) return;
+      setEdges((eds) => eds.map((edge) => {
+          if (edge.id === selectedEdgeId) {
+              return {
+                  ...edge,
+                  [key]: value
+              };
+          }
+          return edge;
+      }));
+      setHasUnsavedChanges(true);
+  };
+
+  const updateNodeData = (key: string, value: unknown) => {
       if (!selectedNodeId) return;
       setNodes((nds) => nds.map((node) => {
           if (node.id === selectedNodeId) {
@@ -267,6 +301,49 @@ export default function ArchitecturePage() {
       setHasUnsavedChanges(true);
   };
   
+  /*
+   * Download functionality temporarily removed due to SVG export issues
+   */
+
+
+  const copyMetadata = useCallback(async () => {
+    try {
+        const data = {
+            context: "System Architecture Overview",
+            nodes: nodes.map(n => ({
+                label: n.data?.label || 'Unnamed Node',
+                type: n.data?.type || 'service',
+                subLabel: n.data?.subLabel,
+                details: n.data?.details,
+                notes: n.data?.notes
+            })),
+            connections: edges.map(e => ({
+                from: nodes.find(n => n.id === e.source)?.data?.label || 'Unknown',
+                to: nodes.find(n => n.id === e.target)?.data?.label || 'Unknown',
+                label: e.label,
+                type: e.type
+            }))
+        };
+        
+        const text = `SYSTEM ARCHITECTURE METADATA (Prompt Context)
+    
+NODES:
+${data.nodes.map(n => `- [${(n.type || 'service').toUpperCase()}] ${n.label}${n.subLabel ? ` (${n.subLabel})` : ''}
+  Capabilities: ${n.details ? n.details.join(', ') : 'None'}
+  Notes: ${n.notes || 'None'}`).join('\n\n')}
+
+CONNECTIONS:
+${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` : ''}`).join('\n')}
+`;
+        
+        await navigator.clipboard.writeText(text);
+        alert("Architecture metadata copied to clipboard! You can now paste this into ChatGPT as context.");
+    } catch (err) {
+        console.error('Failed to copy metadata:', err);
+        alert('Failed to copy metadata. Please check permissions or try again.');
+    }
+  }, [nodes, edges]);
+
   const toggleEditMode = () => {
       const newMode = !isEditMode;
       setIsEditMode(newMode);
@@ -306,6 +383,23 @@ export default function ArchitecturePage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
+            <button
+                onClick={copyMetadata}
+                className="p-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors shadow-sm"
+                title="Copy Architecture Metadata for ChatGPT"
+            >
+                <ClipboardCopy className="w-4 h-4" />
+            </button>
+            {/* Download button hidden due to unresolved SVG export issues
+            <button
+                onClick={downloadImage}
+                className="p-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors shadow-sm mr-2"
+                title="Export as PNG"
+            >
+                <Download className="w-4 h-4" />
+            </button>
+            */}
+
             {viewStack.length > 1 && (
                 <button
                    onClick={handleNavigateBack}
@@ -397,12 +491,15 @@ export default function ArchitecturePage() {
             onEdgeUpdate={isEditMode ? onEdgeUpdate : undefined}
             nodeTypes={nodeTypes}
             onNodeClick={onNodeClick}
+            onEdgeClick={onEdgeClick}
+            onPaneClick={onPaneClick}
+            connectionRadius={50}
             nodesDraggable={isEditMode}
             nodesConnectable={isEditMode}
             elementsSelectable={true}
             deleteKeyCode={isEditMode ? ['Backspace', 'Delete'] : null}
             edgesUpdatable={isEditMode}
-            edgesFocusable={isEditMode}
+            edgesFocusable={true}
             fitView
             className="bg-slate-50 dark:bg-slate-950"
             minZoom={0.1}
@@ -425,8 +522,8 @@ export default function ArchitecturePage() {
 
         {/* Sidebar for Details */}
         <div 
-          className={`absolute right-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out z-20 ${
-            selectedNode ? 'translate-x-0' : 'translate-x-full'
+          className={`absolute right-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out z-20 overflow-y-auto ${
+            (selectedNode || selectedEdge) ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           {selectedNode && (
@@ -465,13 +562,63 @@ export default function ArchitecturePage() {
                       </div>
                       <div>
                           <label className="block text-xs font-semibold text-slate-500 mb-1">Icon Name (Lucide)</label>
-                          <input 
-                              type="text" 
-                              value={selectedNode.data.icon || ''} 
-                              onChange={(e) => updateNodeData('icon', e.target.value)}
-                              className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
-                          />
-                          <p className="text-[10px] text-slate-400 mt-1">e.g. Server, Database, Cloud, Shield</p>
+                          <div className="flex gap-2">
+                              <div className="relative flex-grow">
+                                  <input 
+                                      type="text" 
+                                      list="icon-options"
+                                      value={selectedNode.data.icon || ''} 
+                                      onChange={(e) => updateNodeData('icon', e.target.value)}
+                                      className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                                      placeholder="Select or type icon..."
+                                  />
+                                  <datalist id="icon-options">
+                                      {Object.keys(iconMap).map(name => (
+                                          <option key={name} value={name} />
+                                      ))}
+                                  </datalist>
+                              </div>
+                              <button
+                                  onClick={() => setShowIconPicker(!showIconPicker)}
+                                  className={`p-2 rounded-lg border transition-colors ${
+                                      showIconPicker 
+                                      ? 'bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-900/30 dark:border-indigo-800' 
+                                      : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400'
+                                  }`}
+                                  title="Browse Icons"
+                              >
+                                  <Layout className="w-5 h-5" />
+                              </button>
+                          </div>
+                          
+                          {showIconPicker && (
+                              <div className="mt-2 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-200 dark:border-slate-700 grid grid-cols-5 gap-1 max-h-40 overflow-y-auto">
+                                  {Object.entries(iconMap).map(([name, IconComponent]) => (
+                                      <button
+                                          key={name}
+                                          onClick={() => {
+                                              updateNodeData('icon', name);
+                                              setShowIconPicker(false);
+                                          }}
+                                          className={`p-2 rounded hover:bg-white dark:hover:bg-slate-700 flex flex-col items-center justify-center gap-1 transition-all ${
+                                              selectedNode.data.icon === name 
+                                              ? 'bg-white shadow-sm ring-1 ring-indigo-500 dark:bg-slate-700' 
+                                              : ''
+                                          }`}
+                                          title={name}
+                                      >
+                                          <IconComponent className="w-4 h-4 text-slate-600 dark:text-slate-300" />
+                                      </button>
+                                  ))}
+                              </div>
+                          )}
+                          
+                          <p className="text-[10px] text-slate-400 mt-1 flex items-center flex-wrap gap-1">
+                              Supported: {Object.keys(iconMap).slice(0, 3).join(', ')}... 
+                              <a href="https://lucide.dev/icons" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:underline inline-flex items-center gap-0.5">
+                                  Browse Library <CornerUpLeft className="w-2 h-2 rotate-90" />
+                              </a>
+                          </p>
                       </div>
                       
                       <div>
@@ -486,6 +633,70 @@ export default function ArchitecturePage() {
                               <option value="interface">Interface</option>
                               <option value="security">Security</option>
                               <option value="integration">Integration</option>
+                          </select>
+                      </div>
+
+                      <div>
+                          <label className="block text-xs font-semibold text-slate-500 mb-1">Node Color</label>
+                          <div className="flex flex-wrap gap-2">
+                            {['default', 'blue', 'red', 'orange', 'purple', 'green', 'yellow', 'indigo', 'pink', 'teal', 'cyan', 'slate'].map((color) => {
+                                const typeColor = getTypeColor(selectedNode.data.type);
+                                const isDefault = (selectedNode.data.color || 'default') === 'default';
+                                
+                                return (
+                                <button
+                                    key={color}
+                                    onClick={() => updateNodeData('color', color)}
+                                    className={`w-6 h-6 rounded-full border-2 transition-all ${
+                                        (selectedNode.data.color || 'default') === color 
+                                        ? 'ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-slate-900 scale-110' 
+                                        : 'hover:scale-110'
+                                    } ${
+                                        color === 'default' ? 'bg-white border-slate-300' :
+                                        color === 'blue' ? 'bg-blue-500 border-blue-600' :
+                                        color === 'red' ? 'bg-red-500 border-red-600' :
+                                        color === 'orange' ? 'bg-orange-500 border-orange-600' :
+                                        color === 'purple' ? 'bg-purple-500 border-purple-600' :
+                                        color === 'green' ? 'bg-emerald-500 border-emerald-600' :
+                                        color === 'yellow' ? 'bg-amber-500 border-amber-600' :
+                                        color === 'indigo' ? 'bg-indigo-500 border-indigo-600' :
+                                        color === 'pink' ? 'bg-pink-500 border-pink-600' :
+                                        color === 'teal' ? 'bg-teal-500 border-teal-600' :
+                                        color === 'cyan' ? 'bg-cyan-500 border-cyan-600' :
+                                        'bg-slate-500 border-slate-600'
+                                    }`}
+                                    title={color === 'default' ? `Default (${typeColor})` : color.charAt(0).toUpperCase() + color.slice(1)}
+                                >
+                                    {color === 'default' && (
+                                        <div className={`w-full h-full flex items-center justify-center text-[10px] font-bold ${
+                                            typeColor === 'blue' ? 'text-blue-500' :
+                                            typeColor === 'red' ? 'text-red-500' :
+                                            typeColor === 'orange' ? 'text-orange-500' :
+                                            typeColor === 'purple' ? 'text-purple-500' :
+                                            typeColor === 'green' ? 'text-emerald-500' :
+                                            typeColor === 'yellow' ? 'text-amber-500' :
+                                            typeColor === 'indigo' ? 'text-indigo-500' :
+                                            'text-slate-500'
+                                        }`}>
+                                            /
+                                        </div>
+                                    )}
+                                </button>
+                            )})}
+                          </div>
+                      </div>
+
+                      <div>
+                          <label className="block text-xs font-semibold text-slate-500 mb-1">Node Style</label>
+                          <select
+                             value={selectedNode.data.variant || 'default'}
+                             onChange={(e) => updateNodeData('variant', e.target.value)}
+                             className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                          >
+                              <option value="default">Default</option>
+                              <option value="solid">Solid</option>
+                              <option value="glow">Glow</option>
+                              <option value="dashed">Dashed</option>
                           </select>
                       </div>
 
@@ -601,6 +812,88 @@ export default function ArchitecturePage() {
                     </div>
                   </div>
                 </>
+              )}
+            </div>
+          )}
+
+          {selectedEdge && (
+            <div className="p-6 h-full flex flex-col">
+              <div className="flex justify-between items-start mb-6">
+                <div className="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
+                  <Activity className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <button 
+                  onClick={closeSidebar}
+                  className="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded transition-colors"
+                >
+                  <X className="w-5 h-5 text-slate-500 dark:text-slate-400" />
+                </button>
+              </div>
+
+              <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">
+                 Connection Details
+              </h2>
+
+              <div className="space-y-6 overflow-y-auto flex-grow">
+                   <div>
+                       <label className="block text-xs font-semibold text-slate-500 mb-1">Connection Type</label>
+                       <select 
+                           value={selectedEdge.type || 'default'} 
+                           onChange={(e) => updateEdgeData('type', e.target.value)}
+                           disabled={!isEditMode}
+                           className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                       >
+                           <option value="default">Bezier (Curved)</option>
+                           <option value="straight">Straight</option>
+                           <option value="step">Step (Right Angles)</option>
+                           <option value="smoothstep">Smooth Step</option>
+                           <option value="simplebezier">Simple Bezier</option>
+                       </select>
+                   </div>
+                   
+                   <div>
+                       <label className="block text-xs font-semibold text-slate-500 mb-1">Label</label>
+                       <input 
+                           type="text" 
+                           value={selectedEdge.label || ''} 
+                           onChange={(e) => updateEdgeData('label', e.target.value)}
+                           disabled={!isEditMode}
+                           className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                           placeholder="Optional label..."
+                       />
+                   </div>
+
+                   <div className="flex items-center gap-2">
+                       <input 
+                           type="checkbox" 
+                           id="edge-animated"
+                           checked={selectedEdge.animated || false} 
+                           onChange={(e) => updateEdgeData('animated', e.target.checked)}
+                           disabled={!isEditMode}
+                           className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500"
+                       />
+                       <label htmlFor="edge-animated" className="text-sm text-slate-700 dark:text-slate-300">
+                           Animated Flow
+                       </label>
+                   </div>
+              </div>
+
+              {isEditMode && (
+                  <div className="pt-6 mt-4 border-t border-slate-200 dark:border-slate-700">
+                       <button
+                           onClick={deleteSelected}
+                           className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 rounded-lg transition-colors text-sm font-medium"
+                       >
+                           <Trash2 className="w-4 h-4" />
+                           Delete Connection
+                       </button>
+                  </div>
+              )}
+              
+              {!isEditMode && (
+                   <div className="text-sm text-slate-500 italic mt-4">
+                       Switch to Edit Mode to customize this connection.
+                   </div>
               )}
             </div>
           )}

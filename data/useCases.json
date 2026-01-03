@@ -84,7 +84,7 @@
       "Requires AI to interpret transaction descriptions for keywords related to crypto, as keyword matching might need contextual understanding or NLP to avoid false positives on ambiguous terms."
     ],
     "section": "General Banking",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -282,7 +282,7 @@
       "Requires AI judgment to determine if the purpose/reason is \"proper,\" as it involves subjective evaluation of documentation or intent."
     ],
     "section": "General Banking",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -326,7 +326,7 @@
       "Requires AI to analyze transaction patterns and determine if usage matches approved purpose, involving contextual judgment without external retrieval."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -348,7 +348,7 @@
       "Involves validating source of funds, which may require investigative reasoning or pattern analysis not strictly mathematical."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -392,7 +392,7 @@
       "Identifying circular patterns needs AI for graph-based analysis of transaction flows."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -403,7 +403,7 @@
       "\"Plausible explanation\" requires AI judgment on source validity."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -425,7 +425,7 @@
       "Lacks \"due explanations,\" requiring evaluation of adequacy, which is subjective."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -436,7 +436,7 @@
       "Assessing \"willingness\" to repay involves behavioral judgment, not just capacity metrics."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -447,7 +447,7 @@
       "Detecting non-conformance to principles may need AI for deep financial analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -469,7 +469,7 @@
       "Identifying front companies involves investigative pattern recognition."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -480,7 +480,7 @@
       "Requires AI to detect shell entity characteristics through pattern analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -502,7 +502,7 @@
       "Third party naming requires checking relationships, involving entity linking."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -513,7 +513,7 @@
       "\"Valid reason\" is subjective, needing judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -612,7 +612,7 @@
       "\"Inflated or exaggerated\" requires subjective analysis of reports."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -656,7 +656,7 @@
       "\"Vague or ambiguous\" purpose needs NLP to classify text."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -667,7 +667,7 @@
       "Detecting tampering to mislead requires AI for document forensics."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -678,7 +678,7 @@
       "Same as above, tampering detection."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -689,7 +689,7 @@
       "Frequent counts are hard, but group linkage and intent require AI."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -700,7 +700,7 @@
       "\"Potential nominee\" implies judgment on intent."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -733,7 +733,7 @@
       "Third party titling, relationship check."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -744,7 +744,7 @@
       "\"Unrelated or irrelevant\" businesses require similarity analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -766,7 +766,7 @@
       "\"Falsified\" reports need detection beyond rules."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -832,7 +832,7 @@
       "Matching to declared activity and categorizing \"luxury\" needs classification."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -887,7 +887,7 @@
       "\"Inconsistent\" requires analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -909,7 +909,7 @@
       "Circular patterns require graph detection."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -920,7 +920,7 @@
       "\"Heavily dependent\" and \"highly leveraged\" need judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -931,7 +931,7 @@
       "Mismatch detection, \"luxury\" categorization."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -986,7 +986,7 @@
       "\"Unrelated\" accounts need relationship analysis."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1008,7 +1008,7 @@
       "\"Suspicious/unrelated\" requires judgment."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1041,7 +1041,7 @@
       "\"Related parties\" need group linking."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1052,7 +1052,7 @@
       "\"Inflated\" and \"without verification\" subjective."
     ],
     "section": "Credit",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1138,7 +1138,7 @@
       "\"Significant growth\" requires anomaly detection if threshold not fixed."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1149,7 +1149,7 @@
       "Multi-faceted review of parameters needs integrated analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1369,7 +1369,7 @@
       "\"Unrelated\" businesses, relationship analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1380,7 +1380,7 @@
       "Multiple handlers require type classification."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1468,7 +1468,7 @@
       "\"Involvement\" and issues require event detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1479,7 +1479,7 @@
       "Issues raised/settled require judgment."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1501,7 +1501,7 @@
       "Discrepancies between description and actual require comparison analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1512,7 +1512,7 @@
       "\"No apparent relationship\" needs entity relationship analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1523,7 +1523,7 @@
       "\"Lack of appropriate\" subjective on sufficiency."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1589,7 +1589,7 @@
       "Discrepancies in tracking require pattern recognition."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1611,7 +1611,7 @@
       "Evidence of splitting requires pattern detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1666,7 +1666,7 @@
       "\"Lacking relevant experience\" requires assessment of background."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1710,7 +1710,7 @@
       "\"Unrelated\" and \"sudden\" require analysis."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   },
   {
@@ -1732,7 +1732,7 @@
       "\"No apparent reason\" subjective justification."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1754,7 +1754,7 @@
       "Issues in price determination require subjective assessment."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1776,7 +1776,7 @@
       "Same as 64."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Low"
   },
   {
@@ -1787,7 +1787,7 @@
       "\"Manipulation\" requires pattern or intent detection."
     ],
     "section": "Trade",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1952,7 +1952,7 @@
       "\"No relevance\" to beneficial owner requires relationship or connection analysis."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1963,7 +1963,7 @@
       "Timing with events to \"disguise intent,\" needs correlation and intent inference."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "Med"
   },
   {
@@ -1985,7 +1985,7 @@
       "Via shell companies, identifying shell needs analysis."
     ],
     "section": "Remittance",
-    "type": "AI-General",
+    "type": "AI Agents",
     "risk": "High"
   }
 ]

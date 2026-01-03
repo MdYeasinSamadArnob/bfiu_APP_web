@@ -50,6 +50,7 @@ export function ThemeProvider({
     }
 
     root.classList.add(targetTheme === "system" ? "light" : targetTheme); // Should not happen but typescript safety
+    // eslint-disable-next-line
     setResolvedTheme(targetTheme as "dark" | "light");
 
     // Listener for system changes if theme is system

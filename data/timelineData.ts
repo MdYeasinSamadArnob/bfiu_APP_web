@@ -9,6 +9,7 @@ export interface TimelinePhase {
   notes: string;
   status: 'planned' | 'in-progress' | 'completed';
   milestone?: string;
+  holiday?: string;
 }
 
 export const timelineData: TimelinePhase[] = [
@@ -43,9 +44,10 @@ export const timelineData: TimelinePhase[] = [
       "EAIP Leadership (Smart Agents): Autonomous agents that investigate complex patterns (e.g., 'Many to One', 'One to Many' funds funneling) using LangGraph to traverse transaction links.",
     ],
     testing: "Mid-Apr: MVP Launch Test. Validate that AI catches 100% of known test cases and reduces false alarms by ~60%.",
-    notes: "Milestone: MVP Live. The system starts delivering value by handling the bulk of daily transactions with intelligent filtering.",
+    notes: "Milestone: MVP Live. The system starts delivering value by handling the bulk of daily transactions with intelligent filtering. Note: Includes Eid al-Fitr holiday break (~Mar 19-23).",
     status: "planned",
-    milestone: "MVP Milestone: Foundation + General + Remittance live by mid-May"
+    milestone: "MVP Milestone: Foundation + General + Remittance live by mid-May",
+    holiday: "Eid al-Fitr Break (~Mar 19-23)"
   },
   {
     id: "phase-3",
@@ -79,8 +81,9 @@ export const timelineData: TimelinePhase[] = [
       "Standard Rules Engine (Deterministic Logic): 'High Value Transactions' checks for specific product types or risk categories."
     ],
     testing: "Mid-Jun: Calibrate AI against real-world Trade Based Money Laundering (TBML) scenarios.",
-    notes: "High Impact: This is the most complex phase where AI adds massive value by correlating hundreds of documents.",
-    status: "planned"
+    notes: "High Impact: This is the most complex phase where AI adds massive value by correlating hundreds of documents. Note: Includes Eid al-Adha holiday break (~May 26-31); reduced team availability expected.",
+    status: "planned",
+    holiday: "Eid al-Adha Break (~May 26-31)"
   },
   {
     id: "phase-5",
@@ -96,7 +99,7 @@ export const timelineData: TimelinePhase[] = [
       "Audit Readiness: Proving zero data loss and full traceability using **Kafka** logs and **Doris** audit tables."
     ],
     testing: "July: Final End-to-End Pilot. Full system sign-off.",
-    notes: "Completion: A fully operational, intelligent AML system ready for production.",
+    notes: "Completion: A fully operational, intelligent AML system ready for production. Schedule accounts for post-holiday ramp-up.",
     status: "planned",
     milestone: "Full Coverage: 100% of 183 indicators operational by July 31"
   }

@@ -5,7 +5,7 @@ import { useCases as initialUseCases, UseCase } from '../data/useCases';
 import UseCaseCard from '../components/UseCaseCard';
 import { ThemeToggle } from '../components/ThemeToggle';
 import Link from 'next/link';
-import { Search, BarChart3, PieChart, Filter, LayoutGrid, Zap, Brain, Database, CheckSquare, Calendar } from 'lucide-react';
+import { Search, BarChart3, Filter, LayoutGrid, Zap, Brain, Database, Calendar } from 'lucide-react';
 
 export default function Home() {
   const [useCases, setUseCases] = useState<UseCase[]>(initialUseCases);
@@ -44,7 +44,6 @@ export default function Home() {
   // Calculate stats
   const stats = useMemo(() => {
     const sections = ['General Banking', 'Credit', 'Trade', 'Remittance'];
-    const types = ['Hard Logic', 'AI-General', 'AI-RAG'];
     
     const sectionCounts: Record<string, { total: number, hard: number, aiGen: number, aiRag: number }> = {};
     
@@ -53,14 +52,14 @@ export default function Home() {
       sectionCounts[sec] = {
         total: sectionCases.length,
         hard: sectionCases.filter(uc => uc.type === 'Hard Logic').length,
-        aiGen: sectionCases.filter(uc => uc.type === 'AI-General').length,
+        aiGen: sectionCases.filter(uc => uc.type === 'AI Agents').length,
         aiRag: sectionCases.filter(uc => uc.type === 'AI-RAG').length
       };
     });
 
     const total = useCases.length;
     const totalHard = useCases.filter(uc => uc.type === 'Hard Logic').length;
-    const totalAiGen = useCases.filter(uc => uc.type === 'AI-General').length;
+    const totalAiGen = useCases.filter(uc => uc.type === 'AI Agents').length;
     const totalAiRag = useCases.filter(uc => uc.type === 'AI-RAG').length;
 
     return { sectionCounts, total, totalHard, totalAiGen, totalAiRag };
@@ -82,8 +81,8 @@ export default function Home() {
     });
   }, [useCases, searchTerm, selectedSection, selectedType]);
 
-  const sections = ['General Banking', 'Credit', 'Trade', 'Remittance'];
-  const types = ['Hard Logic', 'AI-General', 'AI-RAG'];
+  const sections = ['General Banking', 'Remittance', 'Trade', 'Credit'];
+  const types = ['Hard Logic', 'AI Agents', 'AI-RAG'];
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
@@ -182,7 +181,7 @@ export default function Home() {
 
                    <div className="flex items-center justify-between text-xs pt-1">
                      <span className="flex items-center text-slate-600 dark:text-slate-400">
-                       <Brain className="w-3 h-3 mr-1.5 text-indigo-500" /> AI General
+                       <Brain className="w-3 h-3 mr-1.5 text-indigo-500" /> AI Agents
                      </span>
                      <span className="font-medium text-slate-900 dark:text-slate-200">{data.aiGen}</span>
                    </div>
@@ -230,7 +229,7 @@ export default function Home() {
                     }`}
                   >
                     {type === 'Hard Logic' && <Zap className="w-3.5 h-3.5" />}
-                    {type === 'AI-General' && <Brain className="w-3.5 h-3.5" />}
+                    {type === 'AI Agents' && <Brain className="w-3.5 h-3.5" />}
                     {type === 'AI-RAG' && <Database className="w-3.5 h-3.5" />}
                     {type}
                   </button>
@@ -249,7 +248,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-medium text-slate-900 dark:text-slate-100 mb-2">No rules found</h3>
               <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-6">
-                We couldn't find any rules matching your current filters. Try adjusting your search or clearing filters.
+                We couldn&apos;t find any rules matching your current filters. Try adjusting your search or clearing filters.
               </p>
               <button 
                 onClick={() => {setSearchTerm(''); setSelectedSection('All'); setSelectedType('All');}}

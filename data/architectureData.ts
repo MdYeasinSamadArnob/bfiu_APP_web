@@ -1,4 +1,4 @@
-import { Node, Edge, MarkerType } from 'reactflow';
+import { Node, Edge } from 'reactflow';
 
 export interface ArchitectureNodeData {
   label: string;

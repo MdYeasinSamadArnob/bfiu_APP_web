@@ -109,24 +109,30 @@
       "id": "ui",
       "type": "customGroup",
       "position": {
-        "x": 600,
-        "y": 300
+        "x": 713.7256849315067,
+        "y": 268.627397260274
       },
       "style": {
-        "width": 720,
+        "width": 905,
         "height": 120,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px",
         "padding": "10px"
       },
       "data": {
-        "label": "User Interfaces"
+        "label": "User Interfaces",
+        "color": "purple",
+        "variant": "glow"
       },
-      "width": 720,
+      "width": 905,
       "height": 120,
-      "selected": false,
+      "selected": true,
       "dragging": false,
-      "resizing": false
+      "resizing": false,
+      "positionAbsolute": {
+        "x": 713.7256849315067,
+        "y": 268.627397260274
+      }
     },
     {
       "id": "ui-superset",
@@ -155,7 +161,7 @@
       "id": "ui-bpm",
       "type": "custom",
       "position": {
-        "x": 238.82363013698614,
+        "x": 321.1767123287668,
         "y": 30.849657534246603
       },
       "parentNode": "ui",
@@ -170,7 +176,7 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 838.8236301369861,
+        "x": 921.1767123287668,
         "y": 330.8496575342466
       }
     },
@@ -178,8 +184,8 @@
       "id": "ui-ai",
       "type": "custom",
       "position": {
-        "x": 490.32705479452034,
-        "y": 32.15684931506854
+        "x": 651.111643835616,
+        "y": 27.15684931506854
       },
       "parentNode": "ui",
       "extent": "parent",
@@ -193,16 +199,16 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 1090.3270547945203,
-        "y": 332.15684931506854
+        "x": 1251.111643835616,
+        "y": 327.15684931506854
       }
     },
     {
       "id": "doris",
       "type": "custom",
       "position": {
-        "x": 500,
-        "y": 500
+        "x": 537.9085616438356,
+        "y": 450.32671232876714
       },
       "data": {
         "label": "Analytical Datamart",
@@ -216,26 +222,41 @@
         ]
       },
       "width": 238,
-      "height": 61
+      "height": 61,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 537.9085616438356,
+        "y": 450.32671232876714
+      }
     },
     {
       "id": "search",
       "type": "customGroup",
       "position": {
-        "x": 0,
-        "y": 600
+        "x": -132.1827709296678,
+        "y": 656.1280056476887
       },
       "style": {
-        "width": 200,
-        "height": 200,
+        "width": 294,
+        "height": 220,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px"
       },
       "data": {
-        "label": "Optional Search & Logs"
+        "label": "Optional Search & Logs",
+        "variant": "glow",
+        "color": "purple"
       },
-      "width": 200,
-      "height": 200
+      "width": 294,
+      "height": 220,
+      "selected": false,
+      "dragging": false,
+      "resizing": false,
+      "positionAbsolute": {
+        "x": -132.1827709296678,
+        "y": 656.1280056476887
+      }
     },
     {
       "id": "elasticsearch",
@@ -275,11 +296,11 @@
       "id": "eaip",
       "type": "customGroup",
       "position": {
-        "x": 250,
-        "y": 650
+        "x": 221.2417808219178,
+        "y": 668.3006849315068
       },
       "style": {
-        "width": 450,
+        "width": 499,
         "height": 250,
         "border": "2px solid #6366f1",
         "borderRadius": "12px",
@@ -288,8 +309,15 @@
       "data": {
         "label": "Era AI Intelligence Platform (EAIP)"
       },
-      "width": 450,
-      "height": 250
+      "width": 499,
+      "height": 250,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 221.2417808219178,
+        "y": 668.3006849315068
+      },
+      "resizing": false
     },
     {
       "id": "eaip-orch",
@@ -313,8 +341,8 @@
       "id": "eaip-langgraph",
       "type": "custom",
       "position": {
-        "x": 240,
-        "y": 50
+        "x": 254.37910958904104,
+        "y": 53.69280821917812
       },
       "parentNode": "eaip",
       "extent": "parent",
@@ -325,7 +353,13 @@
         "type": "service"
       },
       "width": 210,
-      "height": 61
+      "height": 61,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 475.62089041095885,
+        "y": 721.9934931506849
+      }
     },
     {
       "id": "eaip-rag",
@@ -342,14 +376,21 @@
         "icon": "BookOpen",
         "type": "service"
       },
-      "width": 197,
-      "height": 61
+      "width": 220,
+      "height": 61,
+      "selected": false,
+      "dragging": false,
+      "style": {
+        "width": 220,
+        "height": 61
+      },
+      "resizing": false
     },
     {
       "id": "eaip-ml",
       "type": "custom",
       "position": {
-        "x": 240,
+        "x": 265,
         "y": 150
       },
       "parentNode": "eaip",
@@ -361,26 +402,40 @@
         "type": "service"
       },
       "width": 185,
-      "height": 61
+      "height": 61,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 486.2417808219178,
+        "y": 818.3006849315068
+      }
     },
     {
       "id": "rms",
       "type": "customGroup",
       "position": {
-        "x": 750,
-        "y": 650
+        "x": 880.7191780821918,
+        "y": 629.0849315068493
       },
       "style": {
-        "width": 400,
+        "width": 534,
         "height": 150,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px"
       },
       "data": {
-        "label": "RMS - Real-Time Monitoring"
+        "label": "RMS - Real-Time Monitoring",
+        "variant": "glow"
       },
-      "width": 400,
-      "height": 150
+      "width": 534,
+      "height": 150,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 880.7191780821918,
+        "y": 629.0849315068493
+      },
+      "resizing": false
     },
     {
       "id": "rms-kogito",
@@ -403,7 +458,7 @@
       "id": "rms-ml",
       "type": "custom",
       "position": {
-        "x": 200,
+        "x": 269.28116438356153,
         "y": 50
       },
       "parentNode": "rms",
@@ -414,7 +469,13 @@
         "type": "service"
       },
       "width": 231,
-      "height": 60
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1078.1047945205478,
+        "y": 667.3202054794522
+      }
     },
     {
       "id": "case-mgmt",
@@ -452,8 +513,8 @@
       "id": "central-engine",
       "type": "custom",
       "position": {
-        "x": 1200,
-        "y": 650
+        "x": 1453.5952054794518,
+        "y": 627.7777397260274
       },
       "data": {
         "label": "Central Analytical Engine",
@@ -467,7 +528,13 @@
         ]
       },
       "width": 252,
-      "height": 61
+      "height": 61,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1453.5952054794518,
+        "y": 627.7777397260274
+      }
     }
   ],
   "edges": [
@@ -496,29 +563,39 @@
       "type": "smoothstep",
       "style": {
         "strokeDasharray": "5,5"
-      }
+      },
+      "selected": false,
+      "animated": true
     },
     {
       "id": "e5",
       "source": "ums",
-      "target": "app-platform"
+      "target": "app-platform",
+      "selected": false,
+      "type": "step"
     },
     {
       "id": "e6",
       "source": "app-platform",
-      "target": "ui"
+      "target": "ui",
+      "selected": false,
+      "type": "step"
     },
     {
       "id": "e7",
       "source": "ui",
       "target": "doris",
-      "animated": true
+      "animated": true,
+      "selected": false,
+      "type": "step"
     },
     {
       "id": "e8",
       "source": "doris",
       "target": "eaip",
-      "animated": true
+      "animated": true,
+      "selected": false,
+      "type": "step"
     },
     {
       "id": "e9",
@@ -529,7 +606,10 @@
     {
       "id": "e10",
       "source": "rms",
-      "target": "case-mgmt"
+      "target": "case-mgmt",
+      "selected": false,
+      "type": "step",
+      "animated": true
     },
     {
       "id": "e11",
@@ -539,7 +619,9 @@
     {
       "id": "e12",
       "source": "eaip",
-      "target": "case-mgmt"
+      "target": "case-mgmt",
+      "selected": false,
+      "animated": true
     },
     {
       "id": "e13",
@@ -548,6 +630,16 @@
       "style": {
         "strokeDasharray": "5,5"
       }
+    },
+    {
+      "source": "eaip",
+      "sourceHandle": null,
+      "target": "rms",
+      "targetHandle": null,
+      "id": "reactflow__edge-eaip-rms",
+      "selected": false,
+      "type": "step",
+      "animated": true
     }
   ]
 }

@@ -7,10 +7,9 @@
     "focus": "Building the Core Brain & Nervous System (Infrastructure for AI & Rules).",
     "deliverables": [
       "Real-time Data Pipeline: Streaming live banking data using Debezium (CDC) for database changes and Kafka/NiFi for event streaming.",
-      "Unified Data Mart: Centralized, high-speed storage for AI analysis (**Apache Doris** for Real-Time Analytics).",
-      "Document Lake: Setting up **MinIO** object storage to hold unstructured data (images, PDFs) for future AI processing.",
+      "Unified Data Mart: Centralized, high-speed storage for AI analysis (Apache Doris for Real-Time Analytics).",
       "Secure User Portal: Dashboard with strict access controls for officers (Spring Boot + Keycloak).",
-      "EAIP Leadership (AI Core): Setting up the independent AI Engine (FastAPI) with 'Unsupervised Learning' models (like Isolation Forests) that flag anomalies based on statistical deviation immediately.",
+      "EAIP Leadership (AI Core): Setting up the independent AI Engine (FastAPI) with 'Unsupervised Learning' models (like Isolation Forests,XGBoost etc) that flag anomalies based on statistical deviation immediately.",
       "EAIP Leadership (Knowledge Base): Teaching the AI to read and understand BFIU guidelines (RAG Prototyping with Elasticsearch)."
     ],
     "testing": "Mid-Feb: Verify that Debezium captures 100% of CBS changes and Data Mart aggregates in real-time.",
@@ -24,15 +23,16 @@
     "dates": "Mid-Feb – mid-Apr (Apr 15)",
     "focus": "AI & Rules for Daily Transactions (Covering high-volume checks).",
     "deliverables": [
-      "Standard Rules Engine (Deterministic Logic): Automating 30+ hard logic checks (e.g., 'More than 30 transactions/day') using Kogito. Queries **Data Mart** for instant status checks (e.g., 'Is Account Frozen?').",
-      "EAIP Leadership (Behavioral AI): Deploying AI models to catch subtle anomalies like sudden spending spikes using XGBoost on **Apache Doris** real-time aggregates.",
+      "Standard Rules Engine (Deterministic Logic): Automating 30+ hard logic checks (e.g., 'More than 30 transactions/day') using Kogito. Queries -Data Mart for instant status checks (e.g., 'Is Account Frozen?')(RMS).",
+      "EAIP Leadership (Behavioral AI): Deploying AI models to catch subtle anomalies like sudden spending spikes using XGBoost on ''Apache Doris'' real-time aggregates.",
       "EAIP Leadership (Contextual Intelligence): AI checks historical behavior to judge if a transfer is truly suspicious (e.g., 'Crypto-like Behavior') using RAG on transaction notes.",
       "EAIP Leadership (Smart Agents): Autonomous agents that investigate complex patterns (e.g., 'Many to One', 'One to Many' funds funneling) using LangGraph to traverse transaction links."
     ],
     "testing": "Mid-Apr: MVP Launch Test. Validate that AI catches 100% of known test cases and reduces false alarms by ~60%.",
-    "notes": "Milestone: MVP Live. The system starts delivering value by handling the bulk of daily transactions with intelligent filtering.",
+    "notes": "Milestone: MVP Live. The system starts delivering value by handling the bulk of daily transactions with intelligent filtering. Note: Includes Eid al-Fitr holiday break (~Mar 19-23).",
     "status": "planned",
-    "milestone": "MVP Milestone: Foundation + General + Remittance live by mid-May"
+    "milestone": "MVP Milestone: Foundation + General + Remittance live by mid-May",
+    "holiday": "Eid al-Fitr Break (~Mar 19-23)"
   },
   {
     "id": "phase-3",
@@ -58,32 +58,33 @@
     "dates": "Mid-May – mid-Jun (Jun 15)",
     "focus": "Advanced Trade Fraud Detection (TBML).",
     "deliverables": [
-      "Trade Data Ingestion: Digitizing Letters of Credit (LC) and Invoices (OCR/Tesseract) and storing raw files in **MinIO**.",
+      "Trade Data Ingestion: Digitizing Letters of Credit (LC) and Invoices and storing raw files.",
       "EAIP Leadership (Price Analysis): AI compares invoice prices against global averages to spot Over/Under Invoicing.",
-      "EAIP Leadership (Document Forensics): AI reads documents to find discrepancies (e.g., quantity mismatch, dual-use goods) using Vector Search in **Elasticsearch**.",
+      "EAIP Leadership (Document Forensics): AI reads documents to find discrepancies (e.g., quantity mismatch, dual-use goods) using Vector Search.",
       "EAIP Leadership (Complex Network Graph): Visualizing hidden relationships between importers, exporters, and shipping lines (PyTorch Geometric).",
       "EAIP Leadership (Sanction Screening): Checking all parties against global watchlists with fuzzy matching.",
       "Standard Rules Engine (Deterministic Logic): 'High Value Transactions' checks for specific product types or risk categories."
     ],
     "testing": "Mid-Jun: Calibrate AI against real-world Trade Based Money Laundering (TBML) scenarios.",
-    "notes": "High Impact: This is the most complex phase where AI adds massive value by correlating hundreds of documents.",
-    "status": "planned"
+    "notes": "High Impact: This is the most complex phase where AI adds massive value by correlating hundreds of documents. Note: Includes Eid al-Adha holiday break (~May 26-31); reduced team availability expected.",
+    "status": "planned",
+    "holiday": "Eid al-Adha Break (~May 26-31)"
   },
   {
     "id": "phase-5",
     "title": "Credit & Optimization",
     "duration": "1.5 months",
-    "dates": "Mid-Jun – Jul 31",
+    "dates": "Mid-Jun – Jul 30",
     "focus": "Credit Monitoring & System Perfection.",
     "deliverables": [
-      "Credit Rules (Deterministic Logic): Monitoring loan utilization, fund diversion, and validation checks (e.g., 'Loan Purpose Mismatch') using Kogito + Drools.",
+      "Credit Rules (Deterministic Logic): Monitoring loan utilization, fund diversion, and validation checks (e.g., 'Loan Purpose Mismatch') using Kogito.",
       "EAIP Leadership (Fund Diversion AI): Tracking loan money to ensure it's used for the intended business purpose.",
       "EAIP Leadership (Full Explainability): ensuring EVERY alert (Rules or AI) has a 'Why this was flagged' summary for auditors.",
       "System Calibration: Final fine-tuning to minimize false positives across the entire system.",
       "Audit Readiness: Proving zero data loss and full traceability using **Kafka** logs and **Doris** audit tables."
     ],
     "testing": "July: Final End-to-End Pilot. Full system sign-off.",
-    "notes": "Completion: A fully operational, intelligent AML system ready for production.",
+    "notes": "Completion: A fully operational, intelligent AML system ready for production. Schedule accounts for post-holiday ramp-up.",
     "status": "planned",
     "milestone": "Full Coverage: 100% of 183 indicators operational by July 31"
   }

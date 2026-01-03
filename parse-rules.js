@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 
 const rawText = fs.readFileSync('extracted-content.txt', 'utf8');
@@ -8,10 +9,6 @@ let currentSection = '';
 let useCases = [];
 
 let i = 0;
-
-function isSectionHeader(line) {
-    return sections.some(s => line.startsWith(s) && line.length < 20);
-}
 
 function isRuleStart(index) {
     if (/^\d+$/.test(lines[index])) {
@@ -46,7 +43,6 @@ while (i < lines.length) {
         let reason = '';
         let riskLevel = '';
         
-        let offset = 1;
         let tempText = [];
         let tempReason = [];
         

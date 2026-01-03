@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, Square, Info, Shield, Zap, Brain, Database, Edit, Save, X, Check } from 'lucide-react';
+import { Volume2, Square, Info, Shield, Zap, Brain, Database, Edit, Save, X } from 'lucide-react';
 import { UseCase } from '../data/useCases';
 import HighlightableTextContent from './HighlightableText';
 
@@ -28,9 +28,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
       setSpeechSupported(true);
     }
     return () => {
-      if (isSpeaking) {
-        window.speechSynthesis.cancel();
-      }
+      window.speechSynthesis.cancel();
     };
   }, []);
 
@@ -40,7 +38,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
   }, [useCase]);
 
   const speakSegment = (text: string, sectionName: string): Promise<void> => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (isCancelledRef.current) {
         resolve();
         return;
@@ -150,7 +148,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
 
   const getTypeIcon = (type: string) => {
     if (type === 'Hard Logic') return <Zap className="w-3 h-3 mr-1" />;
-    if (type === 'AI-General') return <Brain className="w-3 h-3 mr-1" />;
+    if (type === 'AI Agents') return <Brain className="w-3 h-3 mr-1" />;
     if (type === 'AI-RAG') return <Database className="w-3 h-3 mr-1" />;
     return <Info className="w-3 h-3 mr-1" />;
   };
@@ -202,7 +200,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
                   className="w-full px-2 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-xs focus:ring-2 focus:ring-indigo-500"
                 >
                   <option>Hard Logic</option>
-                  <option>AI-General</option>
+                  <option>AI Agents</option>
                   <option>AI-RAG</option>
                 </select>
              </div>
