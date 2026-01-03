@@ -13,9 +13,23 @@ export default function Home() {
   const [selectedSection, setSelectedSection] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [ollamaModel, setOllamaModel] = useState<string | null>(null);
 
   // Load data from API
   useEffect(() => {
+    // Check Ollama status
+    fetch('/api/ollama-status')
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'ok' && data.model) {
+                setOllamaModel(data.model);
+            } else {
+                setOllamaModel(null);
+            }
+        })
+        .catch(() => setOllamaModel(null));
+
+    // Existing data loading...
     fetch('/api/rules')
       .then(res => res.json())
       .then(data => {
@@ -304,6 +318,7 @@ export default function Home() {
                     key={useCase.id} 
                     useCase={useCase} 
                     onSave={handleSaveUseCase}
+                    chatModel={ollamaModel}
                 />
               ))}
             </div>
