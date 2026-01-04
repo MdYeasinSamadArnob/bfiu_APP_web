@@ -54,8 +54,8 @@
   {
     "id": "phase-4",
     "title": "Trade Finance",
-    "duration": "1 month",
-    "dates": "Mid-May – mid-Jun (Jun 15)",
+    "duration": "2 month",
+    "dates": "Mid-May – mid-July (July 15)",
     "focus": "Advanced Trade Fraud Detection (TBML).",
     "deliverables": [
       "Trade Data Ingestion: Digitizing Letters of Credit (LC) and Invoices and storing raw files.",
@@ -73,8 +73,8 @@
   {
     "id": "phase-5",
     "title": "Credit & Optimization",
-    "duration": "1.5 months",
-    "dates": "Mid-Jun – Jul 30",
+    "duration": "2 months",
+    "dates": "Mid-July – September 30",
     "focus": "Credit Monitoring & System Perfection.",
     "deliverables": [
       "Credit Rules (Deterministic Logic): Monitoring loan utilization, fund diversion, and validation checks (e.g., 'Loan Purpose Mismatch') using Kogito.",
@@ -83,7 +83,7 @@
       "System Calibration: Final fine-tuning to minimize false positives across the entire system.",
       "Audit Readiness: Proving zero data loss and full traceability using **Kafka** logs and **Doris** audit tables."
     ],
-    "testing": "July: Final End-to-End Pilot. Full system sign-off.",
+    "testing": "September: Final End-to-End Pilot. Full system sign-off.",
     "notes": "Completion: A fully operational, intelligent AML system ready for production. Schedule accounts for post-holiday ramp-up.",
     "status": "planned",
     "milestone": "Full Coverage: 100% of 183 indicators operational by July 31"

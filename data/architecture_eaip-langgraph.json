@@ -1,0 +1,246 @@
+{
+  "nodes": [
+    {
+      "id": "node_1767528292821",
+      "type": "custom",
+      "position": {
+        "x": 397.5332648128159,
+        "y": 498.3270697987509
+      },
+      "data": {
+        "label": "Memory + Planning",
+        "icon": "Brain",
+        "type": "service",
+        "color": "red"
+      },
+      "width": 236,
+      "height": 58,
+      "selected": false,
+      "dragging": false,
+      "style": {
+        "width": 236,
+        "height": 58
+      },
+      "resizing": false,
+      "positionAbsolute": {
+        "x": 397.5332648128159,
+        "y": 498.3270697987509
+      }
+    },
+    {
+      "id": "node_1767528342134",
+      "type": "custom",
+      "position": {
+        "x": 413.1377020657769,
+        "y": 625.1224044986718
+      },
+      "data": {
+        "label": "Agents",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 147,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 413.1377020657769,
+        "y": 625.1224044986718
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767528362837",
+      "type": "custom",
+      "position": {
+        "x": 427.1065832813575,
+        "y": 753.7417009223061
+      },
+      "data": {
+        "label": "Tools",
+        "icon": "Briefcase",
+        "type": "service",
+        "color": "cyan"
+      },
+      "width": 136,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 427.1065832813575,
+        "y": 753.7417009223061
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767528554429",
+      "type": "custom",
+      "position": {
+        "x": 375.1037214627085,
+        "y": 897.3764912527852
+      },
+      "data": {
+        "label": "Data Source",
+        "icon": "Server",
+        "type": "service",
+        "color": "orange"
+      },
+      "width": 241,
+      "height": 66,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 375.1037214627085,
+        "y": 897.3764912527852
+      },
+      "dragging": false,
+      "style": {
+        "width": 241,
+        "height": 66
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767528618797",
+      "type": "customGroup",
+      "position": {
+        "x": 8.846855064051539,
+        "y": 623.1512862543883
+      },
+      "style": {
+        "width": 290,
+        "height": 323
+      },
+      "data": {
+        "label": "User",
+        "variant": "solid"
+      },
+      "width": 290,
+      "height": 323,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 8.846855064051539,
+        "y": 623.1512862543883
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767528758085",
+      "type": "custom",
+      "position": {
+        "x": 218.08752820189366,
+        "y": 149.7433586495875
+      },
+      "data": {
+        "label": "New Node",
+        "icon": "Server",
+        "type": "service"
+      },
+      "width": 168,
+      "height": 60
+    },
+    {
+      "id": "node_1767528759060",
+      "type": "custom",
+      "position": {
+        "x": 41.39569668466862,
+        "y": 690.0388719574148
+      },
+      "data": {
+        "label": "Query",
+        "icon": "Search",
+        "type": "service"
+      },
+      "width": 239,
+      "height": 76,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 41.39569668466862,
+        "y": 690.0388719574148
+      },
+      "style": {
+        "width": 239,
+        "height": 76
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767528793524",
+      "type": "custom",
+      "position": {
+        "x": 42.84727859873101,
+        "y": 809.1697309924671
+      },
+      "data": {
+        "label": "Output",
+        "icon": "BookOpen",
+        "type": "service"
+      },
+      "width": 235,
+      "height": 64,
+      "selected": false,
+      "dragging": false,
+      "style": {
+        "width": 235,
+        "height": 64
+      },
+      "resizing": false,
+      "positionAbsolute": {
+        "x": 42.84727859873101,
+        "y": 809.1697309924671
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1767528292821",
+      "sourceHandle": null,
+      "target": "node_1767528342134",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767528292821-node_1767528342134",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767528342134",
+      "sourceHandle": null,
+      "target": "node_1767528362837",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767528342134-node_1767528362837",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767528362837",
+      "sourceHandle": null,
+      "target": "node_1767528554429",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767528362837-node_1767528554429",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767528759060",
+      "sourceHandle": null,
+      "target": "node_1767528342134",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767528759060-node_1767528342134",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767528793524",
+      "sourceHandle": null,
+      "target": "node_1767528342134",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767528793524-node_1767528342134",
+      "selected": false,
+      "type": "smoothstep",
+      "animated": true
+    }
+  ]
+}

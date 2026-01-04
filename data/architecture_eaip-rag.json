@@ -1,0 +1,374 @@
+{
+  "nodes": [
+    {
+      "id": "node_1767526725910",
+      "type": "custom",
+      "position": {
+        "x": 213.7321040020986,
+        "y": 310.0931789737094
+      },
+      "data": {
+        "label": "Query",
+        "icon": "Search",
+        "type": "service"
+      },
+      "width": 140,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 213.7321040020986,
+        "y": 310.0931789737094
+      }
+    },
+    {
+      "id": "node_1767526751244",
+      "type": "custom",
+      "position": {
+        "x": 211.7746665785328,
+        "y": 412.94945977663775
+      },
+      "data": {
+        "label": "Output",
+        "icon": "BookOpen",
+        "type": "service"
+      },
+      "width": 146,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 211.7746665785328,
+        "y": 412.94945977663775
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767526768998",
+      "type": "customGroup",
+      "position": {
+        "x": 182.76756894074776,
+        "y": 284.7772030482492
+      },
+      "style": {
+        "width": 216,
+        "height": 218
+      },
+      "data": {
+        "label": "User",
+        "variant": "solid",
+        "color": "blue"
+      },
+      "width": 216,
+      "height": 218,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 182.76756894074776,
+        "y": 284.7772030482492
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767526855893",
+      "type": "custom",
+      "position": {
+        "x": 556.5985593184962,
+        "y": 70.0719524075977
+      },
+      "data": {
+        "label": "Data Source",
+        "icon": "Database",
+        "type": "service",
+        "color": "pink"
+      },
+      "width": 427,
+      "height": 66,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 556.5985593184962,
+        "y": 70.0719524075977
+      },
+      "dragging": false,
+      "style": {
+        "width": 427,
+        "height": 66
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767526900414",
+      "type": "custom",
+      "position": {
+        "x": 552.5686160329565,
+        "y": 227.47590258455983
+      },
+      "data": {
+        "label": "Embedding",
+        "icon": "Zap",
+        "type": "service",
+        "color": "cyan"
+      },
+      "width": 176,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 552.5686160329565,
+        "y": 227.47590258455983
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767526947645",
+      "type": "custom",
+      "position": {
+        "x": 802.0815446332249,
+        "y": 230.57018957151354
+      },
+      "data": {
+        "label": "Vector Database",
+        "icon": "Database",
+        "type": "service",
+        "color": "orange"
+      },
+      "width": 209,
+      "height": 57,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 802.0815446332249,
+        "y": 230.57018957151354
+      },
+      "dragging": false,
+      "style": {
+        "width": 209,
+        "height": 57
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767527326669",
+      "type": "customGroup",
+      "position": {
+        "x": 519.6368632920841,
+        "y": 190.31814494468932
+      },
+      "style": {
+        "width": 540,
+        "height": 134
+      },
+      "data": {
+        "label": "Retrieval (R)",
+        "variant": "solid",
+        "color": "purple"
+      },
+      "width": 540,
+      "height": 134,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 519.6368632920841,
+        "y": 190.31814494468932
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767527454405",
+      "type": "customGroup",
+      "position": {
+        "x": 511.5873535949346,
+        "y": 391.0701329787453
+      },
+      "style": {
+        "width": 543,
+        "height": 132
+      },
+      "data": {
+        "label": "Augment (A)",
+        "variant": "solid"
+      },
+      "width": 543,
+      "height": 132,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 511.5873535949346,
+        "y": 391.0701329787453
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767527522126",
+      "type": "custom",
+      "position": {
+        "x": 625.1848248561638,
+        "y": 429.66424797911054
+      },
+      "data": {
+        "label": "Retrieved Information",
+        "icon": "Server",
+        "type": "service",
+        "subLabel": "Query +System Prompt",
+        "color": "purple"
+      },
+      "width": 312,
+      "height": 62,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 625.1848248561638,
+        "y": 429.66424797911054
+      },
+      "dragging": false,
+      "style": {
+        "width": 312,
+        "height": 62
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767527650525",
+      "type": "customGroup",
+      "position": {
+        "x": 517.80894566647,
+        "y": 588.3993784568955
+      },
+      "style": {
+        "width": 542,
+        "height": 110
+      },
+      "data": {
+        "label": "Generation (G)",
+        "color": "teal",
+        "variant": "solid"
+      },
+      "width": 542,
+      "height": 110,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 517.80894566647,
+        "y": 588.3993784568955
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767527704718",
+      "type": "custom",
+      "position": {
+        "x": 540.0034197795162,
+        "y": 608.6236220256185
+      },
+      "data": {
+        "label": "Large Language Model",
+        "icon": "Activity",
+        "type": "service",
+        "color": "blue"
+      },
+      "width": 308,
+      "height": 62,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 540.0034197795162,
+        "y": 608.6236220256185
+      },
+      "style": {
+        "width": 308,
+        "height": 62
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767529334987",
+      "type": "customGroup",
+      "position": {
+        "x": 459.4056932468742,
+        "y": 50.32680952791492
+      },
+      "style": {
+        "width": 686,
+        "height": 672
+      },
+      "data": {
+        "label": "RAG",
+        "variant": "solid",
+        "color": "yellow"
+      },
+      "width": 686,
+      "height": 672,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 459.4056932468742,
+        "y": 50.32680952791492
+      },
+      "resizing": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1767526900414",
+      "sourceHandle": null,
+      "target": "node_1767526947645",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526900414-node_1767526947645"
+    },
+    {
+      "source": "node_1767526768998",
+      "sourceHandle": null,
+      "target": "node_1767527454405",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526768998-node_1767527454405",
+      "selected": false,
+      "animated": true,
+      "type": "step"
+    },
+    {
+      "source": "node_1767526725910",
+      "sourceHandle": null,
+      "target": "node_1767527454405",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526725910-node_1767527454405",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767526725910",
+      "sourceHandle": null,
+      "target": "node_1767527326669",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526725910-node_1767527326669",
+      "selected": false,
+      "animated": true
+    },
+    {
+      "source": "node_1767526751244",
+      "sourceHandle": null,
+      "target": "node_1767527704718",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526751244-node_1767527704718",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767527522126",
+      "sourceHandle": null,
+      "target": "node_1767527650525",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767527522126-node_1767527650525",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767526855893",
+      "sourceHandle": null,
+      "target": "node_1767527326669",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767526855893-node_1767527326669",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    }
+  ]
+}

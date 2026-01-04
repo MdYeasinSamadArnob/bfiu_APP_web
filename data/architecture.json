@@ -126,7 +126,7 @@
       },
       "width": 905,
       "height": 120,
-      "selected": true,
+      "selected": false,
       "dragging": false,
       "resizing": false,
       "positionAbsolute": {
@@ -415,10 +415,10 @@
       "type": "customGroup",
       "position": {
         "x": 880.7191780821918,
-        "y": 629.0849315068493
+        "y": 630.697985633112
       },
       "style": {
-        "width": 534,
+        "width": 653,
         "height": 150,
         "border": "1px dashed #cbd5e1",
         "borderRadius": "8px"
@@ -427,13 +427,13 @@
         "label": "RMS - Real-Time Monitoring",
         "variant": "glow"
       },
-      "width": 534,
+      "width": 653,
       "height": 150,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
         "x": 880.7191780821918,
-        "y": 629.0849315068493
+        "y": 630.697985633112
       },
       "resizing": false
     },
@@ -464,8 +464,8 @@
       "id": "rms-ml",
       "type": "custom",
       "position": {
-        "x": 269.28116438356153,
-        "y": 50
+        "x": 351.54692482296286,
+        "y": 48.386945873737204
       },
       "parentNode": "rms",
       "extent": "parent",
@@ -479,8 +479,8 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 1078.1047945205478,
-        "y": 667.3202054794522
+        "x": 1232.2661029051546,
+        "y": 677.4718773805865
       }
     },
     {
@@ -519,8 +519,8 @@
       "id": "central-engine",
       "type": "custom",
       "position": {
-        "x": 1453.5952054794518,
-        "y": 627.7777397260274
+        "x": 1550.378453055218,
+        "y": 574.5469535593561
       },
       "data": {
         "label": "Central Analytical Engine",
@@ -538,8 +538,8 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 1453.5952054794518,
-        "y": 627.7777397260274
+        "x": 1550.378453055218,
+        "y": 574.5469535593561
       }
     }
   ],

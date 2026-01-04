@@ -1,0 +1,717 @@
+{
+  "nodes": [
+    {
+      "id": "node_1767522008316",
+      "type": "custom",
+      "position": {
+        "x": 293.1536910479526,
+        "y": 427.4349227789812
+      },
+      "data": {
+        "label": "Orchestrator Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "teal"
+      },
+      "width": 228,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 293.1536910479526,
+        "y": 427.4349227789812
+      }
+    },
+    {
+      "id": "node_1767523921498",
+      "type": "custom",
+      "position": {
+        "x": 296.0737368760309,
+        "y": 530.8594686881729
+      },
+      "data": {
+        "label": "Generative Model",
+        "icon": "Activity",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 227,
+      "height": 58,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 296.0737368760309,
+        "y": 530.8594686881729
+      },
+      "dragging": false,
+      "style": {
+        "width": 227,
+        "height": 58
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767523991633",
+      "type": "custom",
+      "position": {
+        "x": 14.380638359055993,
+        "y": 375.6240692938402
+      },
+      "data": {
+        "label": "Query",
+        "icon": "Search",
+        "type": "service"
+      },
+      "width": 140,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 14.380638359055993,
+        "y": 375.6240692938402
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524029809",
+      "type": "custom",
+      "position": {
+        "x": 13.828202123555144,
+        "y": 484.07582866596
+      },
+      "data": {
+        "label": "Output",
+        "icon": "BookOpen",
+        "type": "service"
+      },
+      "width": 146,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 13.828202123555144,
+        "y": 484.07582866596
+      }
+    },
+    {
+      "id": "node_1767524078498",
+      "type": "customGroup",
+      "position": {
+        "x": -3.81280045536235,
+        "y": 347.1098092744208
+      },
+      "style": {
+        "width": 193,
+        "height": 251
+      },
+      "data": {
+        "label": "User",
+        "variant": "solid"
+      },
+      "width": 193,
+      "height": 251,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -35.81280045536235,
+        "y": 270.1098092744208
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767524217074",
+      "type": "custom",
+      "position": {
+        "x": 214.74346217182728,
+        "y": 158.06052264591915
+      },
+      "data": {
+        "label": "Short Term Memory",
+        "icon": "Database",
+        "type": "service"
+      },
+      "width": 174,
+      "height": 59,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 214.74346217182728,
+        "y": 158.06052264591915
+      },
+      "dragging": false,
+      "style": {
+        "width": 174,
+        "height": 59
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524300055",
+      "type": "custom",
+      "position": {
+        "x": 212.69920517180884,
+        "y": 234.33274298277718
+      },
+      "data": {
+        "label": "Long Term Memory",
+        "icon": "Database",
+        "type": "service"
+      },
+      "width": 187,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 212.69920517180884,
+        "y": 234.33274298277718
+      },
+      "style": {
+        "width": 187,
+        "height": 60
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524355520",
+      "type": "custom",
+      "position": {
+        "x": 418.3964337720274,
+        "y": 181.03576107134
+      },
+      "data": {
+        "label": "Redis",
+        "icon": "Database",
+        "type": "service"
+      },
+      "width": 138,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 418.3964337720274,
+        "y": 181.03576107134
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524382016",
+      "type": "customGroup",
+      "position": {
+        "x": 178.96295338444065,
+        "y": 142.72263685954357
+      },
+      "style": {
+        "width": 464,
+        "height": 170
+      },
+      "data": {
+        "label": "Memory Management",
+        "icon": "Database",
+        "type": "database",
+        "color": "cyan",
+        "variant": "solid"
+      },
+      "width": 464,
+      "height": 170,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 178.96295338444065,
+        "y": 142.72263685954357
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524448360",
+      "type": "customGroup",
+      "position": {
+        "x": 746.1090289248235,
+        "y": 218.98024057534354
+      },
+      "style": {
+        "width": 600,
+        "height": 425
+      },
+      "data": {
+        "label": "Agent Node",
+        "variant": "solid",
+        "color": "blue"
+      },
+      "width": 600,
+      "height": 425,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 746.1090289248235,
+        "y": 218.98024057534354
+      },
+      "dragging": false,
+      "resizing": false
+    },
+    {
+      "id": "node_1767524467000",
+      "type": "custom",
+      "position": {
+        "x": 764.3297068125795,
+        "y": 239.8078913915205
+      },
+      "data": {
+        "label": "Multi-classifier Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 241,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 764.3297068125795,
+        "y": 239.8078913915205
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524497225",
+      "type": "custom",
+      "position": {
+        "x": 766.4749379670656,
+        "y": 308.3358145097188
+      },
+      "data": {
+        "label": "RAG Serach Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 240,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 766.4749379670656,
+        "y": 308.3358145097188
+      },
+      "dragging": false,
+      "style": {
+        "width": 240,
+        "height": 60
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524568480",
+      "type": "custom",
+      "position": {
+        "x": 768.5241668594691,
+        "y": 381.7494945049922
+      },
+      "data": {
+        "label": "Context Resolution Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 237,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 768.5241668594691,
+        "y": 381.7494945049922
+      },
+      "dragging": false,
+      "style": {
+        "width": 237,
+        "height": 60
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524615649",
+      "type": "custom",
+      "position": {
+        "x": 767.6760069548573,
+        "y": 453.96274305682823
+      },
+      "data": {
+        "label": "SQL Generation Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 249,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 767.6760069548573,
+        "y": 453.96274305682823
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524739640",
+      "type": "custom",
+      "position": {
+        "x": 765.4226303334747,
+        "y": 542.3450445937807
+      },
+      "data": {
+        "label": "SQL Execution Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 242,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 765.4226303334747,
+        "y": 542.3450445937807
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524784233",
+      "type": "custom",
+      "position": {
+        "x": 1033.37451372964,
+        "y": 239.95470406652987
+      },
+      "data": {
+        "label": "Validation Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 209,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1033.37451372964,
+        "y": 239.95470406652987
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767524830946",
+      "type": "custom",
+      "position": {
+        "x": 1034.749344646114,
+        "y": 314.9743834231078
+      },
+      "data": {
+        "label": "Chart Generation Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 243,
+      "height": 64,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1034.749344646114,
+        "y": 314.9743834231078
+      },
+      "style": {
+        "width": 243,
+        "height": 64
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767524878368",
+      "type": "custom",
+      "position": {
+        "x": 1033.9027493066403,
+        "y": 387.8359017893296
+      },
+      "data": {
+        "label": "Summarization Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 243,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1033.9027493066403,
+        "y": 387.8359017893296
+      }
+    },
+    {
+      "id": "node_1767524901138",
+      "type": "custom",
+      "position": {
+        "x": 1036.9056585162803,
+        "y": 462.899882753032
+      },
+      "data": {
+        "label": "Audit Agent",
+        "icon": "Bot",
+        "type": "service",
+        "color": "indigo"
+      },
+      "width": 241,
+      "height": 55,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1036.9056585162803,
+        "y": 462.899882753032
+      },
+      "style": {
+        "width": 241,
+        "height": 55
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767525263632",
+      "type": "custom",
+      "position": {
+        "x": 546.2541793827561,
+        "y": 599.3812413127974
+      },
+      "data": {
+        "label": "Planner ",
+        "icon": "ClipboardList",
+        "type": "service",
+        "color": "red"
+      },
+      "width": 151,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 546.2541793827561,
+        "y": 599.3812413127974
+      }
+    },
+    {
+      "id": "node_1767525315753",
+      "type": "custom",
+      "position": {
+        "x": 1454.5903136007673,
+        "y": 196.4082052472565
+      },
+      "data": {
+        "label": "Tools",
+        "icon": "Server",
+        "type": "service"
+      },
+      "width": 166,
+      "height": 61,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1454.5903136007673,
+        "y": 196.4082052472565
+      },
+      "dragging": false,
+      "style": {
+        "width": 166,
+        "height": 61
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767525317969",
+      "type": "customGroup",
+      "position": {
+        "x": 1405.0921920940054,
+        "y": 166.5176885331889
+      },
+      "style": {
+        "width": 294,
+        "height": 382
+      },
+      "data": {
+        "label": "MCP",
+        "color": "red",
+        "variant": "solid"
+      },
+      "width": 294,
+      "height": 382,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 1405.0921920940054,
+        "y": 166.5176885331889
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767525430057",
+      "type": "custom",
+      "position": {
+        "x": 1452.8484901478696,
+        "y": 306.8039380596686
+      },
+      "data": {
+        "label": "Functions",
+        "icon": "Server",
+        "type": "service"
+      },
+      "width": 172,
+      "height": 55,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1452.8484901478696,
+        "y": 306.8039380596686
+      },
+      "dragging": false,
+      "style": {
+        "width": 172,
+        "height": 55
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767525468823",
+      "type": "custom",
+      "position": {
+        "x": 1454.3770093629294,
+        "y": 419.37344091145206
+      },
+      "data": {
+        "label": "Engine",
+        "icon": "Server",
+        "type": "service"
+      },
+      "width": 168,
+      "height": 58,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1454.3770093629294,
+        "y": 419.37344091145206
+      },
+      "dragging": false,
+      "style": {
+        "width": 168,
+        "height": 58
+      },
+      "resizing": false
+    },
+    {
+      "id": "node_1767525476455",
+      "type": "custom",
+      "position": {
+        "x": 1775.0713296644446,
+        "y": 291.179910224398
+      },
+      "data": {
+        "label": "Database",
+        "icon": "Database",
+        "type": "service",
+        "color": "teal"
+      },
+      "width": 162,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1775.0713296644446,
+        "y": 291.179910224398
+      },
+      "dragging": false
+    },
+    {
+      "id": "node_1767525545640",
+      "type": "custom",
+      "position": {
+        "x": 1781.339567921904,
+        "y": 426.12634274532485
+      },
+      "data": {
+        "label": "Database",
+        "icon": "Database",
+        "type": "service",
+        "color": "teal"
+      },
+      "width": 162,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1781.339567921904,
+        "y": 426.12634274532485
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1767525468823",
+      "sourceHandle": null,
+      "target": "node_1767525545640",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767525468823-node_1767525545640",
+      "selected": false,
+      "animated": true,
+      "type": "step"
+    },
+    {
+      "source": "node_1767525430057",
+      "sourceHandle": null,
+      "target": "node_1767525476455",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767525430057-node_1767525476455",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767522008316",
+      "sourceHandle": null,
+      "target": "node_1767524448360",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767522008316-node_1767524448360",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767525263632",
+      "sourceHandle": null,
+      "target": "node_1767522008316",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767525263632-node_1767522008316",
+      "selected": false,
+      "animated": true,
+      "type": "step"
+    },
+    {
+      "source": "node_1767524078498",
+      "sourceHandle": null,
+      "target": "node_1767522008316",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767524078498-node_1767522008316",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767523921498",
+      "sourceHandle": null,
+      "target": "node_1767524448360",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767523921498-node_1767524448360",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767524448360",
+      "sourceHandle": null,
+      "target": "node_1767525317969",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767524448360-node_1767525317969",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    },
+    {
+      "source": "node_1767524382016",
+      "sourceHandle": null,
+      "target": "node_1767522008316",
+      "targetHandle": null,
+      "id": "reactflow__edge-node_1767524382016-node_1767522008316",
+      "selected": false,
+      "type": "step",
+      "animated": true
+    }
+  ]
+}
