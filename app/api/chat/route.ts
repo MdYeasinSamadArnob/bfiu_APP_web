@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { AI_CONFIG } from '@/lib/config';
 
 export async function POST(req: Request) {
   try {
@@ -29,7 +30,12 @@ export async function POST(req: Request) {
             // const edges = archData.edges || [];
             
             const groups = nodes.filter((n: { type: string; data?: { label?: string } }) => n.type === 'group').map((n: { data?: { label?: string } }) => n.data?.label || 'Unnamed Group');
-            const services = nodes.filter((n: { type: string; data?: { label?: string } }) => n.type !== 'group').map((n: { type: string; data?: { label?: string } }) => `${n.data?.label} (${n.type})`);
+            const services = nodes.filter((n: { type: string; data?: { label?: string } }) => n.type !== 'group').map((n: { type: string; data?: { label?: string; subLabel?: string; details?: string[] } }) => {
+                let desc = `${n.data?.label} (${n.type})`;
+                if (n.data?.subLabel) desc += ` - ${n.data.subLabel}`;
+                if (n.data?.details && n.data.details.length > 0) desc += ` [${n.data.details.join(', ')}]`;
+                return desc;
+            });
             
             architectureSummary = `
             - Groups/Zones: ${groups.join(', ')}
@@ -78,13 +84,13 @@ YOUR ROLE:
     // We use fetch with stream: true (default) but for simplicity in this proxy we might want to handle it carefully
     // To ensure best UX with streaming, we will forward the stream
     
-    const ollamaResponse = await fetch('http://127.0.0.1:11434/api/chat', {
+    const ollamaResponse = await fetch(`${AI_CONFIG.ollamaBaseUrl}/api/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: model || 'llama3', // Use passed model or default
+        model: model || AI_CONFIG.ollamaModel, 
         messages: allMessages,
         stream: true,
       }),

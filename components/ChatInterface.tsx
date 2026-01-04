@@ -135,7 +135,7 @@ export default function ChatInterface({ context, model, onClose }: ChatInterface
                     </div>
                     <div>
                         <h3 className="font-semibold text-slate-900 dark:text-slate-100">AI Assistant</h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">Powered by Ollama</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Powered by Era AI</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-1">

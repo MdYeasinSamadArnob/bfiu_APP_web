@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
+import { AI_CONFIG } from '@/lib/config';
 
 export async function GET() {
   try {
     // Check if Ollama is running
-    const rootResponse = await fetch('http://127.0.0.1:11434/', {
+    const rootResponse = await fetch(`${AI_CONFIG.ollamaBaseUrl}/`, {
       method: 'GET',
     });
 
@@ -12,7 +13,7 @@ export async function GET() {
     }
 
     // Check for available models
-    const tagsResponse = await fetch('http://127.0.0.1:11434/api/tags', {
+    const tagsResponse = await fetch(`${AI_CONFIG.ollamaBaseUrl}/api/tags`, {
         method: 'GET',
     });
 

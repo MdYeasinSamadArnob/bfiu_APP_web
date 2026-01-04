@@ -448,8 +448,14 @@
       "extent": "parent",
       "data": {
         "label": "Kogito Rules Engine",
+        "subLabel": "Cloud-Native Business Automation",
         "icon": "Settings",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Hybrid Rule Execution (DMN/DRL)",
+          "Complex Event Processing (CEP)",
+          "Integrates with Kafka"
+        ]
       },
       "width": 221,
       "height": 60
