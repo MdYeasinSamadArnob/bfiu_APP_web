@@ -146,7 +146,18 @@
       "data": {
         "label": "Superset / Grafana",
         "icon": "BarChart",
-        "type": "interface"
+        "type": "interface",
+        "details": [
+          "Build interactive dashboards for business and technical users",
+          "Display real-time and historical data in charts and tables",
+          "Connect to multiple databases and data sources easily",
+          "Filter data and drill down into details without coding",
+          "Manage data access using user roles and permissions",
+          "Handle large data volumes with fast and stable performance",
+          "Customize dashboards based on business needs",
+          "Trigger alerts when data crosses set limits",
+          "Support enterprise-wide reporting and monitoring"
+        ]
       },
       "width": 209,
       "height": 60,
