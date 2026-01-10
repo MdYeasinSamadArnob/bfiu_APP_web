@@ -11,7 +11,14 @@
         "label": "Memory + Planning",
         "icon": "Brain",
         "type": "service",
-        "color": "red"
+        "color": "red",
+        "details": [
+          "Retain relevant context using short and long term memory",
+          "Use past information to guide agent decisions",
+          "Break goals into clear executable steps",
+          "Adjust plans based on new inputs or outcomes",
+          "Ensure agents act consistently and purposefully"
+        ]
       },
       "width": 236,
       "height": 58,
@@ -38,7 +45,15 @@
         "label": "Agents",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Execute tasks using structured step by step workflows",
+          "Make decisions based on defined logic and conditions",
+          "Coordinate multiple actions within a single flow",
+          "Maintain context across agent steps",
+          "Ensure predictable and controlled agent behavior"
+        ],
+        "notes": "Provide reusable tools for agent actions\nEnable agents to call external systems and APIs\nStandardize how agents perform tasks\nImprove reliability of tool execution\nSupport modular and scalable agent workflows"
       },
       "width": 147,
       "height": 60,
@@ -60,7 +75,14 @@
         "label": "Tools",
         "icon": "Briefcase",
         "type": "service",
-        "color": "cyan"
+        "color": "cyan",
+        "details": [
+          "Provide reusable tools for agent actions",
+          "Enable agents to call external systems and APIs",
+          "Standardize how agents perform tasks",
+          "Improve reliability of tool execution",
+          "Support modular and scalable agent workflows"
+        ]
       },
       "width": 136,
       "height": 60,
@@ -82,7 +104,14 @@
         "label": "Data Source",
         "icon": "Server",
         "type": "service",
-        "color": "orange"
+        "color": "orange",
+        "details": [
+          "Connect agents to structured and unstructured data sources",
+          "Provide reliable access to required data during execution",
+          "Support real time and historical data retrieval",
+          "Ensure data consistency and correctness",
+          "Enable data driven agent decisions"
+        ]
       },
       "width": 241,
       "height": 66,
@@ -102,8 +131,8 @@
       "id": "node_1767528618797",
       "type": "customGroup",
       "position": {
-        "x": 8.846855064051539,
-        "y": 623.1512862543883
+        "x": 15.696019963879309,
+        "y": 625.8909522143193
       },
       "style": {
         "width": 290,
@@ -111,32 +140,20 @@
       },
       "data": {
         "label": "User",
-        "variant": "solid"
+        "variant": "solid",
+        "details": [
+          ""
+        ]
       },
       "width": 290,
       "height": 323,
-      "selected": false,
+      "selected": true,
       "positionAbsolute": {
-        "x": 8.846855064051539,
-        "y": 623.1512862543883
+        "x": 15.696019963879309,
+        "y": 625.8909522143193
       },
       "dragging": false,
       "resizing": false
-    },
-    {
-      "id": "node_1767528758085",
-      "type": "custom",
-      "position": {
-        "x": 218.08752820189366,
-        "y": 149.7433586495875
-      },
-      "data": {
-        "label": "New Node",
-        "icon": "Server",
-        "type": "service"
-      },
-      "width": 168,
-      "height": 60
     },
     {
       "id": "node_1767528759060",
@@ -148,7 +165,11 @@
       "data": {
         "label": "Query",
         "icon": "Search",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Receive user inputs",
+          "Pass clean input to downstream agents"
+        ]
       },
       "width": 239,
       "height": 76,
@@ -174,7 +195,12 @@
       "data": {
         "label": "Output",
         "icon": "BookOpen",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Present information in an easy to understand format",
+          "Support text data and visual outputs",
+          "Maintain consistency and reliability"
+        ]
       },
       "width": 235,
       "height": 64,

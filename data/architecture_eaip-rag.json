@@ -5,7 +5,7 @@
       "type": "custom",
       "position": {
         "x": 213.7321040020986,
-        "y": 310.0931789737094
+        "y": 307.6046993170794
       },
       "data": {
         "label": "Query",
@@ -18,7 +18,7 @@
       "dragging": false,
       "positionAbsolute": {
         "x": 213.7321040020986,
-        "y": 310.0931789737094
+        "y": 307.6046993170794
       }
     },
     {
@@ -46,8 +46,8 @@
       "id": "node_1767526768998",
       "type": "customGroup",
       "position": {
-        "x": 182.76756894074776,
-        "y": 284.7772030482492
+        "x": 185.2560485973778,
+        "y": 282.28872339161916
       },
       "style": {
         "width": 216,
@@ -62,8 +62,8 @@
       "height": 218,
       "selected": false,
       "positionAbsolute": {
-        "x": 182.76756894074776,
-        "y": 284.7772030482492
+        "x": 185.2560485973778,
+        "y": 282.28872339161916
       },
       "dragging": false,
       "resizing": false
@@ -79,7 +79,14 @@
         "label": "Data Source",
         "icon": "Database",
         "type": "service",
-        "color": "pink"
+        "color": "pink",
+        "details": [
+          "Store and manage documents used for retrieval",
+          "Support structured and unstructured data formats",
+          "Provide fast and accurate information lookup",
+          "Ensure data quality and consistency",
+          "Enable secure access to enterprise knowledge"
+        ]
       },
       "width": 427,
       "height": 66,
@@ -106,7 +113,14 @@
         "label": "Embedding",
         "icon": "Zap",
         "type": "service",
-        "color": "cyan"
+        "color": "cyan",
+        "details": [
+          "Convert text and data into numerical vectors",
+          "Capture meaning and relationships in data",
+          "Enable similarity search and retrieval",
+          "Support AI understanding of unstructured content",
+          "Improve accuracy of search and recommendations"
+        ]
       },
       "width": 176,
       "height": 60,
@@ -128,7 +142,14 @@
         "label": "Vector Database",
         "icon": "Database",
         "type": "service",
-        "color": "orange"
+        "color": "orange",
+        "details": [
+          "Store data as vectors for similarity search",
+          "Find relevant information based on meaning not keywords",
+          "Support fast and scalable retrieval",
+          "Work with large volumes of unstructured data",
+          "Improve accuracy of AI search and RAG systems"
+        ]
       },
       "width": 209,
       "height": 57,
@@ -148,8 +169,8 @@
       "id": "node_1767527326669",
       "type": "customGroup",
       "position": {
-        "x": 519.6368632920841,
-        "y": 190.31814494468932
+        "x": 539.867090769772,
+        "y": 196.55659203061185
       },
       "style": {
         "width": 540,
@@ -158,15 +179,22 @@
       "data": {
         "label": "Retrieval (R)",
         "variant": "solid",
-        "color": "purple"
+        "color": "purple",
+        "details": [
+          "Find relevant information based on user queries",
+          "Search across large data collections",
+          "Return the most useful content quickly",
+          "Improve response accuracy and relevance",
+          "Support real time information access"
+        ]
       },
       "width": 540,
       "height": 134,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 519.6368632920841,
-        "y": 190.31814494468932
+        "x": 539.867090769772,
+        "y": 196.55659203061185
       },
       "resizing": false
     },
@@ -174,8 +202,8 @@
       "id": "node_1767527454405",
       "type": "customGroup",
       "position": {
-        "x": 511.5873535949346,
-        "y": 391.0701329787453
+        "x": 536.4721501612352,
+        "y": 398.5355719486355
       },
       "style": {
         "width": 543,
@@ -183,14 +211,21 @@
       },
       "data": {
         "label": "Augment (A)",
-        "variant": "solid"
+        "variant": "solid",
+        "details": [
+          "Enhance user queries with relevant information",
+          "Combine retrieved data with user input",
+          "Provide richer and more accurate context",
+          "Improve response quality and relevance",
+          "Support better AI generated outcomes"
+        ]
       },
       "width": 543,
       "height": 132,
       "selected": false,
       "positionAbsolute": {
-        "x": 511.5873535949346,
-        "y": 391.0701329787453
+        "x": 536.4721501612352,
+        "y": 398.5355719486355
       },
       "dragging": false,
       "resizing": false
@@ -207,7 +242,14 @@
         "icon": "Server",
         "type": "service",
         "subLabel": "Query +System Prompt",
-        "color": "purple"
+        "color": "purple",
+        "details": [
+          "Provide relevant data from search results",
+          "Supply context for accurate AI responses",
+          "Reduce incorrect or incomplete answers",
+          "Support informed decision making",
+          "Improve overall response quality"
+        ]
       },
       "width": 312,
       "height": 62,
@@ -228,7 +270,7 @@
       "type": "customGroup",
       "position": {
         "x": 517.80894566647,
-        "y": 588.3993784568955
+        "y": 583.4224191436356
       },
       "style": {
         "width": 542,
@@ -237,14 +279,21 @@
       "data": {
         "label": "Generation (G)",
         "color": "teal",
-        "variant": "solid"
+        "variant": "solid",
+        "details": [
+          "Create clear and relevant responses",
+          "Use retrieved and contextual information",
+          "Produce human readable output",
+          "Follow instructions and constraints",
+          "Deliver consistent and accurate results"
+        ]
       },
       "width": 542,
       "height": 110,
       "selected": false,
       "positionAbsolute": {
         "x": 517.80894566647,
-        "y": 588.3993784568955
+        "y": 583.4224191436356
       },
       "dragging": false,
       "resizing": false
@@ -253,22 +302,29 @@
       "id": "node_1767527704718",
       "type": "custom",
       "position": {
-        "x": 540.0034197795162,
-        "y": 608.6236220256185
+        "x": 622.1232484483075,
+        "y": 606.1351423689885
       },
       "data": {
         "label": "Large Language Model",
         "icon": "Activity",
         "type": "service",
-        "color": "blue"
+        "color": "blue",
+        "details": [
+          "Understand and generate human like text",
+          "Respond to complex questions and instructions",
+          "Use context to produce relevant answers",
+          "Support reasoning summarization and explanation",
+          "Enable natural language interaction"
+        ]
       },
       "width": 308,
       "height": 62,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 540.0034197795162,
-        "y": 608.6236220256185
+        "x": 622.1232484483075,
+        "y": 606.1351423689885
       },
       "style": {
         "width": 308,
@@ -280,8 +336,8 @@
       "id": "node_1767529334987",
       "type": "customGroup",
       "position": {
-        "x": 459.4056932468742,
-        "y": 50.32680952791492
+        "x": 473.0417545271993,
+        "y": 43.409239800587216
       },
       "style": {
         "width": 686,
@@ -290,15 +346,23 @@
       "data": {
         "label": "RAG",
         "variant": "solid",
-        "color": "yellow"
+        "color": "yellow",
+        "details": [
+          "Retrieve relevant data before generating responses",
+          "Use company documents and knowledge securely",
+          "Provide accurate and context aware answers",
+          "Reduce incorrect or made up responses",
+          "Work with large document collections efficiently",
+          "Update knowledge without retraining models"
+        ]
       },
       "width": 686,
       "height": 672,
-      "selected": false,
+      "selected": true,
       "dragging": false,
       "positionAbsolute": {
-        "x": 459.4056932468742,
-        "y": 50.32680952791492
+        "x": 473.0417545271993,
+        "y": 43.409239800587216
       },
       "resizing": false
     }

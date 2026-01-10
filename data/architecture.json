@@ -19,7 +19,7 @@
         ]
       },
       "width": 303,
-      "height": 61
+      "height": 60
     },
     {
       "id": "ums",
@@ -40,7 +40,7 @@
         ]
       },
       "width": 213,
-      "height": 61
+      "height": 60
     },
     {
       "id": "cdc",
@@ -60,8 +60,8 @@
           "Apache NiFi for transformation"
         ]
       },
-      "width": 226,
-      "height": 61
+      "width": 242,
+      "height": 60
     },
     {
       "id": "app-platform",
@@ -82,7 +82,9 @@
         ]
       },
       "width": 261,
-      "height": 61
+      "height": 60,
+      "selected": true,
+      "dragging": false
     },
     {
       "id": "kafka",
@@ -102,8 +104,8 @@
           "Message persistence"
         ]
       },
-      "width": 193,
-      "height": 61
+      "width": 209,
+      "height": 60
     },
     {
       "id": "ui",
@@ -159,7 +161,7 @@
           "Support enterprise-wide reporting and monitoring"
         ]
       },
-      "width": 209,
+      "width": 225,
       "height": 60,
       "selected": false,
       "dragging": false,
@@ -180,9 +182,20 @@
       "data": {
         "label": "Business Process Mgmt",
         "icon": "ClipboardList",
-        "type": "interface"
+        "type": "interface",
+        "details": [
+          "Design and document end to end business processes clearly",
+          "Automate manual tasks to reduce time and errors",
+          "Standardize processes across teams and departments",
+          "Track process performance using simple metrics",
+          "Identify delays and bottlenecks quickly",
+          "Improve process efficiency through continuous optimization",
+          "Ensure compliance with company rules and policies",
+          "Enable better coordination between people and systems",
+          "Support faster decision making with process visibility"
+        ]
       },
-      "width": 246,
+      "width": 262,
       "height": 60,
       "selected": false,
       "dragging": false,
@@ -203,9 +216,20 @@
       "data": {
         "label": "AI Assistant/Agent",
         "icon": "Bot",
-        "type": "interface"
+        "type": "interface",
+        "details": [
+          "Answer user questions instantly using company knowledge",
+          "Automate routine tasks and workflows",
+          "Provide consistent and accurate responses",
+          "Support decision making with data driven insights",
+          "Work across systems and applications",
+          "Operate continuously without downtime",
+          "Learn and improve from interactions over time",
+          "Reduce operational cost and manual effort",
+          "Enhance employee and customer experience"
+        ]
       },
-      "width": 208,
+      "width": 224,
       "height": 60,
       "selected": false,
       "dragging": false,
@@ -233,7 +257,7 @@
         ]
       },
       "width": 238,
-      "height": 61,
+      "height": 60,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
@@ -281,10 +305,20 @@
       "data": {
         "label": "Elasticsearch Cluster",
         "icon": "Search",
-        "type": "database"
+        "type": "database",
+        "details": [
+          "Search large amounts of data very quickly",
+          "Access data in real time as it is added",
+          "Increase capacity by adding more servers",
+          "Keep systems running even if one server fails",
+          "View and analyze logs and system data in one place",
+          "Control who can see and use the data"
+        ]
       },
-      "width": 226,
-      "height": 60
+      "width": 242,
+      "height": 60,
+      "selected": false,
+      "dragging": false
     },
     {
       "id": "kibana",
@@ -298,10 +332,20 @@
       "data": {
         "label": "Kibana Access",
         "icon": "Monitor",
-        "type": "interface"
+        "type": "interface",
+        "details": [
+          "View dashboards and reports through a web interface",
+          "Control user access based on roles and permissions",
+          "Limit data visibility by user or team",
+          "Monitor system and business data visually",
+          "Explore and filter data without technical skills",
+          "Ensure secure and compliant data access"
+        ]
       },
-      "width": 183,
-      "height": 60
+      "width": 200,
+      "height": 60,
+      "selected": false,
+      "dragging": false
     },
     {
       "id": "eaip",
@@ -343,10 +387,20 @@
         "label": "Agent Orchestrator",
         "subLabel": "Multi-Hop Logic",
         "icon": "Cpu",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Coordinate multiple AI agents to work together",
+          "Control task flow between agents",
+          "Assign the right agent to the right task",
+          "Manage agent execution and dependencies",
+          "Monitor agent status and outcomes",
+          "Ensure reliable and consistent agent behavior"
+        ]
       },
-      "width": 212,
-      "height": 61
+      "width": 228,
+      "height": 60,
+      "selected": false,
+      "dragging": false
     },
     {
       "id": "eaip-langgraph",
@@ -361,10 +415,18 @@
         "label": "LangGraph Agents",
         "subLabel": "+ Tool Gateway",
         "icon": "Network",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Build AI agents with clear step by step logic",
+          "Control how agents think and act",
+          "Manage complex tasks using structured workflows",
+          "Enable agents to make decisions during execution",
+          "Reuse and combine agents for different use cases",
+          "Ensure predictable and controlled agent behavior"
+        ]
       },
-      "width": 210,
-      "height": 61,
+      "width": 226,
+      "height": 60,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
@@ -385,7 +447,15 @@
         "label": "RAG Engine",
         "subLabel": "Evidence & Narrative",
         "icon": "BookOpen",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Retrieve relevant data before generating responses",
+          "Use company documents and knowledge securely",
+          "Provide accurate and context aware answers",
+          "Reduce incorrect or made up responses",
+          "Work with large document collections efficiently",
+          "Update knowledge without retraining models"
+        ]
       },
       "width": 220,
       "height": 61,
@@ -410,10 +480,18 @@
         "label": "ML Models",
         "subLabel": "XGBoost / PyTorch",
         "icon": "Brain",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Learn patterns from historical data",
+          "Make predictions based on new data",
+          "Support better business decisions",
+          "Improve accuracy over time with more data",
+          "Handle complex problems automatically",
+          "Integrate into applications and systems"
+        ]
       },
       "width": 185,
-      "height": 61,
+      "height": 60,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
@@ -468,8 +546,10 @@
           "Integrates with Kafka"
         ]
       },
-      "width": 221,
-      "height": 60
+      "width": 269,
+      "height": 60,
+      "selected": false,
+      "dragging": false
     },
     {
       "id": "rms-ml",
@@ -483,9 +563,20 @@
       "data": {
         "label": "Real-Time ML Scoring",
         "icon": "Zap",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Score data instantly as events happen",
+          "Enable real time decisions without delay",
+          "Use trained machine learning models in live systems",
+          "Process high volume data with low response time",
+          "Detect patterns and risks immediately",
+          "Personalize actions based on live data",
+          "Integrate easily with applications and APIs",
+          "Improve accuracy through continuous model updates",
+          "Support business actions in milliseconds"
+        ]
       },
-      "width": 231,
+      "width": 247,
       "height": 60,
       "selected": false,
       "dragging": false,
@@ -505,26 +596,53 @@
         "label": "Case Management",
         "subLabel": "Flowable BPM",
         "icon": "Briefcase",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Manage complex cases from start to closure",
+          "Handle unstructured and changing workflows",
+          "Track case status and history in one place",
+          "Assign tasks dynamically based on case needs",
+          "Support collaboration across teams",
+          "Ensure compliance with rules and policies",
+          "Improve visibility into case progress",
+          "Reduce manual follow ups and delays",
+          "Enable faster and more informed decisions"
+        ]
       },
-      "width": 207,
-      "height": 61
+      "width": 223,
+      "height": 60,
+      "selected": false,
+      "dragging": false
     },
     {
       "id": "reg-reporting",
       "type": "custom",
       "position": {
         "x": 750,
-        "y": 980
+        "y": 981.6973293768547
       },
       "data": {
         "label": "Regulatory Reporting",
         "subLabel": "STR Export Service",
         "icon": "FileText",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Collect required data from all relevant systems",
+          "Apply regulatory rules consistently",
+          "Generate accurate reports on time",
+          "Reduce manual effort and human error",
+          "Support audits and inspections easily",
+          "Adapt quickly to regulatory changes"
+        ]
       },
-      "width": 227,
-      "height": 61
+      "width": 243,
+      "height": 60,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 750,
+        "y": 981.6973293768547
+      }
     },
     {
       "id": "central-engine",
@@ -544,8 +662,8 @@
           "Kibana log exploration"
         ]
       },
-      "width": 252,
-      "height": 61,
+      "width": 269,
+      "height": 60,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {

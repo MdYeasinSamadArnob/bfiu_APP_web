@@ -11,7 +11,14 @@
         "label": "Orchestrator Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "teal"
+        "color": "teal",
+        "details": [
+          "Coordinate tasks across multiple agents",
+          "Decide task order and execution flow",
+          "Assign work to the right agent",
+          "Monitor task progress and results",
+          "Ensure reliable and controlled operations"
+        ]
       },
       "width": 228,
       "height": 60,
@@ -33,7 +40,14 @@
         "label": "Generative Model",
         "icon": "Activity",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Generate text and content automatically",
+          "Understand and respond to user requests",
+          "Create summaries insights and explanations",
+          "Adapt responses based on context",
+          "Support automation of knowledge work"
+        ]
       },
       "width": 227,
       "height": 58,
@@ -59,7 +73,11 @@
       "data": {
         "label": "Query",
         "icon": "Search",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Receive user inputs",
+          "Pass clean input to downstream agents"
+        ]
       },
       "width": 140,
       "height": 60,
@@ -80,7 +98,12 @@
       "data": {
         "label": "Output",
         "icon": "BookOpen",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Deliver clear and accurate results to users",
+          "Present information in an easy to understand format",
+          "Support text data and visual outputs"
+        ]
       },
       "width": 146,
       "height": 60,
@@ -95,8 +118,8 @@
       "id": "node_1767524078498",
       "type": "customGroup",
       "position": {
-        "x": -3.81280045536235,
-        "y": 347.1098092744208
+        "x": -7.876975387818447,
+        "y": 341.6909093644794
       },
       "style": {
         "width": 193,
@@ -110,8 +133,8 @@
       "height": 251,
       "selected": false,
       "positionAbsolute": {
-        "x": -35.81280045536235,
-        "y": 270.1098092744208
+        "x": -7.876975387818447,
+        "y": 341.6909093644794
       },
       "dragging": false,
       "resizing": false
@@ -126,7 +149,14 @@
       "data": {
         "label": "Short Term Memory",
         "icon": "Database",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Remember recent user interactions during a session",
+          "Maintain context across related requests",
+          "Improve response relevance and continuity",
+          "Avoid asking for repeated information",
+          "Support smoother and faster conversations"
+        ]
       },
       "width": 174,
       "height": 59,
@@ -152,7 +182,14 @@
       "data": {
         "label": "Long Term Memory",
         "icon": "Database",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Store important information across sessions",
+          "Recall user preferences and past interactions",
+          "Personalize responses over time",
+          "Reduce repeated explanations and inputs",
+          "Support consistent long term engagement"
+        ]
       },
       "width": 187,
       "height": 60,
@@ -178,7 +215,15 @@
       "data": {
         "label": "Redis",
         "icon": "Database",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Store data in memory for very fast access",
+          "Improve application speed and response time",
+          "Cache frequently used data",
+          "Support real time data processing",
+          "Handle high traffic with low delay",
+          "Reduce load on primary databases"
+        ]
       },
       "width": 138,
       "height": 60,
@@ -193,8 +238,8 @@
       "id": "node_1767524382016",
       "type": "customGroup",
       "position": {
-        "x": 178.96295338444065,
-        "y": 142.72263685954357
+        "x": 177.54497268827862,
+        "y": 138.74348456502776
       },
       "style": {
         "width": 464,
@@ -205,15 +250,23 @@
         "icon": "Database",
         "type": "database",
         "color": "cyan",
-        "variant": "solid"
+        "variant": "solid",
+        "details": [
+          "Control what data is stored and for how long",
+          "Improve response accuracy using relevant past context",
+          "Optimize performance by separating short and long term memory",
+          "Manage short term memory to keep active conversation context",
+          "Store long term memory to retain important information over time",
+          "Use Redis for fast and temporary memory storage"
+        ]
       },
       "width": 464,
       "height": 170,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 178.96295338444065,
-        "y": 142.72263685954357
+        "x": 177.54497268827862,
+        "y": 138.74348456502776
       },
       "resizing": false
     },
@@ -231,7 +284,13 @@
       "data": {
         "label": "Agent Node",
         "variant": "solid",
-        "color": "blue"
+        "color": "blue",
+        "details": [
+          "Perform a specific and well defined task",
+          "Receive input and produce clear output",
+          "Connect with other agent nodes",
+          "Support modular and reusable agent design"
+        ]
       },
       "width": 600,
       "height": 425,
@@ -254,7 +313,14 @@
         "label": "Multi-classifier Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Classify inputs into multiple predefined categories",
+          "Select the correct category automatically",
+          "Handle complex and varied input types",
+          "Improve accuracy through learned patterns",
+          "Support routing and decision workflows"
+        ]
       },
       "width": 241,
       "height": 60,
@@ -276,7 +342,14 @@
         "label": "RAG Serach Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Search relevant documents based on user queries",
+          "Retrieve the most useful information quickly",
+          "Provide accurate context to AI responses",
+          "Work with large document repositories",
+          "Improve answer quality and relevance"
+        ]
       },
       "width": 240,
       "height": 60,
@@ -303,7 +376,14 @@
         "label": "Context Resolution Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Understand user intent from conversation context",
+          "Resolve unclear or incomplete requests",
+          "Link current questions with past interactions",
+          "Ensure correct interpretation before action",
+          "Improve accuracy of agent responses"
+        ]
       },
       "width": 237,
       "height": 60,
@@ -330,7 +410,14 @@
         "label": "SQL Generation Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Convert user questions into SQL queries",
+          "Generate correct and optimized queries",
+          "Work with different database schemas",
+          "Reduce manual query writing effort",
+          "Improve data access speed and accuracy"
+        ]
       },
       "width": 249,
       "height": 60,
@@ -352,7 +439,14 @@
         "label": "SQL Execution Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Execute SQL queries safely and reliably",
+          "Fetch data from databases in real time",
+          "Handle errors and execution failures",
+          "Ensure controlled and secure data access",
+          "Return clean and usable query results"
+        ]
       },
       "width": 242,
       "height": 60,
@@ -374,7 +468,14 @@
         "label": "Validation Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Check inputs and outputs for correctness",
+          "Validate data against defined rules",
+          "Prevent invalid or risky actions",
+          "Ensure consistency across processes",
+          "Improve reliability and trust in results"
+        ]
       },
       "width": 209,
       "height": 60,
@@ -396,7 +497,14 @@
         "label": "Chart Generation Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Convert data into clear visual charts",
+          "Select the right chart type automatically",
+          "Present insights in an easy to understand format",
+          "Support faster decision making",
+          "Reduce manual chart creation effort"
+        ]
       },
       "width": 243,
       "height": 64,
@@ -423,7 +531,14 @@
         "label": "Summarization Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Condense large content into key points",
+          "Highlight the most important information",
+          "Reduce reading time for users",
+          "Maintain meaning while shortening content",
+          "Support quick understanding and decisions"
+        ]
       },
       "width": 243,
       "height": 60,
@@ -445,7 +560,14 @@
         "label": "Audit Agent",
         "icon": "Bot",
         "type": "service",
-        "color": "indigo"
+        "color": "indigo",
+        "details": [
+          "Track actions and decisions automatically",
+          "Maintain detailed activity logs",
+          "Ensure compliance with rules and policies",
+          "Support audits and investigations",
+          "Improve transparency and accountability"
+        ]
       },
       "width": 241,
       "height": 55,
@@ -472,7 +594,14 @@
         "label": "Planner ",
         "icon": "ClipboardList",
         "type": "service",
-        "color": "red"
+        "color": "red",
+        "details": [
+          "Break complex goals into clear steps",
+          "Decide the best order of actions",
+          "Adjust plans based on new information",
+          "Coordinate tasks across systems or agents",
+          "Improve efficiency and execution accuracy"
+        ]
       },
       "width": 151,
       "height": 60,
@@ -493,7 +622,14 @@
       "data": {
         "label": "Tools",
         "icon": "Server",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Enable AI to call external tools and services",
+          "Access data systems APIs and functions securely",
+          "Perform actions beyond text generation",
+          "Standardize tool usage across AI workflows",
+          "Improve automation and task completion"
+        ]
       },
       "width": 166,
       "height": 61,
@@ -513,8 +649,8 @@
       "id": "node_1767525317969",
       "type": "customGroup",
       "position": {
-        "x": 1405.0921920940054,
-        "y": 166.5176885331889
+        "x": 1419.5865329665837,
+        "y": 157.29919608655806
       },
       "style": {
         "width": 294,
@@ -523,15 +659,22 @@
       "data": {
         "label": "MCP",
         "color": "red",
-        "variant": "solid"
+        "variant": "solid",
+        "details": [
+          "Provide a standard way to share context with AI models",
+          "Connect AI models with tools and data sources",
+          "Ensure consistent data exchange between systems",
+          "Reduce custom integration effort",
+          "Improve reliability of AI interactions"
+        ]
       },
       "width": 294,
       "height": 382,
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 1405.0921920940054,
-        "y": 166.5176885331889
+        "x": 1419.5865329665837,
+        "y": 157.29919608655806
       },
       "resizing": false
     },
@@ -545,7 +688,14 @@
       "data": {
         "label": "Functions",
         "icon": "Server",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Define specific actions AI can execute",
+          "Pass structured inputs and receive outputs",
+          "Ensure controlled and predictable execution",
+          "Integrate business logic into AI workflows",
+          "Reduce errors through clear function definitions"
+        ]
       },
       "width": 172,
       "height": 55,
@@ -571,7 +721,14 @@
       "data": {
         "label": "Engine",
         "icon": "Server",
-        "type": "service"
+        "type": "service",
+        "details": [
+          "Manage communication between AI and tools",
+          "Handle context and data exchange reliably",
+          "Control execution of MCP tools and functions",
+          "Ensure secure and consistent interactions",
+          "Support scalable AI workflows"
+        ]
       },
       "width": 168,
       "height": 58,
@@ -598,7 +755,14 @@
         "label": "Database",
         "icon": "Database",
         "type": "service",
-        "color": "teal"
+        "color": "teal",
+        "details": [
+          "Store all available MCP functions centrally",
+          "Maintain function definitions and metadata",
+          "Enable quick lookup of functions for AI use",
+          "Ensure version control and consistency",
+          "Support governance and access control"
+        ]
       },
       "width": 162,
       "height": 60,
@@ -620,7 +784,14 @@
         "label": "Database",
         "icon": "Database",
         "type": "service",
-        "color": "teal"
+        "color": "teal",
+        "details": [
+          "Store MCP engine state and execution data",
+          "Maintain context and interaction history",
+          "Support reliable recovery and continuity",
+          "Enable tracking and auditing of executions",
+          "Ensure consistency across AI workflows"
+        ]
       },
       "width": 162,
       "height": 60,
