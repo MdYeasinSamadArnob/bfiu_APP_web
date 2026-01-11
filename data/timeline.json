@@ -25,7 +25,7 @@
     "deliverables": [
       "Standard Rules Engine (Deterministic Logic): Automating 30+ hard logic checks (e.g., 'More than 30 transactions/day') using Kogito. Queries -Data Mart for instant status checks (e.g., 'Is Account Frozen?')(RMS).",
       "EAIP Leadership (Behavioral AI): Deploying AI models to catch subtle anomalies like sudden spending spikes using XGBoost on ''Apache Doris'' real-time aggregates.",
-      "EAIP Leadership (Contextual Intelligence): AI checks historical behavior to judge if a transfer is truly suspicious (e.g., 'Crypto-like Behavior') using RAG on transaction notes.",
+      "EAIP Leadership (Contextual Intelligence): AI checks historical behavior to judge if a transfer is truly suspicious (e.g., 'Crypto-like Behavior') using AI Agents on transaction notes.",
       "EAIP Leadership (Smart Agents): Autonomous agents that investigate complex patterns (e.g., 'Many to One', 'One to Many' funds funneling) using LangGraph to traverse transaction links."
     ],
     "testing": "Mid-Apr: MVP Launch Test. Validate that AI catches 100% of known test cases and reduces false alarms by ~60%.",
