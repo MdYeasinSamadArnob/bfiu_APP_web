@@ -1,16 +1,18 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, Square, Info, Shield, Zap, Brain, Database, Edit, Save, X } from 'lucide-react';
+import { Volume2, Square, Info, Shield, Zap, Brain, Database, Edit, Save, X, MessageSquare } from 'lucide-react';
 import { UseCase } from '../data/useCases';
 import HighlightableTextContent from './HighlightableText';
+import ChatInterface from './ChatInterface';
 
 interface UseCaseCardProps {
   useCase: UseCase;
   onSave?: (updatedUseCase: UseCase) => void;
+  chatModel?: string | null;
 }
 
-const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave, chatModel }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -20,6 +22,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
   // Edit Mode State
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState<UseCase>(useCase);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const isCancelledRef = useRef(false);
 
@@ -343,20 +346,41 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ useCase, onSave }) => {
             {useCase.section}
         </span>
         
-        {speechSupported && (
-          <button
-            onClick={handleSpeak}
-            className={`p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-              isSpeaking
-                ? 'bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400'
-                : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400'
-            }`}
-            title={isSpeaking ? "Stop reading" : "Read aloud"}
-          >
-            {isSpeaking ? <Square className="w-4 h-4 fill-current" /> : <Volume2 className="w-4 h-4" />}
-          </button>
-        )}
+        <div className="flex items-center gap-1">
+            {chatModel && (
+            <button
+                onClick={() => setIsChatOpen(true)}
+                className="p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-full transition-colors"
+                title={`Ask AI Assistant (${chatModel})`}
+            >
+                <MessageSquare className="w-4 h-4" />
+            </button>
+            )}
+
+            {speechSupported && (
+            <button
+                onClick={handleSpeak}
+                className={`p-2 rounded-full transition-all duration-300 ${
+                isSpeaking 
+                    ? 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 ring-2 ring-indigo-500/20' 
+                    : 'text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30'
+                }`}
+                title={isSpeaking ? "Stop Speaking" : "Read Aloud"}
+            >
+                {isSpeaking ? <Square className="w-4 h-4 fill-current" /> : <Volume2 className="w-4 h-4" />}
+            </button>
+            )}
+        </div>
       </div>
+
+      {/* Chat Interface Overlay - Fixed Modal */}
+      {isChatOpen && chatModel && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+            <div className="w-full max-w-lg h-[80vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col relative">
+                <ChatInterface context={useCase} model={chatModel} onClose={() => setIsChatOpen(false)} />
+            </div>
+        </div>
+      )}
     </div>
   );
 };
