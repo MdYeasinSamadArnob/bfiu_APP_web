@@ -4,12 +4,12 @@
     "title": "Phase 1: Foundation & Infrastructure",
     "duration": "1 Month",
     "dates": "Feb 1, 2026 - Feb 28, 2026",
-    "focus": "Secure Environment & Architecture Setups",
+    "focus": "Secure Environment & Architecture Setup",
     "deliverables": [
-      "Infrastructure Setup (Section 10): Deploying UAT servers, OS hardening, and Virtualization layer.",
-      "Security Core (Section 5): Implementing Active Directory/LDAP integration, WAF, and SSL/Encryption.",
-      "Base Architecture: Setting up the microservices chassis (Spring Boot/FastAPI) and Container orchestration (Kubernetes/Docker).",
-      "Database Layer: Installation of PostgreSQL (Transactional) and MinIO (Document Store)."
+        "Infrastructure Setup (Section 10): Deploying UAT servers, OS hardening, and Virtualization layer.",
+        "Security Core (Section 5): Implementing Active Directory/LDAP integration, WAF, and SSL/Encryption.",
+        "Base Architecture: Setting up the microservices chassis (Spring Boot/FastAPI) and Container orchestration (Kubernetes/Docker).",
+        "Database Layer: Installation of PostgreSQL (Transactional) and MinIO (Document Store)."
     ],
     "testing": "Infra Verification: Security penetration testing and load balancing checks.",
     "notes": "Team Focus: 2 Engineers on Infra/Sec, 3 Devs on Core Auth & Architecture. Includes Eid al-Fitr break (~Mar 20).",
@@ -23,10 +23,10 @@
     "dates": "Mar 1, 2026 - Apr 15, 2026",
     "focus": "Data Lake & Basic Fraud Rules (Section 1, 4)",
     "deliverables": [
-      "CBS Integration: Building connectors for the Core Banking System (Conventional & Islamic).",
-      "Data Lake MVP: Initial setup of the schema-agnostic repository for structured transaction logs.",
-      "Real-time Pipeline: Kafka setup for streaming high-velocity channel data (ATM, POS).",
-      "Rule Engine Core: Deploying Drools/Kogito with top 10 critical fraud scenarios."
+        "CBS Integration: Building connectors for the Core Banking System (Conventional & Islamic).",
+        "Data Lake MVP: Initial setup of the schema-agnostic repository for structured transaction logs.",
+        "Real-time Pipeline: Kafka setup for streaming high-velocity channel data (ATM, POS).",
+        "Rule Engine Core: Deploying Drools/Kogito with top 10 critical fraud scenarios."
     ],
     "testing": "Data Integrity: Verifying transaction flow and basic rule triggering.",
     "notes": "Accelerated phase combining data ingestion with immediate rule value. Includes Eid al-Adha (~May 27).",
@@ -40,10 +40,10 @@
     "dates": "Apr 16, 2026 - May 31, 2026",
     "focus": "Advanced AI & Profiling (Section 3)",
     "deliverables": [
-      "Customer Profiling: AI models to build dynamic 'Normal Behavior' baselines.",
-      "Anomaly Detection: Unsupervised learning models to flag outliers.",
-      "Agentic AI Pilot: Autonomous agents for continuous risk scoring.",
-      "Link Analysis: Graph database setup for hidden connection visualization."
+        "Customer Profiling: AI models to build dynamic 'Normal Behavior' baselines.",
+        "Anomaly Detection: Unsupervised learning models to flag outliers.",
+        "Agentic AI Pilot: Autonomous agents for continuous risk scoring.",
+        "Link Analysis: Graph database setup for hidden connection visualization."
     ],
     "testing": "Model Backtesting: Validating AI detection rates against historical data.",
     "notes": "Parallel execution: Engineers on MLOps, Devs on API integration.",
@@ -56,10 +56,10 @@
     "dates": "Jun 1, 2026 - Jun 30, 2026",
     "focus": "Operational Workflows (Section 7, 8)",
     "deliverables": [
-      "Case Manager UI: Full investigation dashboard with history and notes.",
-      "BPMN Integration: Visualizing and executing investigation processes.",
-      "Regulatory Reporting: Automated STR/SAR generation modules.",
-      "Executive Dashboards: Real-time charts for management visibility."
+        "Case Manager UI: Full investigation dashboard with history and notes.",
+        "BPMN Integration: Visualizing and executing investigation processes.",
+        "Regulatory Reporting: Automated STR/SAR generation modules.",
+        "Executive Dashboards: Real-time charts for management visibility."
     ],
     "testing": "UAT Round 1: Analysts use the system in shadow mode.",
     "notes": "Focus on UX and investigator efficiency.",
@@ -72,10 +72,10 @@
     "dates": "Jul 1, 2026 - Aug 15, 2026",
     "focus": "Production Readiness (Section 9)",
     "deliverables": [
-      "Performance Tuning: Optimizing DB queries and API latency.",
-      "Training: Hands-on sessions for Admins and Analysts.",
-      "Disaster Recovery Drill: Full simulation of primary site failure.",
-      "Production Go-Live: Final cutover and system launch."
+        "Performance Tuning: Optimizing DB queries and API latency.",
+        "Training: Hands-on sessions for Admins and Analysts.",
+        "Disaster Recovery Drill: Full simulation of primary site failure.",
+        "Production Go-Live: Final cutover and system launch."
     ],
     "testing": "Final Acceptance: Sign-off from all stakeholders.",
     "notes": "Milestone: Full Enterprise Launch by Mid-August.",

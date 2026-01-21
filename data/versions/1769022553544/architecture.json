@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {
+      "id": "node_1769022533481",
+      "type": "custom",
+      "position": {
+        "x": 340.1095507094884,
+        "y": 309.7333261674695
+      },
+      "data": {
+        "label": "New Node",
+        "icon": "Server",
+        "type": "service"
+      },
+      "width": 168,
+      "height": 60,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 340.1095507094884,
+        "y": 309.7333261674695
+      },
+      "dragging": false
+    }
+  ],
+  "edges": []
+}

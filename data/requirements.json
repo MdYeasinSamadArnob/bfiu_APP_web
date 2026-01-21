@@ -1,0 +1,342 @@
+[
+  {
+    "id": "17690185218661fxyumeoq",
+    "title": "1. Data Integration & Source Connectivity",
+    "description": "Building a Low-Latency Data Pipeline for Real-Time Intelligence.",
+    "items": [
+      {
+        "id": "1769018521866z6jhw6zq9",
+        "title": "Universal System Connectivity",
+        "subtitle": "Seamless integration across the entire banking ecosystem.",
+        "details": [
+          "**Core Banking**: Conventional, Islamic, and Agent Banking modules.",
+          "**Digital Channels**: Internet Banking, Mobile Apps, Wallets (bKash/Nagad).",
+          "**Payment Networks**: RTGS, NPSB, BEFTN, BACH, SWIFT.",
+          "**Specialized Systems**: Treasury, Trade Finance, ERP, HR, and CRM."
+        ]
+      },
+      {
+        "id": "1769018521866xiqsdvttz",
+        "title": "Real-Time Data Ingestion",
+        "subtitle": "Low-latency capture via APIs, Kafka, and MQ.",
+        "details": [
+          "**Instant Synchronization**: Sub-second data capture for analysis.",
+          "**Batch Processing**: Efficient ETL for historical data migration.",
+          "**Format Agnostic**: Native support for ISO 8583, XML, JSON, and CSV."
+        ]
+      },
+      {
+        "id": "1769018521866d8dii92fv",
+        "title": "Unified Data Mart",
+        "subtitle": "A single source of truth for structured and unstructured data.",
+        "details": [
+          "**Schema-Less Design**: Store logs, images, and documents alongside transaction data.",
+          "**360° Customer View**: Aggregating profiles across all touchpoints.",
+          "**Forensic Readiness**: Immutable data storage for audit and legal compliance."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521866mpjo4xfpx",
+    "title": "2. Core System Capabilities",
+    "description": "The Powerhouse: A Microservices-Based, AI-First Orchestration Layer.",
+    "items": [
+      {
+        "id": "17690185218667op9ulxtw",
+        "title": "Enterprise Scalability",
+        "subtitle": "Cloud-native microservices architecture.",
+        "details": [
+          "**Horizontal Scaling**: Efficiently handle high transaction volumes.",
+          "**High Availability**: Active-Active configuration for maximum uptime.",
+          "**Containerization**: Docker/Kubernetes ready for deployment."
+        ]
+      },
+      {
+        "id": "1769018521866utsdgvr6l",
+        "title": "Unified Risk Orchestration",
+        "subtitle": "Centralized command center for all risk types.",
+        "details": [
+          "**Holistic Monitoring**: Cross-channel fraud detection in a single pane of glass.",
+          "**Entity Resolution**: AI-driven merging of duplicate profiles.",
+          "**Dynamic Risk Scoring**: Real-time score updates based on live behavior."
+        ]
+      },
+      {
+        "id": "1769018521866fesfnh4zo",
+        "title": "Explainable AI (XAI) Core",
+        "subtitle": "No more 'Black Box' decisions.",
+        "details": [
+          "**Reason Codes**: Every AI decision comes with clear, human-readable explanations.",
+          "**Visual Evidence**: Graphical breakdown of risk factors for investigators.",
+          "**Regulatory Trust**: Fully auditable AI logic compliant with BFIU standards."
+        ]
+      },
+      {
+        "id": "new_item_real_time_intervention",
+        "title": "Real-Time Monitoring",
+        "subtitle": "Identify and mitigate risk immediately.",
+        "details": [
+          "**Rapid Detection**: API integration to flag high-risk transactions instantly.",
+          "**Step-Up Auth**: Trigger OTP or Biometric challenges for suspicious activities.",
+          "**Risk Mitigation**: Apply temporary monitoring or restrictions based on thresholds."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521866whawgrtst",
+    "title": "3. Next-Gen AI & Cognitive Intelligence",
+    "description": "Smart AI: Agentic, Adaptive, and Generative Defense.",
+    "items": [
+      {
+        "id": "1769018521867694l076ao",
+        "title": "Agentic AI & Multi-Agent Defense",
+        "subtitle": "Autonomous agents collaborating to stop fraud.",
+        "details": [
+          "**Multi-Agent Swarms**: Specialized agents (KYC, AML, Transaction) debating risk scores in real-time.",
+          "**Autonomous Triage**: Agents that automatically investigate and resolve Level-1 alerts.",
+          "**Self-Healing Models**: AI that detects performance drops and initiates retraining cycles."
+        ]
+      },
+      {
+        "id": "1769018521867rj6eu984w",
+        "title": "Generative AI & RAG Engine",
+        "subtitle": "Context-aware intelligence using Retrieval-Augmented Generation.",
+        "details": [
+          "**Compliance Copilot**: RAG-based assistant to instantly query BFIU circulars and internal policies.",
+          "**Auto-Drafting**: Generative AI creates detailed Suspicious Transaction Reports (STRs) for analysts.",
+          "**Knowledge Retrieval**: Semantic search to surface similar past cases and relevant evidence."
+        ]
+      },
+      {
+        "id": "17690185218671zzcslmgv",
+        "title": "Predictive Modeling",
+        "subtitle": "Forecast threats before they materialize.",
+        "details": [
+          "**Early Warning**: Identify high-risk accounts early using behavioral patterns.",
+          "**Link Analysis**: Uncover hidden syndicates and money mule networks.",
+          "**Graph Analysis**: Visualize complex relationships between entities."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521867y7atwetwa",
+    "title": "4. Intelligent Rule Engine",
+    "description": "Hybrid Logic: Combining Hard Rules with Soft AI Intuition.",
+    "items": [
+      {
+        "id": "1769018521867anyrvfqfr",
+        "title": "Visual Strategy Builder",
+        "subtitle": "No-Code, Drag-and-Drop Interface.",
+        "details": [
+          "**Intuitive Design**: Create complex rules without writing a single line of code.",
+          "**BPMN Integration**: Visualize workflows and decision paths.",
+          "**Hot Deployment**: Push new rules to production instantly without downtime."
+        ]
+      },
+      {
+        "id": "1769018521867gyji0854e",
+        "title": "Advanced Simulation",
+        "subtitle": "Test before you trust.",
+        "details": [
+          "**What-If Analysis**: Replay historical data to predict rule impact.",
+          "**Champion/Challenger**: Run new rules in shadow mode alongside active ones.",
+          "**False Positive Optimization**: AI suggestions to tune thresholds."
+        ]
+      },
+      {
+        "id": "1769018521867o3zq06098",
+        "title": "Hybrid Detection",
+        "subtitle": "The best of both worlds.",
+        "details": [
+          "**Velocity Checks**: Monitor frequency (e.g., 10 txns in 1 minute).",
+          "**Complex Event Processing (CEP)**: Correlate events across time and channels.",
+          "**AI Overrides**: Allow AI to approve borderline cases based on history."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521867b58itkq08",
+    "title": "5. Security & Zero-Trust Architecture",
+    "description": "Enterprise-Grade Security for Your Most Critical Data.",
+    "items": [
+      {
+        "id": "1769018521867ia482gjp8",
+        "title": "Access Governance",
+        "subtitle": "Strict control over who sees what.",
+        "details": [
+          "**RBAC & ABAC**: Role and Attribute-based access controls.",
+          "**Multi-Factor Authentication (MFA)**: Mandatory for all system admins.",
+          "**Maker-Checker**: 4-eye principle for sensitive configuration changes."
+        ]
+      },
+      {
+        "id": "1769018521867pdl8bdjea",
+        "title": "Data Security",
+        "subtitle": "Encryption at Rest and in Motion.",
+        "details": [
+          "**AES-256 Encryption**: Protecting sensitive database fields.",
+          "**TLS 1.3**: Securing all API communications.",
+          "**Data Masking**: Dynamic redaction of PII for non-privileged users."
+        ]
+      },
+      {
+        "id": "17690185218679gg850g5c",
+        "title": "Audit & Compliance",
+        "subtitle": "Full traceability of every action.",
+        "details": [
+          "**Immutable Logs**: Tamper-proof audit trails for forensic investigations.",
+          "**SIEM Integration**: Real-time security alerts sent to SOC.",
+          "**Vulnerability Management**: Regular scanning and patching cycles."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521867kvlbp926f",
+    "title": "6. Data Backup & Recovery",
+    "description": "Simple, reliable data protection mechanisms.",
+    "items": [
+      {
+        "id": "1769018521867udmut4mgt",
+        "title": "Backup Protocols",
+        "subtitle": "Routine safety measures.",
+        "details": [
+          "**Automated Schedules**: Daily database snapshots running in the background.",
+          "**Local & Remote Options**: Support for saving backups to external drives or cloud storage.",
+          "**File Encryption**: Basic encryption to keep backup files secure."
+        ]
+      },
+      {
+        "id": "1769018521867qp18cyb71",
+        "title": "System Restoration",
+        "subtitle": "Easy-to-follow recovery steps.",
+        "details": [
+          "**Guided Recovery**: Clear, documented procedures for system restarts.",
+          "**Configuration Export**: Save settings to easily rebuild the environment.",
+          "**Health Monitoring**: Basic alerts if a backup job fails."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521867f2x6tdm23",
+    "title": "7. Intelligent Case Management",
+    "description": "Streamlined Workflows for Faster Investigations.",
+    "items": [
+      {
+        "id": "1769018521867ey8lwnaeb",
+        "title": "Smart Alerting",
+        "subtitle": "Reducing alert fatigue.",
+        "details": [
+          "**Risk-Based Prioritization**: Focus on high-value threats first.",
+          "**Auto-Grouping**: Combine related alerts into a single case.",
+          "**Omnichannel Notifications**: SMS, Email, and In-App alerts for analysts."
+        ]
+      },
+      {
+        "id": "1769018521867awaivu1s2",
+        "title": "Investigative Workbench",
+        "subtitle": "All the tools in one place.",
+        "details": [
+          "**360° Case View**: Transaction history, KYC, and linked entities in one screen.",
+          "**Collaborative Tools**: Internal chat, notes, and file attachments.",
+          "**SLA Tracking**: Automated escalation for overdue cases."
+        ]
+      },
+      {
+        "id": "1769018521867oocw8tfx2",
+        "title": "Automated Reporting",
+        "subtitle": "One-click regulatory compliance.",
+        "details": [
+          "**STR/SAR Generation**: Auto-fill regulatory forms (goAML compatible).",
+          "**Evidence Packaging**: Export comprehensive case files for law enforcement."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17690185218676b4dcnfzg",
+    "title": "8. Analytics & Regulatory Reporting",
+    "description": "Deep Insights for C-Level & Regulators.",
+    "items": [
+      {
+        "id": "1769018521867e1ql0zkkg",
+        "title": "Executive Dashboards",
+        "subtitle": "Real-time visibility into fraud posture.",
+        "details": [
+          "**Fraud Heatmaps**: Visualize attack origins and trends.",
+          "**Loss Prevention Metrics**: Track saved amounts and prevented fraud.",
+          "**Analyst Performance**: Monitor team efficiency and resolution times."
+        ]
+      },
+      {
+        "id": "17690185218679xou6peaz",
+        "title": "Regulatory Compliance",
+        "subtitle": "Stay ahead of BFIU mandates.",
+        "details": [
+          "**Automated STRs**: Direct integration with BFIU reporting portals.",
+          "**Audit Ready**: Pre-built reports for internal and external auditors.",
+          "**Custom Query Builder**: Drag-and-drop report creation for ad-hoc needs."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "1769018521867k9rwdyhxq",
+    "title": "9. Implementation & Knowledge Transfer",
+    "description": "Ensuring a Smooth, Professional Rollout.",
+    "items": [
+      {
+        "id": "1769018521867r6nlqwm0q",
+        "title": "Project Execution",
+        "subtitle": "Agile delivery methodologies.",
+        "details": [
+          "**Phased Rollout**: Risk-free deployment strategy (Pilot -> Full Scale).",
+          "**Data Migration**: Secure transfer of 5 years of historical data.",
+          "**UAT Support**: Dedicated engineers for User Acceptance Testing."
+        ]
+      },
+      {
+        "id": "17690185218679jgmjgvls",
+        "title": "Capacity Building",
+        "subtitle": "Empowering your team.",
+        "details": [
+          "**Admin Training**: Deep dive into rule tuning and system config.",
+          "**Analyst Workshops**: Best practices for fraud investigation.",
+          "**Certification**: Formal certification for Bank staff upon completion."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "17690185218677muy0wmk1",
+    "title": "10. Infrastructure & Future Readiness",
+    "description": "Built for Today, Ready for Tomorrow.",
+    "items": [
+      {
+        "id": "1769018521867liusclmdb",
+        "title": "Hardware Specs",
+        "subtitle": "Optimized for AI workloads.",
+        "details": [
+          "**GPU Acceleration**: Support for NVIDIA GPUs for faster model training.",
+          "**In-Memory Computing**: Redis/Ignite for sub-millisecond lookups.",
+          "**Storage Optimization**: Tiered storage for hot (active) and cold (archive) data."
+        ]
+      },
+      {
+        "id": "1769018521867t7zdl6kyn",
+        "title": "Future Proofing",
+        "subtitle": "Scalable for the next decade.",
+        "details": [
+          "**5G Ready**: Prepared for high-velocity IoT and mobile payments.",
+          "**Blockchain Integration**: Ready to monitor crypto and CBDC transactions.",
+          "**Open API Standards**: Plug-and-play integration with future fintech partners."
+        ]
+      }
+    ]
+  }
+]

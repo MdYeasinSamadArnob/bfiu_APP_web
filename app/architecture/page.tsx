@@ -14,14 +14,16 @@ import ReactFlow, {
   Node,
   Panel,
   NodeChange,
-  EdgeChange
+  EdgeChange,
+  ReactFlowInstance,
+  ReactFlowProvider
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import ArchitectureNode, { iconMap, getTypeColor } from '../../components/architecture/ArchitectureNode';
 import ArchitectureGroupNode from '../../components/architecture/ArchitectureGroupNode';
 import { initialNodes, initialEdges } from '../../data/architectureData';
-import { ChevronLeft, Save, Plus, Layout, CornerUpLeft, ClipboardCopy, RotateCcw, Trash2, Info, X, ArrowRightCircle, Activity } from 'lucide-react';
+import { ChevronLeft, Save, Plus, Layout, CornerUpLeft, ClipboardCopy, RotateCcw, Trash2, Info, X, ArrowRightCircle, Activity, History, Archive, FilePlus, Library, GripVertical } from 'lucide-react';
 import Link from 'next/link';
 
 const nodeTypes = {
@@ -39,18 +41,62 @@ export default function ArchitecturePage() {
   const [viewStack, setViewStack] = useState<{id: string, name: string}[]>([{id: 'root', name: 'System Architecture'}]);
   const [showIconPicker, setShowIconPicker] = useState(false);
   
+  // Library State
+  const [showLibrary, setShowLibrary] = useState(false);
+  const [libraryItems, setLibraryItems] = useState<{id: string, name: string, nodes: Node[], edges: Edge[]}[]>([]);
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
+
+  // Load library from localStorage
+  React.useEffect(() => {
+      const savedLib = localStorage.getItem('architecture_library');
+      if (savedLib) {
+          try {
+              setLibraryItems(JSON.parse(savedLib));
+          } catch (e) {
+              console.error('Failed to load library:', e);
+          }
+      }
+  }, []);
+
+  // Save library to localStorage
+  React.useEffect(() => {
+      localStorage.setItem('architecture_library', JSON.stringify(libraryItems));
+  }, [libraryItems]);
+  
+  // Versioning State
+  const [versions, setVersions] = useState<{id: string, name: string, createdAt: string}[]>([]);
+  const [currentVersionId, setCurrentVersionId] = useState<string | null>(null);
+  const [showVersionMenu, setShowVersionMenu] = useState(false);
+  const [showSaveVersionModal, setShowSaveVersionModal] = useState(false);
+  const [newVersionName, setNewVersionName] = useState('');
+
   const currentView = viewStack[viewStack.length - 1];
   const selectedNode = nodes.find(n => n.id === selectedNodeId);
   const selectedEdge = edges.find(e => e.id === selectedEdgeId);
 
+  const loadVersions = useCallback(() => {
+      fetch('/api/architecture?action=list_versions')
+          .then(res => res.json())
+          .then(data => {
+              if (Array.isArray(data)) {
+                  setVersions(data);
+              }
+          })
+          .catch(err => console.error('Failed to load versions:', err));
+  }, []);
+
   // Load initial data
-  const loadArchitecture = useCallback((viewId: string) => {
-    fetch(`/api/architecture?viewId=${viewId}`)
+  const loadArchitecture = useCallback((viewId: string, versionId: string | null = null) => {
+    const url = versionId 
+        ? `/api/architecture?viewId=${viewId}&versionId=${versionId}`
+        : `/api/architecture?viewId=${viewId}`;
+
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         if (data.nodes && data.edges) {
           // If root view is empty (e.g. from accidental clear), restore factory defaults
-          if (viewId === 'root' && data.nodes.length === 0) {
+          if (viewId === 'root' && data.nodes.length === 0 && !versionId) {
               setNodes(initialNodes.map(n => ({
                   ...n,
                   data: {
@@ -71,7 +117,7 @@ export default function ArchitecturePage() {
           }
         } else {
              // For sub-views, we might want to start empty or with a default structure
-             if (viewId === 'root') {
+             if (viewId === 'root' && !versionId) {
                  setNodes(initialNodes.map(n => ({...n, data: {...n.data, isEditMode: isEditMode}})));
                  setEdges(initialEdges);
              } else {
@@ -82,7 +128,7 @@ export default function ArchitecturePage() {
       })
       .catch(err => {
         console.error('Failed to load architecture data:', err);
-        if (viewId === 'root') {
+        if (viewId === 'root' && !versionId) {
             setNodes(initialNodes);
             setEdges(initialEdges);
         } else {
@@ -93,10 +139,15 @@ export default function ArchitecturePage() {
   }, [setNodes, setEdges, isEditMode]);
 
   React.useEffect(() => {
-    loadArchitecture(currentView.id);
-  }, [currentView.id, loadArchitecture]);
+    loadArchitecture(currentView.id, currentVersionId);
+    loadVersions();
+  }, [currentView.id, currentVersionId, loadArchitecture, loadVersions]);
 
   const saveArchitecture = useCallback(async () => {
+    if (currentVersionId) {
+        alert("You are viewing a historical version. Switch to 'Live Version' to make changes.");
+        return;
+    }
     try {
         const cleanNodes = nodes.map(n => ({
             ...n,
@@ -114,16 +165,86 @@ export default function ArchitecturePage() {
         console.error('Failed to save:', error);
         alert('Failed to save changes.');
     }
-  }, [nodes, edges, currentView.id]);
+  }, [nodes, edges, currentView.id, currentVersionId]);
+
+  const saveNewVersion = useCallback(async () => {
+      if (!newVersionName.trim()) return;
+      
+      // First save current state to ensure version includes latest changes
+      await saveArchitecture();
+
+      try {
+          const res = await fetch('/api/architecture?action=create_version', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: newVersionName }),
+          });
+          
+          if (res.ok) {
+              const data = await res.json();
+              alert(`Version "${newVersionName}" saved successfully!`);
+              setNewVersionName('');
+              setShowSaveVersionModal(false);
+              loadVersions();
+          } else {
+              alert('Failed to save version.');
+          }
+      } catch (err) {
+          console.error(err);
+          alert('Error saving version.');
+      }
+  }, [newVersionName, saveArchitecture, loadVersions]);
+
+  const deleteVersion = useCallback(async (e: React.MouseEvent, id: string) => {
+      e.stopPropagation();
+      if (!confirm('Are you sure you want to delete this version?')) return;
+      
+      try {
+          await fetch('/api/architecture?action=delete_version', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id }),
+          });
+          loadVersions();
+          if (currentVersionId === id) {
+              setCurrentVersionId(null); // Switch back to live
+          }
+      } catch (err) {
+          console.error(err);
+      }
+  }, [loadVersions, currentVersionId]);
+
+  const restoreVersion = useCallback(async (e: React.MouseEvent, id: string, name: string) => {
+    e.stopPropagation();
+    if (!confirm(`Are you sure you want to restore version "${name}" as the LIVE version? This will overwrite the current live state.`)) return;
+
+    try {
+        await fetch('/api/architecture?action=restore_version', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id }),
+        });
+        
+        alert(`Version "${name}" is now LIVE!`);
+        setCurrentVersionId(null); // Switch to Live
+        setShowVersionMenu(false);
+        loadVersions();
+        loadArchitecture(currentView.id, null); // Reload live data
+    } catch (err) {
+        console.error(err);
+        alert('Failed to restore version.');
+    }
+}, [loadArchitecture, loadVersions, currentView.id]);
 
   const resetArchitecture = useCallback(async () => {
       if (confirm('Are you sure you want to reset? This will revert to your last saved state.')) {
-          loadArchitecture(currentView.id);
+          loadArchitecture(currentView.id, currentVersionId);
           setHasUnsavedChanges(false);
       }
-  }, [loadArchitecture, currentView.id]);
+  }, [loadArchitecture, currentView.id, currentVersionId]);
 
   const factoryReset = useCallback(async () => {
+      if (currentVersionId) return;
       if (currentView.id !== 'root') {
           alert('Factory reset is only available for the root architecture.');
           return;
@@ -140,7 +261,21 @@ export default function ArchitecturePage() {
           setEdges(initialEdges);
           setHasUnsavedChanges(true);
       }
-  }, [setNodes, setEdges, isEditMode, currentView.id]);
+  }, [setNodes, setEdges, isEditMode, currentView.id, currentVersionId]);
+
+  const handleNewDiagram = useCallback(() => {
+      if (currentVersionId) {
+          alert("Switch to Live Version to create a new diagram.");
+          return;
+      }
+      
+      const confirmMsg = "Start a NEW BLANK diagram?\n\nTip: You should save your current work as a Version first if you want to keep it.";
+      if (confirm(confirmMsg)) {
+          setNodes([]);
+          setEdges([]);
+          setHasUnsavedChanges(true);
+      }
+  }, [currentVersionId, setNodes, setEdges]);
 
   const handleEnterGroup = useCallback((groupId: string, groupLabel: string) => {
      setViewStack(prev => [...prev, { id: groupId, name: groupLabel }]);
@@ -358,6 +493,104 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
       );
   };
 
+  const saveToLibrary = useCallback(() => {
+    const name = prompt("Enter a name for this template:");
+    if (!name) return;
+
+    let nodesToSave = nodes;
+    let edgesToSave = edges;
+    
+    const selectedNodes = nodes.filter(n => n.selected);
+    if (selectedNodes.length > 0) {
+        nodesToSave = selectedNodes;
+        const selectedNodeIds = new Set(selectedNodes.map(n => n.id));
+        edgesToSave = edges.filter(e => selectedNodeIds.has(e.source) && selectedNodeIds.has(e.target));
+    }
+
+    const newItem = {
+        id: `lib_${Date.now()}`,
+        name,
+        nodes: nodesToSave,
+        edges: edgesToSave
+    };
+    
+    setLibraryItems(prev => [...prev, newItem]);
+    alert("Saved to Library!");
+  }, [nodes, edges]);
+
+  const onDragStart = (event: React.DragEvent, item: any) => {
+    event.dataTransfer.setData('application/reactflow', JSON.stringify(item));
+    event.dataTransfer.effectAllowed = 'move';
+  };
+
+  const onDragOver = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const onDrop = useCallback(
+    (event: React.DragEvent) => {
+        event.preventDefault();
+
+        const data = event.dataTransfer.getData('application/reactflow');
+        if (!data || !reactFlowInstance) return;
+
+        try {
+            const item = JSON.parse(data);
+            
+            const position = reactFlowInstance.screenToFlowPosition({
+                x: event.clientX,
+                y: event.clientY,
+            });
+
+            if (!item.nodes || item.nodes.length === 0) return;
+
+            const minX = Math.min(...item.nodes.map((n: Node) => n.position.x));
+            const minY = Math.min(...item.nodes.map((n: Node) => n.position.y));
+            
+            const idMap = new Map<string, string>();
+            const newNodes = item.nodes.map((n: Node) => {
+                const newId = `node_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                idMap.set(n.id, newId);
+                return {
+                    ...n,
+                    id: newId,
+                    position: {
+                        x: position.x + (n.position.x - minX),
+                        y: position.y + (n.position.y - minY)
+                    },
+                    data: {
+                        ...n.data,
+                        isEditMode: isEditMode // Ensure new nodes respect current mode
+                    },
+                    selected: false
+                };
+            });
+
+            const newEdges = item.edges.map((e: Edge) => ({
+                ...e,
+                id: `edge_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                source: idMap.get(e.source) || e.source,
+                target: idMap.get(e.target) || e.target,
+                selected: false
+            }));
+
+            setNodes((nds) => nds.concat(newNodes));
+            setEdges((eds) => eds.concat(newEdges));
+            setHasUnsavedChanges(true);
+        } catch (e) {
+            console.error("Failed to drop item:", e);
+        }
+    },
+    [reactFlowInstance, setNodes, setEdges, isEditMode]
+  );
+  
+  const deleteLibraryItem = (id: string) => {
+    if(confirm("Delete this template?")) {
+        setLibraryItems(prev => prev.filter(item => item.id !== id));
+    }
+  };
+
   return (
     <div className="w-full h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
       {/* Header */}
@@ -409,6 +642,99 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
                    Back to Parent
                 </button>
             )}
+
+            {/* Version Control */}
+            <div className="flex items-center">
+                <div className="relative">
+                    <button
+                        onClick={() => setShowVersionMenu(!showVersionMenu)}
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors text-xs font-medium ${
+                            currentVersionId 
+                            ? 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800'
+                            : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700'
+                        }`}
+                    >
+                        <History className="w-3 h-3" />
+                        {currentVersionId ? versions.find(v => v.id === currentVersionId)?.name || 'Unknown Version' : 'Live Version'}
+                    </button>
+                    
+                    {showVersionMenu && (
+                        <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-1 z-50">
+                            <button
+                                onClick={() => { setCurrentVersionId(null); setShowVersionMenu(false); }}
+                                className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-700 ${!currentVersionId ? 'text-indigo-600 font-medium bg-indigo-50 dark:bg-indigo-900/20' : 'text-slate-700 dark:text-slate-300'}`}
+                            >
+                                <span>Live Version</span>
+                                {!currentVersionId && <div className="w-2 h-2 rounded-full bg-indigo-500"></div>}
+                            </button>
+                            
+                            <div className="my-1 border-t border-slate-100 dark:border-slate-700"></div>
+                            
+                            <div className="px-4 py-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                                Saved Versions
+                            </div>
+                            
+                            {versions.length === 0 && (
+                                <div className="px-4 py-2 text-sm text-slate-400 italic">No saved versions</div>
+                            )}
+                            
+                            {versions.map(v => (
+                                <div key={v.id} className="group relative">
+                                    <button
+                                        onClick={() => { setCurrentVersionId(v.id); setShowVersionMenu(false); }}
+                                        className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-700 ${currentVersionId === v.id ? 'text-amber-600 font-medium bg-amber-50 dark:bg-amber-900/20' : 'text-slate-700 dark:text-slate-300'}`}
+                                    >
+                                        <div className="flex flex-col">
+                                            <span>{v.name}</span>
+                                            <span className="text-[10px] text-slate-400">{new Date(v.createdAt).toLocaleDateString()}</span>
+                                        </div>
+                                        {currentVersionId === v.id && <div className="w-2 h-2 rounded-full bg-amber-500"></div>}
+                                    </button>
+                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all">
+                                        <button
+                                            onClick={(e) => restoreVersion(e, v.id, v.name)}
+                                            className="p-1.5 rounded text-slate-400 hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/20"
+                                            title="Make Live (Restore)"
+                                        >
+                                            <Archive className="w-3 h-3" />
+                                        </button>
+                                        <button
+                                            onClick={(e) => deleteVersion(e, v.id)}
+                                            className="p-1.5 rounded text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                                            title="Delete Version"
+                                        >
+                                            <Trash2 className="w-3 h-3" />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Quick Add Version Button */}
+                {!currentVersionId && (
+                    <div className="flex gap-2 ml-2">
+                        <button
+                            onClick={() => setShowSaveVersionModal(true)}
+                            className="flex items-center gap-1 px-3 py-1.5 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:hover:bg-indigo-900/30 rounded-lg transition-colors text-xs font-medium border border-indigo-200 dark:border-indigo-800"
+                            title="Create New Version Snapshot"
+                        >
+                            <Plus className="w-3 h-3" />
+                            Save Version
+                        </button>
+                        <button
+                            onClick={handleNewDiagram}
+                            className="flex items-center gap-1 px-3 py-1.5 bg-white text-slate-600 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 rounded-lg transition-colors text-xs font-medium border border-slate-200 dark:border-slate-700"
+                            title="Start Fresh (Blank Canvas)"
+                        >
+                            <FilePlus className="w-3 h-3" />
+                            New Diagram
+                        </button>
+                    </div>
+                )}
+            </div>
+
             {isEditMode && (
                 <div className="flex items-center gap-2 mr-4 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
                     <button
@@ -453,6 +779,18 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
                 </div>
             )}
             <button
+                onClick={() => setShowLibrary(!showLibrary)}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all mr-2 ${
+                    showLibrary
+                    ? 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
+                }`}
+                title="Architecture Library"
+            >
+                <Library className="w-4 h-4" />
+                Library
+            </button>
+            <button
                 onClick={toggleEditMode}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                     isEditMode 
@@ -480,6 +818,72 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
 
       {/* Main Content */}
       <div className="flex-grow relative flex overflow-hidden">
+        {/* Library Sidebar */}
+        <div 
+          className={`absolute left-0 top-0 h-full w-64 bg-white dark:bg-slate-900 shadow-xl border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out z-20 flex flex-col ${
+            showLibrary ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+             <h2 className="font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                 <Library className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                 Library
+             </h2>
+             <button onClick={() => setShowLibrary(false)}>
+                 <X className="w-4 h-4 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200" />
+             </button>
+          </div>
+          
+          <div className="p-4 border-b border-slate-200 dark:border-slate-800">
+             <button
+                 onClick={saveToLibrary}
+                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:hover:bg-indigo-900/30 rounded-lg transition-colors text-sm font-medium border border-indigo-200 dark:border-indigo-800"
+             >
+                 <Plus className="w-4 h-4" />
+                 Save Current to Library
+             </button>
+             <p className="text-[10px] text-slate-400 mt-2 text-center">
+                 Select nodes to save specific parts, or save entire diagram.
+             </p>
+          </div>
+
+          <div className="flex-grow overflow-y-auto p-4 space-y-3">
+             {libraryItems.length === 0 ? (
+                 <div className="text-center py-8 text-slate-400 text-sm italic">
+                     Library is empty. Save your common patterns here!
+                 </div>
+             ) : (
+                 libraryItems.map((item) => (
+                     <div 
+                         key={item.id}
+                         draggable
+                         onDragStart={(e) => onDragStart(e, item)}
+                         className="group relative p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all cursor-grab active:cursor-grabbing"
+                     >
+                         <div className="flex justify-between items-start">
+                             <div className="flex items-center gap-2">
+                                 <GripVertical className="w-4 h-4 text-slate-400" />
+                                 <span className="font-medium text-sm text-slate-700 dark:text-slate-200">{item.name}</span>
+                             </div>
+                             <button
+                                 onClick={(e) => { e.stopPropagation(); deleteLibraryItem(item.id); }}
+                                 className="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-all"
+                                 title="Delete Template"
+                             >
+                                 <Trash2 className="w-3 h-3" />
+                             </button>
+                         </div>
+                         <div className="mt-2 text-[10px] text-slate-500 flex gap-2">
+                             <span>{item.nodes.length} Nodes</span>
+                             <span>•</span>
+                             <span>{item.edges.length} Edges</span>
+                         </div>
+                     </div>
+                 ))
+             )}
+          </div>
+        </div>
+
         {/* React Flow Canvas */}
         <div className="flex-grow h-full w-full">
           <ReactFlow
@@ -489,6 +893,9 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
             onEdgesChange={onEdgesChangeWithTrack}
             onConnect={isEditMode ? onConnect : undefined}
             onEdgeUpdate={isEditMode ? onEdgeUpdate : undefined}
+            onInit={setReactFlowInstance}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
             nodeTypes={nodeTypes}
             onNodeClick={onNodeClick}
             onEdgeClick={onEdgeClick}
@@ -898,6 +1305,36 @@ ${data.connections.map(c => `- ${c.from} --> ${c.to} ${c.label ? `[${c.label}]` 
           )}
         </div>
       </div>
+      {/* Save Version Modal */}
+      {showSaveVersionModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white dark:bg-slate-900 rounded-lg shadow-xl p-6 w-96 border border-slate-200 dark:border-slate-800">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Save Version</h3>
+                  <input
+                      type="text"
+                      value={newVersionName}
+                      onChange={(e) => setNewVersionName(e.target.value)}
+                      placeholder="Version Name (e.g., v1.0 Stable)"
+                      className="w-full px-3 py-2 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none mb-4"
+                      autoFocus
+                  />
+                  <div className="flex justify-end gap-2">
+                      <button
+                          onClick={() => setShowSaveVersionModal(false)}
+                          className="px-4 py-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 rounded-lg"
+                      >
+                          Cancel
+                      </button>
+                      <button
+                          onClick={saveNewVersion}
+                          className="px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 rounded-lg"
+                      >
+                          Save
+                      </button>
+                  </div>
+              </div>
+          </div>
+      )}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function TimelinePage() {
              </Link>
              <div>
                <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Project Timeline</h1>
-               <p className="text-xs text-slate-500 font-medium">ERA AML GUARDIAN</p>
+               <p className="text-xs text-slate-500 font-medium">ERA EFRM Platform</p>
             </div>
           </div>
           <ThemeToggle />
