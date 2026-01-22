@@ -5,7 +5,7 @@ import { useCases as initialUseCases, UseCase } from '../data/useCases';
 import UseCaseCard from '../components/UseCaseCard';
 import { ThemeToggle } from '../components/ThemeToggle';
 import Link from 'next/link';
-import { Search, BarChart3, Filter, LayoutGrid, Zap, Brain, Database, Calendar, Menu, X, FileText, ChevronRight, CheckCircle2, Edit2, Plus, Trash2, Save, MoreVertical, GripVertical } from 'lucide-react';
+import { Search, BarChart3, Filter, LayoutGrid, Zap, Brain, Database, Calendar, Menu, X, FileText, ChevronRight, CheckCircle2, Edit2, Plus, Trash2, Save, MoreVertical, GripVertical, BookOpen, Server } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
@@ -54,20 +54,20 @@ export default function Home() {
     }
   };
 
-  const handleAddModule = () => {
-    const newModule = {
+  const handleAddFeature = () => {
+    const newFeature = {
       id: Date.now().toString(),
-      title: 'New Module',
-      description: 'Module description...',
+      title: 'New Feature',
+      description: 'Feature description...',
       items: []
     };
-    const newReqs = [...requirements, newModule];
+    const newReqs = [...requirements, newFeature];
     saveRequirements(newReqs);
     setSelectedReqIndex(newReqs.length - 1);
   };
 
-  const handleDeleteModule = (index: number) => {
-    if (confirm('Are you sure you want to delete this module?')) {
+  const handleDeleteFeature = (index: number) => {
+    if (confirm('Are you sure you want to delete this feature?')) {
       const newReqs = requirements.filter((_, i) => i !== index);
       saveRequirements(newReqs);
       if (selectedReqIndex >= newReqs.length) {
@@ -76,7 +76,7 @@ export default function Home() {
     }
   };
 
-  const handleUpdateModule = (index: number, field: string, value: string) => {
+  const handleUpdateFeature = (index: number, field: string, value: string) => {
     const newReqs = [...requirements];
     newReqs[index] = { ...newReqs[index], [field]: value };
     saveRequirements(newReqs);
@@ -182,6 +182,49 @@ export default function Home() {
   const sections = ['General Banking', 'Remittance', 'Trade', 'Credit'];
   const types = ['Hard Logic', 'AI Agents', 'AI-RAG'];
 
+  const renderSidebarItem = (req: any, idx: number) => {
+    const isActive = selectedReqIndex === idx;
+    return (
+      <div key={idx} className="relative group">
+          <button
+          onClick={() => setSelectedReqIndex(idx)}
+          className={`w-full text-left p-3 rounded-xl text-sm transition-all duration-200 flex items-center gap-3 group relative ${
+              isActive
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20'
+              : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400'
+          }`}
+          >
+          <span className={`flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold transition-colors ${
+              isActive 
+              ? 'bg-white/20 text-white' 
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-900/30 dark:group-hover:text-indigo-400'
+          }`}>
+              {idx + 1}
+          </span>
+          <span className={`font-medium truncate ${isActive ? 'text-white' : 'group-hover:text-slate-900 dark:group-hover:text-slate-200'}`}>
+              {req.title.replace(/^\d+\.\s*/, '')}
+          </span>
+          {isActive && !isEditing && (
+              <motion.div
+              layoutId="active-indicator"
+              className="absolute right-2"
+              >
+              <ChevronRight className="w-4 h-4 text-white/70" />
+              </motion.div>
+          )}
+          </button>
+          {isEditing && (
+              <button 
+                  onClick={(e) => { e.stopPropagation(); handleDeleteFeature(idx); }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-red-500 bg-white dark:bg-slate-800 rounded-md shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                  <Trash2 className="w-3.5 h-3.5" />
+              </button>
+          )}
+      </div>
+    );
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
       {/* Header */}
@@ -212,13 +255,24 @@ export default function Home() {
 
                     {/* Edit Mode Toggle */}
                     {viewMode === 'requirements' && (
-                        <button
-                            onClick={() => setIsEditing(!isEditing)}
-                            className={`p-2 rounded-lg transition-colors ${isEditing ? 'bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400' : 'text-slate-500 hover:text-amber-600 dark:hover:text-amber-400'}`}
-                            title={isEditing ? 'Stop Editing' : 'Edit Requirements'}
-                        >
-                            {isEditing ? <Save className="w-5 h-5" /> : <Edit2 className="w-5 h-5" />}
-                        </button>
+                        <>
+                            <button
+                                onClick={() => setIsEditing(!isEditing)}
+                                className={`p-2 rounded-lg transition-colors ${isEditing ? 'bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400' : 'text-slate-500 hover:text-amber-600 dark:hover:text-amber-400'}`}
+                                title={isEditing ? 'Stop Editing' : 'Edit Requirements'}
+                            >
+                                {isEditing ? <Save className="w-5 h-5" /> : <Edit2 className="w-5 h-5" />}
+                            </button>
+                            {requirements.length > 8 && (
+                                <button
+                                    onClick={() => setSelectedReqIndex(8)}
+                                    className={`p-2 rounded-lg transition-colors ${selectedReqIndex === 8 ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400'}`}
+                                    title="Knowledge Transfer"
+                                >
+                                    <BookOpen className="w-5 h-5" />
+                                </button>
+                            )}
+                        </>
                     )}
                   </div>
                 </div>
@@ -260,6 +314,23 @@ export default function Home() {
                   <span>Architecture</span>
                 </Link>
 
+                {requirements.length > 9 && (
+                    <button
+                        onClick={() => {
+                            setViewMode('requirements');
+                            setSelectedReqIndex(9);
+                        }}
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all font-medium text-xs ${
+                            selectedReqIndex === 9 && viewMode === 'requirements'
+                            ? 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-slate-700'
+                        }`}
+                    >
+                        <Server className="w-3.5 h-3.5" />
+                        <span>Infrastructure</span>
+                    </button>
+                )}
+
                 <ThemeToggle />
             </div>
 
@@ -287,65 +358,27 @@ export default function Home() {
           <div className="h-full flex flex-col lg:flex-row gap-4">
             {/* Left Sidebar - Navigation */}
             <div className="w-full lg:w-72 flex-shrink-0 flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-              <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center justify-between">
-                <h2 className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2 text-sm uppercase tracking-wider">
-                  <Zap className="w-4 h-4 text-indigo-500" />
-                  Modules
-                </h2>
-                <span className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-full font-bold">
-                  {requirements.length}
-                </span>
-              </div>
               <div className="flex-1 overflow-y-auto p-2 space-y-1 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700">
-                {requirements.map((req, idx) => {
-                  const isActive = selectedReqIndex === idx;
-                  return (
-                    <div key={idx} className="relative group">
-                        <button
-                        onClick={() => setSelectedReqIndex(idx)}
-                        className={`w-full text-left p-3 rounded-xl text-sm transition-all duration-200 flex items-center gap-3 group relative ${
-                            isActive
-                            ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/20'
-                            : 'hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400'
-                        }`}
-                        >
-                        <span className={`flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold transition-colors ${
-                            isActive 
-                            ? 'bg-white/20 text-white' 
-                            : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:group-hover:bg-indigo-900/30 dark:group-hover:text-indigo-400'
-                        }`}>
-                            {idx + 1}
-                        </span>
-                        <span className={`font-medium truncate ${isActive ? 'text-white' : 'group-hover:text-slate-900 dark:group-hover:text-slate-200'}`}>
-                            {req.title.replace(/^\d+\.\s*/, '')}
-                        </span>
-                        {isActive && !isEditing && (
-                            <motion.div
-                            layoutId="active-indicator"
-                            className="absolute right-2"
-                            >
-                            <ChevronRight className="w-4 h-4 text-white/70" />
-                            </motion.div>
-                        )}
-                        </button>
-                        {isEditing && (
-                            <button 
-                                onClick={(e) => { e.stopPropagation(); handleDeleteModule(idx); }}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-red-500 bg-white dark:bg-slate-800 rounded-md shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                                <Trash2 className="w-3.5 h-3.5" />
-                            </button>
-                        )}
-                    </div>
-                  );
-                })}
+                
+                {/* Features Section */}
+                <div className="px-3 py-2 mt-2 first:mt-0 flex items-center justify-between">
+                    <h2 className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2 text-sm uppercase tracking-wider">
+                        <Zap className="w-4 h-4 text-indigo-500" />
+                        Features
+                    </h2>
+                    <span className="text-xs bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-full font-bold">
+                        {Math.min(requirements.length, 8)}
+                    </span>
+                </div>
+                {requirements.slice(0, 8).map((req, idx) => renderSidebarItem(req, idx))}
+                
                 {isEditing && (
                     <button
-                        onClick={handleAddModule}
-                        className="w-full mt-2 p-3 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 text-slate-400 hover:border-indigo-500 hover:text-indigo-500 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
+                        onClick={handleAddFeature}
+                        className="w-full mt-4 p-3 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-700 text-slate-400 hover:border-indigo-500 hover:text-indigo-500 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
                     >
                         <Plus className="w-4 h-4" />
-                        Add Module
+                        Add Feature
                     </button>
                 )}
               </div>
@@ -359,7 +392,7 @@ export default function Home() {
                      <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
-                              Module {selectedReqIndex + 1}
+                              Feature {selectedReqIndex + 1}
                            </span>
                            <span className="text-slate-400 dark:text-slate-500 text-xs">
                               {requirements[selectedReqIndex].items.length} key components
@@ -369,7 +402,7 @@ export default function Home() {
                             <input 
                                 type="text"
                                 value={requirements[selectedReqIndex].title.replace(/^\d+\.\s*/, '')}
-                                onChange={(e) => handleUpdateModule(selectedReqIndex, 'title', e.target.value)}
+                                onChange={(e) => handleUpdateFeature(selectedReqIndex, 'title', e.target.value)}
                                 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500 outline-none"
                             />
                         ) : (
@@ -395,7 +428,7 @@ export default function Home() {
                              {isEditing ? (
                                 <textarea
                                     value={requirements[selectedReqIndex].description}
-                                    onChange={(e) => handleUpdateModule(selectedReqIndex, 'description', e.target.value)}
+                                    onChange={(e) => handleUpdateFeature(selectedReqIndex, 'description', e.target.value)}
                                     className="w-full bg-transparent border-none focus:ring-0 resize-none p-0 italic"
                                     rows={3}
                                 />
